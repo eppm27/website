@@ -49,6 +49,10 @@ const Skills = () => {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
     },
     {
+        name: "HTML/CSS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+    {
       name: "Bash",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
     },
@@ -103,10 +107,6 @@ const Skills = () => {
     {
       name: "Figma",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-    },
-    {
-      name: "HTML/CSS",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
     },
   ];
 
