@@ -66,10 +66,10 @@ const Contact = () => {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="section-eyebrow">Contact</span>
-          <h2 className="section-title mt-4 text-4xl text-theme sm:text-5xl">
+          <h2 className="section-title mt-4 text-4xl sm:text-5xl text-white">
             Let's build your next thoughtful experience.
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-theme-secondary">
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300">
             Whether you have a roadmap ready to go or an idea that needs framing, I'm ready to partner with
             you from strategy through launch.
           </p>
@@ -77,7 +77,7 @@ const Contact = () => {
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div className="space-y-8">
-            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
+            <div className="rounded-3xl px-6 py-8 shadow-xl sm:px-8 sm:py-10 bg-slate-800 text-slate-100">
               <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Ways to connect</p>
               <p className="mt-4 text-lg text-slate-200">
                 Drop me a note outlining what you're working on and the kind of support you're looking for.
@@ -92,45 +92,45 @@ const Contact = () => {
                   href={method.href}
                   target={method.href.startsWith("http") ? "_blank" : undefined}
                   rel={method.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="block rounded-2xl border border-slate-100 bg-slate-50/60 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-6"
+                  className="block rounded-2xl p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-6 border border-slate-700 bg-slate-800/60 text-slate-100"
                 >
                   <div className="flex flex-col gap-2">
-                    <span className="text-sm uppercase tracking-[0.2em] text-blue-600">
+                    <span className="text-sm uppercase tracking-[0.2em] text-blue-400">
                       {method.title}
                     </span>
-                    <span className="text-base font-semibold text-slate-800">{method.value}</span>
-                    <span className="text-sm text-slate-600">{method.description}</span>
+                    <span className="text-base font-semibold text-slate-100">{method.value}</span>
+                    <span className="text-sm text-slate-300">{method.description}</span>
                   </div>
                 </a>
               ))}
             </div>
 
-            <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
+            <div className="rounded-2xl p-6 border border-slate-700 bg-slate-800/50">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
                 What you can expect
               </p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {responseStats.map((stat) => (
-                  <div key={stat.label} className="rounded-xl bg-white/70 p-4 text-sm text-slate-600">
+                  <div key={stat.label} className="rounded-xl p-4 text-sm bg-slate-700/50 text-slate-300">
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{stat.label}</p>
-                    <p className="mt-2 text-lg font-semibold text-slate-800">{stat.value}</p>
+                    <p className="mt-2 text-lg font-semibold text-slate-100">{stat.value}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="rounded-3xl bg-slate-50/60 p-8 shadow-xl ring-1 ring-slate-100 sm:p-10">
-            <h3 className="text-xl font-semibold text-slate-900">Start a conversation</h3>
-            <p className="mt-3 text-sm text-slate-600">
+          <div className="rounded-3xl p-8 shadow-xl sm:p-10 bg-slate-800/60 ring-1 ring-slate-700">
+            <h3 className="text-xl font-semibold text-slate-100">Start a conversation</h3>
+            <p className="mt-3 text-sm text-slate-300">
               Tell me a little about your project and the outcome you're aiming for. I'll respond with tailored
               next steps and availability.
             </p>
 
             {messageSent ? (
-              <div className="mt-8 rounded-2xl bg-white p-6 text-center shadow-md">
-                <p className="text-lg font-semibold text-emerald-500">Message sent</p>
-                <p className="mt-2 text-sm text-slate-600">
+              <div className="mt-8 rounded-2xl p-6 text-center shadow-md bg-slate-700">
+                <p className="text-lg font-semibold text-emerald-400">Message sent</p>
+                <p className="mt-2 text-sm text-slate-300">
                   Thank you for reaching out. I'll respond within the next business day.
                 </p>
               </div>
@@ -138,9 +138,9 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="text-xs uppercase tracking-[0.2em] text-slate-500">Name</label>
+                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Name</label>
                     <input
-                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
                       type="text"
                       name="name"
                       value={formData.name}
@@ -150,9 +150,9 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs uppercase tracking-[0.2em] text-slate-500">Email</label>
+                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Email</label>
                     <input
-                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -164,9 +164,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-slate-500">Subject</label>
+                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Subject</label>
                   <select
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
@@ -182,9 +182,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-slate-500">Message</label>
+                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Message</label>
                   <textarea
-                    className="mt-2 h-32 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                    className="mt-2 h-32 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
