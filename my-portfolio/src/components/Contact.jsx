@@ -70,18 +70,21 @@ const Contact = () => {
             Let's build your next thoughtful experience.
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300">
-            Whether you have a roadmap ready to go or an idea that needs framing, I'm ready to partner with
-            you from strategy through launch.
+            Whether you have a roadmap ready to go or an idea that needs
+            framing, I'm ready to partner with you from strategy through launch.
           </p>
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div className="space-y-8">
             <div className="rounded-3xl px-6 py-8 shadow-xl sm:px-8 sm:py-10 bg-slate-800 text-slate-100">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Ways to connect</p>
+              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">
+                Ways to connect
+              </p>
               <p className="mt-4 text-lg text-slate-200">
-                Drop me a note outlining what you're working on and the kind of support you're looking for.
-                I'll follow up with next steps and a short introduction call.
+                Drop me a note outlining what you're working on and the kind of
+                support you're looking for. I'll follow up with next steps and a
+                short introduction call.
               </p>
             </div>
 
@@ -91,15 +94,21 @@ const Contact = () => {
                   key={method.title}
                   href={method.href}
                   target={method.href.startsWith("http") ? "_blank" : undefined}
-                  rel={method.href.startsWith("http") ? "noreferrer" : undefined}
+                  rel={
+                    method.href.startsWith("http") ? "noreferrer" : undefined
+                  }
                   className="block rounded-2xl p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-6 border border-slate-700 bg-slate-800/60 text-slate-100"
                 >
                   <div className="flex flex-col gap-2">
                     <span className="text-sm uppercase tracking-[0.2em] text-blue-400">
                       {method.title}
                     </span>
-                    <span className="text-base font-semibold text-slate-100">{method.value}</span>
-                    <span className="text-sm text-slate-300">{method.description}</span>
+                    <span className="text-base font-semibold text-slate-100">
+                      {method.value}
+                    </span>
+                    <span className="text-sm text-slate-300">
+                      {method.description}
+                    </span>
                   </div>
                 </a>
               ))}
@@ -111,9 +120,16 @@ const Contact = () => {
               </p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {responseStats.map((stat) => (
-                  <div key={stat.label} className="rounded-xl p-4 text-sm bg-slate-700/50 text-slate-300">
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{stat.label}</p>
-                    <p className="mt-2 text-lg font-semibold text-slate-100">{stat.value}</p>
+                  <div
+                    key={stat.label}
+                    className="rounded-xl p-4 text-sm bg-slate-700/50 text-slate-300"
+                  >
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                      {stat.label}
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-slate-100">
+                      {stat.value}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -121,24 +137,31 @@ const Contact = () => {
           </div>
 
           <div className="rounded-3xl p-8 shadow-xl sm:p-10 bg-slate-800/60 ring-1 ring-slate-700">
-            <h3 className="text-xl font-semibold text-slate-100">Start a conversation</h3>
+            <h3 className="text-xl font-semibold text-slate-100">
+              Start a conversation
+            </h3>
             <p className="mt-3 text-sm text-slate-300">
-              Tell me a little about your project and the outcome you're aiming for. I'll respond with tailored
-              next steps and availability.
+              Tell me a little about your project and the outcome you're aiming
+              for. I'll respond with tailored next steps and availability.
             </p>
 
             {messageSent ? (
               <div className="mt-8 rounded-2xl p-6 text-center shadow-md bg-slate-700">
-                <p className="text-lg font-semibold text-emerald-400">Message sent</p>
+                <p className="text-lg font-semibold text-emerald-400">
+                  Message sent
+                </p>
                 <p className="mt-2 text-sm text-slate-300">
-                  Thank you for reaching out. I'll respond within the next business day.
+                  Thank you for reaching out. I'll respond within the next
+                  business day.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Name</label>
+                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                      Name
+                    </label>
                     <input
                       className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
                       type="text"
@@ -150,7 +173,9 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Email</label>
+                    <label className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                      Email
+                    </label>
                     <input
                       className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
                       type="email"
@@ -164,7 +189,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Subject</label>
+                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                    Subject
+                  </label>
                   <select
                     className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 focus:ring-blue-500/20 focus:border-blue-400"
                     name="subject"
@@ -182,7 +209,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Message</label>
+                  <label className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                    Message
+                  </label>
                   <textarea
                     className="mt-2 h-32 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
                     name="message"
@@ -206,10 +235,12 @@ const Contact = () => {
         </div>
 
         <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-10 text-center text-white shadow-xl sm:px-8 sm:py-12">
-          <h3 className="text-2xl font-semibold">Ready to bring clarity to your product roadmap?</h3>
+          <h3 className="text-2xl font-semibold">
+            Ready to bring clarity to your product roadmap?
+          </h3>
           <p className="mt-3 text-sm text-blue-100">
-            I can help with discovery, prototyping, and production-ready delivery. Let's turn your brief into a
-            confident plan.
+            I can help with discovery, prototyping, and production-ready
+            delivery. Let's turn your brief into a confident plan.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a

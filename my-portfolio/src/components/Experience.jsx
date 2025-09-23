@@ -13,7 +13,14 @@ const experiences = [
       "Integrated OpenAI and financial data sources behind secure, testable service boundaries.",
       "Automated CI with GitHub Actions, lifting coverage beyond 85% and speeding up QA cycles.",
     ],
-    stack: ["React", "Node.js", "MongoDB", "OpenAI API", "Docker", "GitHub Actions"],
+    stack: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "OpenAI API",
+      "Docker",
+      "GitHub Actions",
+    ],
   },
   {
     role: "Technology Insights Program Participant",
@@ -54,12 +61,21 @@ const Experience = () => {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="section-eyebrow">Experience</span>
-          <h2 className={`section-title mt-4 text-3xl sm:text-4xl ${isDark ? "text-white" : "text-slate-900"}`}>
+          <h2
+            className={`section-title mt-4 text-3xl sm:text-4xl ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
+          >
             Learning by shipping with cross-functional teams
           </h2>
-          <p className={`mx-auto mt-6 max-w-3xl text-lg ${isDark ? "text-slate-300" : "text-slate-600"}`}>
-            Autonomy, clarity, and thoughtful collaboration keep features moving. These roles taught me to own the
-            details while staying product-driven.
+          <p
+            className={`mx-auto mt-6 max-w-3xl text-lg ${
+              isDark ? "text-slate-300" : "text-slate-600"
+            }`}
+          >
+            Autonomy, clarity, and thoughtful collaboration keep features
+            moving. These roles taught me to own the details while staying
+            product-driven.
           </p>
         </div>
 
@@ -67,18 +83,36 @@ const Experience = () => {
           {experiences.map((experience, index) => (
             <article
               key={experience.role}
-              className={`timeline-item card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-8 lg:p-9`}
+              className={`timeline-item card-base ${
+                isDark ? "card-layer-dark" : "card-layer-light"
+              } p-6 sm:p-8 lg:p-9`}
             >
               <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
                 <div>
-                  <span className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">{experience.period}</span>
-                  <h3 className={`mt-3 text-2xl font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+                  <span className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
+                    {experience.period}
+                  </span>
+                  <h3
+                    className={`mt-3 text-2xl font-semibold ${
+                      isDark ? "text-white" : "text-slate-900"
+                    }`}
+                  >
                     {experience.role}
                   </h3>
-                  <p className={`text-base font-medium ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+                  <p
+                    className={`text-base font-medium ${
+                      isDark ? "text-slate-300" : "text-slate-600"
+                    }`}
+                  >
                     {experience.organisation}
                   </p>
-                  <p className={`text-sm ${isDark ? "text-slate-500" : "text-slate-500"}`}>{experience.location}</p>
+                  <p
+                    className={`text-sm ${
+                      isDark ? "text-slate-500" : "text-slate-500"
+                    }`}
+                  >
+                    {experience.location}
+                  </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 self-start">
                   {experience.stack.map((item) => (
@@ -89,11 +123,19 @@ const Experience = () => {
                 </div>
               </div>
 
-              <p className={`mt-5 text-sm leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+              <p
+                className={`mt-5 text-sm leading-relaxed ${
+                  isDark ? "text-slate-300" : "text-slate-600"
+                }`}
+              >
                 {experience.summary}
               </p>
 
-              <ul className={`mt-6 space-y-3 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+              <ul
+                className={`mt-6 space-y-3 text-sm ${
+                  isDark ? "text-slate-300" : "text-slate-600"
+                }`}
+              >
                 {experience.achievements.map((achievement) => (
                   <li key={achievement} className="flex items-start gap-3">
                     <span className="mt-1 inline-block h-2 w-2 flex-none rounded-full bg-[#2563eb]"></span>

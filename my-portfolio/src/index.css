@@ -30,8 +30,16 @@ body {
 
 body {
   color: var(--text-dark);
-  background-image: radial-gradient(circle at 18% 24%, rgba(37, 99, 235, 0.15), transparent 60%),
-    radial-gradient(circle at 82% 12%, rgba(96, 165, 250, 0.18), transparent 55%),
+  background-image: radial-gradient(
+      circle at 18% 24%,
+      rgba(37, 99, 235, 0.15),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(96, 165, 250, 0.18),
+      transparent 55%
+    ),
     linear-gradient(180deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%);
   background-attachment: fixed;
   transition: background 0.6s ease, color 0.6s ease;
@@ -209,7 +217,8 @@ body[data-theme="dark"] .btn-secondary {
   border-radius: 999px;
   padding: 0.65rem 1.1rem;
   border: 1px solid rgba(148, 163, 184, 0.25);
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .icon-link:hover {
@@ -306,7 +315,12 @@ body[data-theme="dark"] .text-theme-secondary {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(120deg, rgba(37, 99, 235, 0.65), rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.6));
+  background: linear-gradient(
+    120deg,
+    rgba(37, 99, 235, 0.65),
+    rgba(59, 130, 246, 0.2),
+    rgba(96, 165, 250, 0.6)
+  );
   opacity: 0.8;
 }
 
@@ -351,7 +365,11 @@ body[data-theme="dark"] .text-theme-secondary {
   bottom: 0;
   left: 0.55rem;
   width: 1.5px;
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.45), rgba(99, 102, 241, 0.25));
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.45),
+    rgba(99, 102, 241, 0.25)
+  );
 }
 
 .timeline-item {

@@ -13,7 +13,11 @@ function App() {
   const isDark = theme === "dark";
 
   return (
-    <div className={`min-h-screen bg-transparent ${isDark ? "text-slate-100" : "text-slate-900"}`}>
+    <div
+      className={`min-h-screen bg-transparent ${
+        isDark ? "text-slate-100" : "text-slate-900"
+      }`}
+    >
       <Navbar />
       <main className="pt-24">
         <Home />

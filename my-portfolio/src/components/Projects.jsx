@@ -7,7 +7,8 @@ const placeholderProjects = [
     id: 1,
     title: "CryptoChat",
     subtitle: "AI Crypto Dashboard",
-    description: "React/Next.js dashboard that merges live market data, OpenAI-powered insights, and trader collaboration tools with millisecond updates.",
+    description:
+      "React/Next.js dashboard that merges live market data, OpenAI-powered insights, and trader collaboration tools with millisecond updates.",
     stack: ["Next.js", "Node", "MongoDB", "OpenAI", "Yahoo Finance API"],
     image: "/projects/cryptochat.png",
     live: "https://example.com/cryptochat-demo",
@@ -17,7 +18,8 @@ const placeholderProjects = [
     id: 2,
     title: "SpendWise",
     subtitle: "Personal Finance Tracker",
-    description: "Personal budgeting platform with Django/FastAPI services, PostgreSQL analytics, and AI nudges that keep spending aligned with goals.",
+    description:
+      "Personal budgeting platform with Django/FastAPI services, PostgreSQL analytics, and AI nudges that keep spending aligned with goals.",
     stack: ["FastAPI", "React", "PostgreSQL", "Tailwind", "Stripe"],
     image: "/projects/spendwise.png",
     live: "https://example.com/spendwise-demo",
@@ -27,7 +29,8 @@ const placeholderProjects = [
     id: 3,
     title: "Interactive Cell Annotation",
     subtitle: "Biomedical image annotation tool",
-    description: "Web app for mask annotation of microscopy images with FastAPI pipelines, React canvas tooling, and export-ready workflows.",
+    description:
+      "Web app for mask annotation of microscopy images with FastAPI pipelines, React canvas tooling, and export-ready workflows.",
     stack: ["FastAPI", "React", "OpenCV", "PostgreSQL", "Docker"],
     image: "/projects/cell-annotation.png",
     live: "https://example.com/cell-annotation-demo",
@@ -37,7 +40,8 @@ const placeholderProjects = [
     id: 4,
     title: "E-Commerce Platform",
     subtitle: "Full-Stack Shopping App",
-    description: "Complete e-commerce solution with user authentication, payment processing, inventory management, and admin dashboard.",
+    description:
+      "Complete e-commerce solution with user authentication, payment processing, inventory management, and admin dashboard.",
     stack: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
     live: "https://example.com/ecommerce-demo",
     github: "https://github.com/eppm27/ecommerce-platform",
@@ -47,7 +51,8 @@ const placeholderProjects = [
     id: 5,
     title: "Task Management System",
     subtitle: "Project Collaboration Tool",
-    description: "Team productivity app with real-time collaboration, file sharing, task assignments, and progress tracking features.",
+    description:
+      "Team productivity app with real-time collaboration, file sharing, task assignments, and progress tracking features.",
     stack: ["Vue.js", "Laravel", "MySQL", "Socket.io", "AWS"],
     live: "https://example.com/task-manager-demo",
     github: "https://github.com/eppm27/task-management",
@@ -57,7 +62,8 @@ const placeholderProjects = [
     id: 6,
     title: "Weather Analytics Dashboard",
     subtitle: "Data Visualization App",
-    description: "Interactive weather data visualization platform with historical trends, forecasting, and location-based insights.",
+    description:
+      "Interactive weather data visualization platform with historical trends, forecasting, and location-based insights.",
     stack: ["Python", "Django", "D3.js", "PostgreSQL", "Redis"],
     live: "https://example.com/weather-analytics-demo",
     github: "https://github.com/eppm27/weather-analytics",
@@ -67,7 +73,8 @@ const placeholderProjects = [
     id: 7,
     title: "Social Media Scheduler",
     subtitle: "Content Management Tool",
-    description: "Multi-platform social media scheduling and analytics tool with content calendar and engagement tracking.",
+    description:
+      "Multi-platform social media scheduling and analytics tool with content calendar and engagement tracking.",
     stack: ["React", "FastAPI", "PostgreSQL", "Celery", "Twitter API"],
     live: "https://example.com/social-scheduler-demo",
     github: "https://github.com/eppm27/social-scheduler",
@@ -77,7 +84,8 @@ const placeholderProjects = [
     id: 8,
     title: "Recipe Recommendation Engine",
     subtitle: "AI-Powered Food App",
-    description: "Smart recipe app that suggests meals based on dietary preferences, available ingredients, and nutritional goals.",
+    description:
+      "Smart recipe app that suggests meals based on dietary preferences, available ingredients, and nutritional goals.",
     stack: ["React Native", "Python", "TensorFlow", "MongoDB", "OpenAI"],
     live: "https://example.com/recipe-engine-demo",
     github: "https://github.com/eppm27/recipe-engine",
@@ -106,8 +114,8 @@ const Projects = () => {
               isDark ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            A collection of projects that showcase my skills in full-stack development,
-            from web applications to data analysis tools.
+            A collection of projects that showcase my skills in full-stack
+            development, from web applications to data analysis tools.
           </p>
         </div>
 
@@ -122,9 +130,11 @@ const Projects = () => {
                 }`}
               >
                 {/* Project Image */}
-                <div className={`relative overflow-hidden rounded-[1.5rem] rounded-b-none h-48 ${
-                  isDark ? "bg-slate-800" : "bg-slate-200"
-                }`}>
+                <div
+                  className={`relative overflow-hidden rounded-[1.5rem] rounded-b-none h-48 ${
+                    isDark ? "bg-slate-800" : "bg-slate-200"
+                  }`}
+                >
                   {project.image ? (
                     <img
                       src={project.image}
@@ -134,13 +144,17 @@ const Projects = () => {
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full">
-                      <div className={`text-4xl ${isDark ? "text-slate-600" : "text-slate-400"}`}>
+                      <div
+                        className={`text-4xl ${
+                          isDark ? "text-slate-600" : "text-slate-400"
+                        }`}
+                      >
                         📱
                       </div>
                     </div>
                   )}
                 </div>
-                
+
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   <div>
                     <p className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
@@ -192,15 +206,14 @@ const Projects = () => {
           </div>
         </div>
 
-
-
         <div className="mt-12 flex flex-col items-center gap-3 text-center">
           <p
             className={`text-sm ${
               isDark ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            More projects coming soon! These are placeholder cards ready for your content.
+            More projects coming soon! These are placeholder cards ready for
+            your content.
           </p>
           <a href="#contact" className="btn-secondary focus-ring">
             Let's discuss a project

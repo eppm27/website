@@ -8,7 +8,11 @@ export const ThemeProvider = ({ children }) => {
     document.body.dataset.theme = "dark";
   }, []);
 
-  return <ThemeContext.Provider value={{ theme: "dark" }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme: "dark" }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export const useTheme = () => useContext(ThemeContext);
