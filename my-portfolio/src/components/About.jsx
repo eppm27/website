@@ -15,6 +15,11 @@ const About = () => {
       description:
         "I love mentoring, documenting decisions clearly, and creating healthy feedback loops across teams.",
     },
+    {
+      title: "Quality over speed",
+      description:
+        "I believe in building things right the first time, with clean code and thoughtful architecture that scales gracefully.",
+    },
   ];
 
   const education = [

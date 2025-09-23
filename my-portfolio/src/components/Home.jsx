@@ -61,7 +61,7 @@ const Home = () => {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <a
               href="#projects"
-              className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500"
+              className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500"
             >
               View recent work
             </a>

@@ -82,7 +82,7 @@ const Skills = () => {
               onClick={() => setSelectedCategory(key)}
               className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
                 selectedCategory === key
-                  ? "border-blue-200 bg-blue-600 text-white shadow-sm"
+                  ? "border-blue-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm"
                   : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-600"
               }`}
             >

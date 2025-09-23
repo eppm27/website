@@ -88,7 +88,7 @@ const Navbar = () => {
             smooth
             duration={600}
             offset={-80}
-            className="hidden rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500 md:inline-flex"
+            className="hidden rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500 md:inline-flex"
           >
             Let's talk
           </Link>
@@ -145,7 +145,7 @@ const Navbar = () => {
                 duration={600}
                 offset={-80}
                 onClick={() => setIsMenuOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white"
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white"
               >
                 Let's talk
               </Link>
