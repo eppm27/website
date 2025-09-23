@@ -10,28 +10,10 @@ const sections = [
   { name: "contact", label: "Contact" },
 ];
 
-const lightTheme = "winter";
-const darkTheme = "business";
-
 const Navbar = () => {
-  const prefersDark =
-    typeof window !== "undefined" &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
-    return localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
-  });
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const nextTheme = theme === "dark" ? darkTheme : lightTheme;
-    document.documentElement.setAttribute("data-theme", nextTheme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 16);
@@ -46,8 +28,6 @@ const Navbar = () => {
     window.addEventListener("resize", closeOnResize);
     return () => window.removeEventListener("resize", closeOnResize);
   }, [isMenuOpen]);
-
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   const navLinkClasses = (name) =>
     `relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 ${
@@ -103,17 +83,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:text-blue-600"
-          >
-            {theme === "light" ? (
-              <span className="text-lg">☾</span>
-            ) : (
-              <span className="text-lg">☀︎</span>
-            )}
-          </button>
           <Link
             to="contact"
             smooth
