@@ -196,7 +196,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isSubmitting ? "Sending..." : "Send message"}
                 </button>
@@ -214,7 +214,7 @@ const Contact = () => {
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a
               href="mailto:eppmon27@gmail.com"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-blue-50 hover:text-blue-700"
+              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
             >
               Email me a brief
             </a>
