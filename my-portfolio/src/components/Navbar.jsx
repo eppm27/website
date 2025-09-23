@@ -41,37 +41,7 @@ const contactShortcuts = [
   },
 ];
 
-const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
 
-  return (
-    <button
-      type="button"
-      className="icon-button focus-ring"
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      onClick={toggleTheme}
-    >
-      {isDark ? (
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <circle cx="12" cy="12" r="4.5" />
-          <line x1="12" y1="2" x2="12" y2="4" />
-          <line x1="12" y1="20" x2="12" y2="22" />
-          <line x1="4" y1="12" x2="2" y2="12" />
-          <line x1="22" y1="12" x2="20" y2="12" />
-          <line x1="5" y1="5" x2="3.6" y2="3.6" />
-          <line x1="20.4" y1="20.4" x2="19" y2="19" />
-          <line x1="19" y1="5" x2="20.4" y2="3.6" />
-          <line x1="3.6" y1="20.4" x2="5" y2="19" />
-        </svg>
-      ) : (
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" />
-        </svg>
-      )}
-    </button>
-  );
-};
 
 const Navbar = () => {
   const { theme } = useTheme();
@@ -153,11 +123,9 @@ const Navbar = () => {
               <span className="text-sm font-medium">{label}</span>
             </a>
           ))}
-          <ThemeToggle />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <button
             type="button"
             className="icon-button focus-ring"
