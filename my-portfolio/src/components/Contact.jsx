@@ -62,14 +62,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-white py-20 sm:py-24">
+    <section id="contact" className="py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
-          <span className="eyebrow">Contact</span>
-          <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
+          <span className="section-eyebrow">Contact</span>
+          <h2 className="section-title mt-4 text-4xl text-theme sm:text-5xl">
             Let's build your next thoughtful experience.
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-theme-secondary">
             Whether you have a roadmap ready to go or an idea that needs framing, I'm ready to partner with
             you from strategy through launch.
           </p>

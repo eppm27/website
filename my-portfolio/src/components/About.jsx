@@ -1,133 +1,57 @@
+import { useTheme } from "../context/ThemeContext.jsx";
+
+const keySkills = [
+  "React / Next.js",
+  "Node.js / FastAPI",
+  "PostgreSQL & MongoDB",
+  "Docker & container orchestration",
+  "GitHub Actions & CI/CD",
+  "Testing & accessibility",
+];
+
 const About = () => {
-  const values = [
-    {
-      title: "Empathy-first design",
-      description:
-        "I listen before building to understand what people truly need, then translate those insights into purposeful interfaces.",
-    },
-    {
-      title: "Measure what matters",
-      description:
-        "I pair experimentation with metrics so every shipped feature improves clarity, speed, or business outcomes.",
-    },
-    {
-      title: "Share the journey",
-      description:
-        "I love mentoring, documenting decisions clearly, and creating healthy feedback loops across teams.",
-    },
-    {
-      title: "Quality over speed",
-      description:
-        "I believe in building things right the first time, with clean code and thoughtful architecture that scales gracefully.",
-    },
-  ];
-
-  const education = [
-    {
-      title: "Master of Professional Engineering (Software)",
-      institution: "University of Sydney",
-      period: "Aug 2025 — Present",
-      highlights: [
-        "Agile Software Development, Advanced Systems Design, Security Engineering",
-        "USYD International Student Award (~$26K merit scholarship)",
-      ],
-    },
-    {
-      title: "Bachelor of Science (Computer Science)",
-      institution: "University of New South Wales",
-      period: "Graduated Jun 2025",
-      highlights: ["UNSW International Student Award (~$13K merit scholarship)", "Focus on software architecture & intelligent systems"],
-    },
-  ];
-
-  const traits = [
-    { label: "Curious technologist", description: "Always exploring new tools like Next.js, GraphQL, and modern DevOps." },
-    { label: "Systems thinker", description: "Comfortable moving between product requirements, data, and implementation detail." },
-    { label: "Facilitator", description: "Enjoy working across disciplines to align stakeholders and ship quickly." },
-  ];
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
-    <section id="about" className="bg-white py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div className="text-center lg:text-left">
-            <span className="eyebrow">About</span>
-            <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
-              Product-minded engineer dedicated to building experiences people trust.
-            </h2>
-            <p className="mt-6 mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0">
-              I blend strategy, design, and engineering to help teams move from ideas to polished solutions.
-              Over the past few years I've built chat platforms, learning experiences, and productivity tools
-              that stay resilient under real-world pressure.
-            </p>
+    <section id="about" className="py-20 md:py-28">
+      <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
+        <div>
+          <span className="section-eyebrow">About</span>
+          <h2 className={`section-title mt-4 text-3xl sm:text-4xl ${isDark ? "text-white" : "text-slate-900"}`}>
+            From Sydney to scalable web products
+          </h2>
+          <p className={`mt-6 text-lg leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+            I’m a Sydney-based Software Engineering master’s student (USYD) with a CS foundation (UNSW). I build
+            end-to-end web apps with React, Next.js, Node.js/FastAPI, and PostgreSQL, focusing on clean
+            architecture, performance, and great UX. Projects include an AI-assisted crypto dashboard, a personal
+            finance tracker, and a biomedical image annotation tool. I enjoy owning features across the stack—APIs,
+            databases, CI—and collaborating in agile teams. I’m seeking a Software Engineering Internship to ship
+            value and learn from experienced engineers.
+          </p>
+        </div>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
-              {values.map((value) => (
-                <div key={value.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-6 text-left shadow-sm">
-                  <h3 className="text-lg font-semibold text-slate-800">{value.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{value.description}</p>
-                </div>
+        <div className="space-y-6">
+          <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-7`}>
+            <h3 className={`text-lg font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>What I bring</h3>
+            <ul className={`mt-4 space-y-3 text-sm ${isDark ? "text-slate-300" : "text-slate-700"}`}>
+              {keySkills.map((skill) => (
+                <li key={skill} className="flex items-start gap-3">
+                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-[#2563eb]"></span>
+                  <span>{skill}</span>
+                </li>
               ))}
-            </div>
-
-            <div className="mt-12 rounded-3xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 p-6 ring-1 ring-blue-100 sm:p-8">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                In a nutshell
-              </h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600 text-left">
-                {traits.map((trait) => (
-                  <li key={trait.label}>
-                    <span className="font-semibold text-slate-800">{trait.label}</span>
-                    {": "}
-                    {trait.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </ul>
           </div>
 
-          <div className="space-y-10">
-            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Snapshot</p>
-              <p className="mt-4 text-2xl font-semibold text-white">
-                Full-stack specialist with a habit of turning messy requirements into refined product flows.
-              </p>
-              <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                <li>• React, Node.js, TypeScript, Firebase, AWS</li>
-                <li>• UX research, systems design, experiment-driven development</li>
-                <li>• Leading agile pods and championing inclusive teamwork</li>
-              </ul>
-            </div>
-
-            <div className="space-y-6">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                Education
-              </h3>
-              <div className="space-y-6">
-                {education.map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-lg font-semibold text-slate-800">{item.title}</h4>
-                      <span className="text-sm text-blue-600">{item.institution}</span>
-                      <span className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.period}</span>
-                    </div>
-                    <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                      {item.highlights.map((detail) => (
-                        <li key={detail}>• {detail}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-6 text-sm text-slate-600">
-              <p>
-                Outside of code you'll find me facilitating design jams, experimenting with generative AI
-                prototypes, or exploring Sydney's coffee scene. I'm always keen to collaborate on meaningful
-                ideas.
-              </p>
-            </div>
+          <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-7`}>
+            <h3 className={`text-lg font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+              Collaboration style
+            </h3>
+            <p className={`mt-4 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+              I thrive in squads where strategy and delivery stay tightly aligned. Expect plenty of pairing,
+              transparent async updates, and thoughtful documentation so teams can move fast without cutting corners.
+            </p>
           </div>
         </div>
       </div>

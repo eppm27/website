@@ -1,89 +1,81 @@
 import { useMemo, useState } from "react";
+import { useTheme } from "../context/ThemeContext.jsx";
+import TechBadge from "./TechBadge.jsx";
+
+const buildCategories = () => ({
+  foundations: {
+    title: "Engineering core",
+    description: "Languages and frameworks I use to architect resilient, accessible experiences.",
+    skills: [
+      { name: "TypeScript & JavaScript", level: 95 },
+      { name: "React & Next.js", level: 92 },
+      { name: "Node.js & Express", level: 88 },
+      { name: "Python (FastAPI)", level: 90 },
+      { name: "PostgreSQL & MongoDB", level: 86 },
+    ],
+  },
+  tooling: {
+    title: "Delivery toolkit",
+    description: "Platforms that keep experiments measurable and releases reliable.",
+    skills: [
+      { name: "Docker & containerisation", level: 86 },
+      { name: "GitHub Actions & CI", level: 88 },
+      { name: "AWS & Firebase", level: 80 },
+      { name: "Testing (Jest, Playwright)", level: 82 },
+      { name: "Analytics & observability", level: 78 },
+    ],
+  },
+  collaboration: {
+    title: "Product craft",
+    description: "Ways I partner with teams to turn discovery insights into launch-ready features.",
+    skills: [
+      { name: "UX research synthesis", level: 82 },
+      { name: "Agile facilitation", level: 84 },
+      { name: "Technical documentation", level: 88 },
+      { name: "Accessibility & performance audits", level: 80 },
+      { name: "Stakeholder storytelling", level: 86 },
+    ],
+  },
+});
+
+const recentHighlights = [
+  "Shipping a CI pipeline that cut regression time by 35%",
+  "Prototyping AI-assisted onboarding flows with OpenAI",
+  "Designing end-to-end data models for analytics features",
+];
 
 const Skills = () => {
-  const skillCategories = useMemo(
-    () => ({
-      foundations: {
-        title: "Core Stack",
-        description:
-          "Languages and frameworks I rely on day-to-day to architect reliable experiences.",
-        skills: [
-          { name: "JavaScript / TypeScript", level: 95 },
-          { name: "React & React Native", level: 92 },
-          { name: "Node.js & Express", level: 88 },
-          { name: "Python", level: 90 },
-          { name: "Java", level: 80 },
-          { name: "SQL", level: 85 },
-        ],
-      },
-      tooling: {
-        title: "Tooling & Platforms",
-        description:
-          "Environments that help me ship, measure, and iterate with confidence.",
-        skills: [
-          { name: "Docker & CI/CD", level: 85 },
-          { name: "AWS & Firebase", level: 82 },
-          { name: "MongoDB", level: 80 },
-          { name: "Git & GitHub Actions", level: 90 },
-          { name: "Jira & Agile delivery", level: 84 },
-          { name: "Figma & Design Systems", level: 78 },
-        ],
-      },
-      experience: {
-        title: "Product Craft",
-        description:
-          "Ways I partner with teams to uncover insights and deliver polished outcomes.",
-        skills: [
-          { name: "UX research synthesis", level: 82 },
-          { name: "Design facilitation", level: 80 },
-          { name: "Experimentation & analytics", level: 76 },
-          { name: "System architecture", level: 88 },
-          { name: "Mentoring & leadership", level: 84 },
-          { name: "Stakeholder communication", level: 90 },
-        ],
-      },
-    }),
-    []
-  );
-
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const categoryConfig = useMemo(buildCategories, []);
   const [selectedCategory, setSelectedCategory] = useState("foundations");
 
-  const badges = [
-    "Full-stack delivery",
-    "Design systems",
-    "Inclusive teamwork",
-    "Continuous learning",
-  ];
-
-  const getLevelGradient = (level) => {
-    if (level >= 90) return "from-emerald-400 via-emerald-500 to-emerald-600";
-    if (level >= 80) return "from-blue-400 via-blue-500 to-indigo-500";
-    return "from-amber-400 via-amber-500 to-orange-500";
-  };
-
   return (
-    <section id="skills" className="bg-slate-50 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="skills" className="py-20 md:py-28">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="text-center">
-          <span className="eyebrow">Expertise</span>
-          <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
-            A toolkit shaped by building end-to-end digital products.
+          <span className="section-eyebrow">Skills</span>
+          <h2 className={`section-title mt-4 text-3xl sm:text-4xl ${isDark ? "text-white" : "text-slate-900"}`}>
+            A toolkit tuned for thoughtful, fast delivery
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
-            From foundational engineering to thoughtful product discovery, I bring a cross-disciplinary
-            skill set that keeps teams aligned and shipping with clarity.
+          <p className={`mx-auto mt-6 max-w-3xl text-lg ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+            From foundational engineering to product strategy, I keep teams aligned on outcomes while maintaining a
+            clean technical core.
           </p>
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
-          {Object.entries(skillCategories).map(([key, category]) => (
+          {Object.entries(categoryConfig).map(([key, category]) => (
             <button
               key={key}
+              type="button"
               onClick={() => setSelectedCategory(key)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+              className={`focus-ring rounded-full px-4 py-2 text-sm font-semibold transition ${
                 selectedCategory === key
-                  ? "border-blue-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-600"
+                  ? "bg-[#2563eb] text-white shadow-lg shadow-[#2563eb]/30"
+                  : isDark
+                  ? "bg-slate-900/60 text-slate-300 border border-slate-700/60"
+                  : "bg-white text-slate-600 border border-slate-200"
               }`}
             >
               {category.title}
@@ -91,25 +83,25 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-100 sm:p-8">
-            <h3 className="text-xl font-semibold text-slate-900">
-              {skillCategories[selectedCategory].title}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-8`}>
+            <h3 className={`text-xl font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+              {categoryConfig[selectedCategory].title}
             </h3>
-            <p className="mt-3 text-sm text-slate-600">
-              {skillCategories[selectedCategory].description}
+            <p className={`mt-3 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+              {categoryConfig[selectedCategory].description}
             </p>
 
             <div className="mt-8 space-y-5">
-              {skillCategories[selectedCategory].skills.map((skill) => (
+              {categoryConfig[selectedCategory].skills.map((skill) => (
                 <div key={skill.name}>
-                  <div className="flex items-center justify-between text-sm text-slate-500">
-                    <span className="font-medium text-slate-700">{skill.name}</span>
-                    <span>{skill.level}%</span>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className={isDark ? "text-white" : "text-slate-800"}>{skill.name}</span>
+                    <span className={isDark ? "text-slate-400" : "text-slate-500"}>{skill.level}%</span>
                   </div>
-                  <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                  <div className={`mt-2 h-2.5 w-full overflow-hidden rounded-full ${isDark ? "bg-slate-800" : "bg-slate-200"}`}>
                     <div
-                      className={`h-full bg-gradient-to-r ${getLevelGradient(skill.level)}`}
+                      className="h-full rounded-full bg-gradient-to-r from-[#2563eb] via-[#3b82f6] to-[#6366f1]"
                       style={{ width: `${skill.level}%` }}
                     ></div>
                   </div>
@@ -118,35 +110,30 @@ const Skills = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-10">
-            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">How I work</p>
-              <p className="mt-4 text-lg text-slate-200">
-                I lead with clarity, zooming between roadmaps, whiteboards, and code reviews to keep momentum
-                high and feedback loops short. Every sprint balances discovery learnings with delivery work.
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {badges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-blue-200/40 bg-white/5 px-4 py-2 text-xs font-semibold text-blue-100"
-                  >
-                    {badge}
-                  </span>
+          <div className="space-y-8">
+            <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-8`}>
+              <h3 className={`text-lg font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+                Collaboration highlights
+              </h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Design systems", "API architecture", "Inclusive teamwork", "Continuous learning"].map((item) => (
+                  <TechBadge key={item} label={item} />
                 ))}
               </div>
             </div>
 
-            <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-100 sm:p-8">
-              <h3 className="text-xl font-semibold text-slate-900">Recent focus areas</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600">
-                <li>• Designing type-safe APIs with GraphQL and tRPC.</li>
-                <li>• Improving CI pipelines to cut regression time by 35%.</li>
-                <li>• Prototyping AI-assisted product flows with OpenAI tools.</li>
+            <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-8`}>
+              <h3 className={`text-lg font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+                Recent focus
+              </h3>
+              <ul className={`mt-4 space-y-3 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+                {recentHighlights.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-[#2563eb]"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
-              <div className="mt-6 text-xs uppercase tracking-[0.2em] text-slate-400">
-                Always learning: Next.js 14 · AWS Solutions Architect · Data storytelling
-              </div>
             </div>
           </div>
         </div>

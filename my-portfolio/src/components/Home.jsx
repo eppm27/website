@@ -1,109 +1,139 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { Link as ScrollLink } from "react-scroll";
+import { useTheme } from "../context/ThemeContext.jsx";
+
+const highlights = [
+  { label: "Tech stack", value: "React · Next.js · Node · FastAPI" },
+  { label: "Databases", value: "PostgreSQL · MongoDB" },
+  { label: "Focus", value: "Performance · UX · Clean architecture" },
+];
+
+const quickLinks = [
+  {
+    label: "Featured work",
+    target: "projects",
+    description: "AI dashboard, finance tracker, biomedical annotation.",
+  },
+  {
+    label: "Background",
+    target: "about",
+    description: "Master’s student blending product strategy and full-stack craft.",
+  },
+  {
+    label: "Partner up",
+    target: "contact",
+    description: "Let’s schedule an intro call to scope your roadmap.",
+  },
+];
+
+const codeSample = [`const roadmap = [`, `  "Discovery",`, `  "Prototype",`, `  "Ship",`, `];`, `deploy(roadmap);`];
 
 const Home = () => {
-  const statements = useMemo(
-    () => [
-      "Designing calm, human-centered products that scale.",
-      "Translating complex problems into elegant interfaces.",
-      "Championing measurable impact with thoughtful engineering.",
-    ],
-    []
-  );
-
-  const focusAreas = [
-    {
-      title: "Full-Stack Engineering",
-      description:
-        "React, Node.js, TypeScript, and cloud platforms to ship production-ready experiences.",
-    },
-    {
-      title: "Product Strategy",
-      description:
-        "Pairing data with intuition to deliver experiences that feel effortless to use.",
-    },
-    {
-      title: "Team Leadership",
-      description:
-        "Driving collaboration, mentoring engineers, and keeping quality at the core.",
-    },
-  ];
-
-  const metrics = [
-    { label: "Years crafting software", value: "2+" },
-    { label: "Products launched", value: "5" },
-    { label: "Scholarships awarded", value: "$39K" },
-  ];
-
-  const [headlineIndex, setHeadlineIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setHeadlineIndex((prev) => (prev + 1) % statements.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [statements.length]);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const highlightCards = useMemo(() => highlights, []);
 
   return (
-    <section id="home" className="relative overflow-hidden py-24 sm:py-32">
-      <div className="absolute inset-0 floating-dots" aria-hidden="true"></div>
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-16 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-16">
-        <div className="flex-1 text-center lg:text-left">
-          <span className="eyebrow">Software engineer & Product partner</span>
-          <h1 className="section-title mt-6 text-4xl text-slate-900 sm:text-5xl lg:text-6xl">
-            Building digital experiences that feel considered, intentional, and fast.
+    <section id="home" className="relative overflow-hidden pt-28 pb-24 sm:pt-32 md:pt-36 md:pb-28">
+      <div className="hero-blob hero-blob--blue" aria-hidden="true"></div>
+      <div className="hero-blob hero-blob--violet" aria-hidden="true"></div>
+
+      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <span className="section-eyebrow">Full-stack engineer in training</span>
+          <h1 className={`section-title mt-6 text-4xl sm:text-5xl lg:text-6xl ${isDark ? "text-white" : "text-slate-900"}`}>
+            Ei Phyu Phyu Mon — Full-Stack Engineer in Training
           </h1>
-          <p className="mt-6 mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0">
-            I'm Ei Phyu Phyu Mon — a full-stack engineer who blends product thinking with clean engineering.
-            I collaborate with teams to craft intuitive journeys, reduce friction, and ship features that
-            people love to use.
+          <p className={`mt-6 max-w-2xl text-lg md:text-xl ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+            I build scalable, user-friendly web apps with React, Next.js, Node/FastAPI, and PostgreSQL.
+            I enjoy pairing clean architecture with delightful UX to ship features that earn trust.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-            <a
-              href="#projects"
-              className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500"
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <ScrollLink
+              to="projects"
+              smooth
+              duration={500}
+              offset={-80}
+              className="btn-primary focus-ring"
             >
-              View recent work
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-600"
-            >
-              Let's collaborate
+              View Projects
+              <span aria-hidden="true">↗</span>
+            </ScrollLink>
+            <a href="/Ei-Phyu-Phyu-Mon-CV.pdf" className="btn-secondary focus-ring" target="_blank" rel="noopener noreferrer">
+              Download CV
             </a>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:gap-6">
-            {metrics.map((metric) => (
-              <div key={metric.label} className="glass-panel rounded-2xl p-6 shadow-sm">
-                <span className="text-3xl font-semibold text-blue-600">{metric.value}</span>
-                <p className="mt-2 text-sm text-slate-500">{metric.label}</p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {highlightCards.map((item) => (
+              <div
+                key={item.label}
+                className={`card-base card-layer-${isDark ? "dark" : "light"} p-5 text-sm ${isDark ? "text-slate-200" : "text-slate-600"}`}
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-[#2563eb]">{item.label}</p>
+                <p className={`mt-3 text-base font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>{item.value}</p>
               </div>
             ))}
-          </div>
         </div>
+      </div>
 
-        <div className="flex-1">
-          <div className="relative mx-auto max-w-lg lg:mx-0">
-            <div className="absolute -left-10 -top-6 h-32 w-32 rounded-full bg-blue-100 blur-3xl" aria-hidden="true"></div>
-            <div className="absolute -right-14 bottom-0 h-40 w-40 rounded-full bg-purple-100 blur-3xl" aria-hidden="true"></div>
-            <div className="relative rounded-3xl bg-white/80 p-6 shadow-xl ring-1 ring-slate-200/70 sm:p-8">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-600">Currently focused on</p>
-              <p className="mt-4 text-xl font-semibold text-slate-800">{statements[headlineIndex]}</p>
-              <div className="mt-8 space-y-6">
-                {focusAreas.map((item) => (
-                  <div key={item.title} className="rounded-xl border border-slate-100/70 p-5 text-left">
-                    <h3 className="font-semibold text-slate-800">{item.title}</h3>
-                    <p className="mt-2 text-sm text-slate-500">{item.description}</p>
-                  </div>
+        <div>
+          <div className={`gradient-border ${isDark ? "bg-transparent" : "bg-white/20"}`}>
+            <div className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} p-6 sm:p-7`}>
+              <div className="flex items-center justify-between">
+                <span className={`text-sm font-medium ${isDark ? "text-slate-200" : "text-slate-600"}`}>Project snapshot</span>
+                <span className="rounded-full bg-[#2563eb]/10 px-3 py-1 text-xs font-semibold text-[#2563eb]">
+                  Sprint-ready
+                </span>
+              </div>
+              <div
+                className={`mt-6 rounded-2xl border ${
+                  isDark ? "border-slate-700/60 bg-slate-900/60" : "border-slate-200 bg-slate-50"
+                } p-5 font-mono text-[13px] leading-relaxed text-[#60a5ff]`}
+                aria-hidden="true"
+              >
+                {codeSample.map((line) => (
+                  <div key={line}>{line}</div>
                 ))}
               </div>
-              <div className="mt-8 flex items-center gap-3 text-sm text-slate-500">
-                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
-                Available for full-time roles & collaborations
+              <p className={`mt-6 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+                Currently exploring AI-assisted product workflows, production-grade CI/CD, and accessible design systems
+                that scale with teams.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Docker"].map((skill) => (
+                  <span key={skill} className="badge-pill focus-ring">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto mt-16 w-full max-w-5xl px-4 sm:px-6">
+        <div className="grid gap-4 sm:grid-cols-3">
+          {quickLinks.map((item) => (
+            <ScrollLink
+              key={item.label}
+              to={item.target}
+              smooth
+              duration={500}
+              offset={-80}
+              className={`card-base ${isDark ? "card-layer-dark" : "card-layer-light"} focus-ring cursor-pointer p-5 text-left transition`}
+            >
+              <p className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">{item.label}</p>
+              <p className={`mt-3 text-sm leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
+                {item.description}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#2563eb]">
+                Explore
+                <span aria-hidden="true">→</span>
+              </span>
+            </ScrollLink>
+          ))}
         </div>
       </div>
     </section>

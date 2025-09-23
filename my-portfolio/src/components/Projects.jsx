@@ -1,197 +1,230 @@
-import { useState } from "react";
+import TechBadge from "./TechBadge.jsx";
+import { useTheme } from "../context/ThemeContext.jsx";
 
 const projects = [
   {
-    id: 1,
     title: "CryptoChat",
-    subtitle: "AI-powered financial assistant",
-    period: "Feb 2025 – May 2025",
-    summary:
-      "Designed and built a responsive web client for real-time crypto insights, integrating OpenAI with financial data sources.",
-    impact: [
-      "<500ms response time for 50+ concurrent traders",
-      "Automated CI/CD with Cypress + Vitest coverage",
-      "Dockerised services powering a modular architecture",
-    ],
-    stack: ["React", "Node.js", "MongoDB", "OpenAI API", "Docker", "GitHub Actions"],
-    highlight: "Improved analysis turnaround by 40% for pilot users.",
+    subtitle: "AI Crypto Dashboard",
+    description:
+      "React/Next.js dashboard that merges live market data, OpenAI-powered insights, and trader collaboration tools with millisecond updates.",
+    stack: ["Next.js", "Node", "MongoDB", "OpenAI", "Yahoo Finance API"],
+    image: "/projects/cryptochat.png",
+    alt: "CryptoChat dashboard interface showing chat and price charts",
+    live: "https://example.com/cryptochat",
+    github: "https://github.com/eppm27/cryptochat",
+    featured: true,
   },
   {
-    id: 2,
-    title: "StudySpark",
-    subtitle: "Peer learning mobile app",
-    period: "Mar 2025",
-    summary:
-      "Built an intuitive matching experience helping students find study partners, complete with real-time chat and retention analytics.",
-    impact: [
-      "Cross-platform React Native experience with Firebase Auth",
-      "Swipe-based discovery flow tested with 100+ students",
-      "Chat service supporting 50+ concurrent conversations",
-    ],
-    stack: ["React Native", "Firebase", "Realtime Database", "Authentication"],
-    highlight: "Increased study engagement time by 40% during pilot runs.",
+    title: "SpendWise",
+    subtitle: "Personal Finance Tracker",
+    description:
+      "Personal budgeting platform with Django/FastAPI services, PostgreSQL analytics, and AI nudges that keep spending aligned with goals.",
+    stack: ["FastAPI", "React", "PostgreSQL", "Tailwind", "Stripe"],
+    image: "/projects/spendwise.png",
+    alt: "SpendWise budgeting charts and savings goals",
+    live: "https://example.com/spendwise",
+    github: "https://github.com/eppm27/spendwise",
   },
   {
-    id: 3,
-    title: "Presto",
-    subtitle: "Interactive presentation platform",
-    period: "Nov 2024",
-    summary:
-      "Crafted an accessible web app for live Q&A sessions and multimedia slide creation, enabling presenters to respond in real time.",
-    impact: [
-      "Reusable design system and theming for future modules",
-      "Automated E2E coverage reducing manual QA by 35%",
-      "Audience participation metrics surfaced for presenters",
-    ],
-    stack: ["React", "REST APIs", "Cypress", "Vitest", "Design Systems"],
-    highlight: "Boosted engagement scores by 60% across demo sessions.",
+    title: "Interactive Cell Annotation",
+    subtitle: "Biomedical image annotation tool",
+    description:
+      "Web app for mask annotation of microscopy images with FastAPI pipelines, React canvas tooling, and export-ready workflows.",
+    stack: ["FastAPI", "React", "OpenCV", "PostgreSQL", "Docker"],
+    image: "/projects/cell-annotation.png",
+    alt: "Cell annotation tool with brush and mask preview",
+    live: "https://example.com/cell-annotation",
+    github: "https://github.com/eppm27/cell-annotation",
   },
   {
-    id: 4,
-    title: "Dungeon Mania",
-    subtitle: "Game engine refactor",
-    period: "Aug 2024",
-    summary:
-      "Refactored a Java game engine with modern design patterns, removing code smells and unlocking new gameplay mechanics.",
-    impact: [
-      "Introduced command, observer, and builder patterns",
-      "95% JUnit coverage across new combat and puzzle systems",
-      "Runtime performance improved 3x through profiling",
-    ],
-    stack: ["Java", "JUnit", "Design Patterns", "Game Architecture"],
-    highlight: "Set the groundwork for future content updates without rewrites.",
+    title: "Interactive Cell Annotation",
+    subtitle: "Biomedical image annotation tool",
+    description:
+      "Web app for mask annotation of microscopy images with FastAPI pipelines, React canvas tooling, and export-ready workflows.",
+    stack: ["FastAPI", "React", "OpenCV", "PostgreSQL", "Docker"],
+    image: "/projects/cell-annotation.png",
+    alt: "Cell annotation tool with brush and mask preview",
+    live: "https://example.com/cell-annotation",
+    github: "https://github.com/eppm27/cell-annotation",
   },
 ];
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const [featuredProject, ...supportingProjects] = projects;
 
   return (
-    <section id="projects" className="bg-slate-50 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="projects" className="py-20 md:py-28">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="text-center">
-          <span className="eyebrow">Projects</span>
-          <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
-            High-impact work across fintech, education, and productivity.
+          <span className="section-eyebrow">Projects</span>
+          <h2
+            className={`section-title mt-4 text-3xl sm:text-4xl ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
+          >
+            Recent work that blends data, UX, and delivery
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
-            These projects highlight how I connect user insight, technical depth, and execution discipline to
-            deliver meaningful outcomes.
+          <p
+            className={`mx-auto mt-6 max-w-3xl text-lg ${
+              isDark ? "text-slate-300" : "text-slate-600"
+            }`}
+          >
+            Each build combines reliable back-end architecture with thoughtful
+            product polish—designed to launch fast, scale safely, and delight
+            users along the way.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:gap-8 md:grid-cols-2">
-          {projects.map((project) => (
-            <button
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className="group flex h-full flex-col rounded-3xl bg-white p-6 text-left shadow-xl ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-2xl sm:p-8"
+        <article
+          className={`mt-12 grid gap-8 rounded-[1.75rem] p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] ${
+            isDark ? "card-layer-dark" : "card-layer-light"
+          } card-base`}
+        >
+          <div className="relative overflow-hidden rounded-[1.5rem]">
+            <img
+              src={featuredProject.image}
+              alt={featuredProject.alt}
+              width={720}
+              height={480}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col gap-5">
+            <div>
+              <span className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
+                Featured project
+              </span>
+              <h3
+                className={`mt-3 text-2xl font-semibold ${
+                  isDark ? "text-white" : "text-slate-900"
+                }`}
+              >
+                {featuredProject.title}
+              </h3>
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.3em] ${
+                  isDark ? "text-slate-400" : "text-slate-500"
+                }`}
+              >
+                {featuredProject.subtitle}
+              </p>
+              <p
+                className={`mt-4 text-base leading-relaxed ${
+                  isDark ? "text-slate-200" : "text-slate-600"
+                }`}
+              >
+                {featuredProject.description}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {featuredProject.stack.map((tech) => (
+                <TechBadge key={tech} label={tech} />
+              ))}
+            </div>
+            <div className="mt-auto flex flex-wrap gap-3">
+              <a
+                href={featuredProject.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary focus-ring flex-1 justify-center md:flex-none"
+              >
+                View live demo
+              </a>
+              <a
+                href={featuredProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary focus-ring flex-1 justify-center md:flex-none"
+              >
+                Code on GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {supportingProjects.map((project) => (
+            <article
+              key={project.title}
+              className={`card-base flex h-full flex-col ${
+                isDark ? "card-layer-dark" : "card-layer-light"
+              }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="relative overflow-hidden rounded-[1.5rem] rounded-b-none">
+                <img
+                  src={project.image}
+                  alt={project.alt}
+                  width={480}
+                  height={320}
+                  loading="lazy"
+                  className="h-48 w-full object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col gap-5 p-6">
                 <div>
-                  <span className="text-xs uppercase tracking-[0.3em] text-blue-600">{project.period}</span>
-                  <h3 className="mt-3 text-2xl font-semibold text-slate-900">{project.title}</h3>
-                  <p className="text-sm text-slate-500">{project.subtitle}</p>
-                </div>
-                <span className="hidden rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600 opacity-0 transition group-hover:opacity-100 sm:inline-flex">
-                  View details
-                </span>
-              </div>
-
-              <p className="mt-6 grow text-sm text-slate-600">{project.summary}</p>
-
-              <div className="mt-6 space-y-2 text-sm text-slate-600">
-                {project.impact.slice(0, 2).map((item) => (
-                  <div key={item} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 flex-none rounded-full bg-blue-500"></span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.stack.slice(0, 5).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
+                  <p className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
+                    {project.subtitle}
+                  </p>
+                  <h3
+                    className={`mt-3 text-xl font-semibold ${
+                      isDark ? "text-white" : "text-slate-900"
+                    }`}
                   >
-                    {item}
-                  </span>
-                ))}
+                    {project.title}
+                  </h3>
+                  <p
+                    className={`mt-3 text-sm leading-relaxed ${
+                      isDark ? "text-slate-300" : "text-slate-600"
+                    }`}
+                  >
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((tech) => (
+                    <TechBadge key={tech} label={tech} />
+                  ))}
+                </div>
+
+                <div className="mt-auto flex flex-wrap gap-3">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary focus-ring flex-1 justify-center"
+                  >
+                    Live
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary focus-ring flex-1 justify-center"
+                  >
+                    GitHub
+                  </a>
+                </div>
               </div>
-            </button>
+            </article>
           ))}
         </div>
 
-        {selectedProject && (
-          <div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 px-4 py-10 sm:py-12"
-            onClick={() => setSelectedProject(null)}
+        <div className="mt-12 flex flex-col items-center gap-3 text-center">
+          <p
+            className={`text-sm ${
+              isDark ? "text-slate-300" : "text-slate-600"
+            }`}
           >
-            <div
-              className="relative w-full max-w-3xl rounded-3xl bg-white shadow-2xl"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <button
-                className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-blue-200 hover:text-blue-600"
-                onClick={() => setSelectedProject(null)}
-                aria-label="Close project details"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <div className="rounded-t-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 text-white sm:p-8">
-                <span className="text-xs uppercase tracking-[0.3em] text-blue-100">
-                  {selectedProject.period}
-                </span>
-                <h3 className="mt-3 text-3xl font-semibold">{selectedProject.title}</h3>
-                <p className="text-sm text-blue-100/80">{selectedProject.subtitle}</p>
-              </div>
-              <div className="space-y-8 p-6 text-sm text-slate-600 sm:p-8">
-                <p className="text-base text-slate-700">{selectedProject.summary}</p>
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Impact
-                  </h4>
-                  <ul className="mt-3 space-y-2">
-                    {selectedProject.impact.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-1 h-2 w-2 flex-none rounded-full bg-blue-500"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Stack & Responsibilities
-                  </h4>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {selectedProject.stack.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 text-blue-700">
-                  {selectedProject.highlight}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+            Want a deeper walkthrough or code review of these builds?
+          </p>
+          <a href="#contact" className="btn-secondary focus-ring">
+            Book a project deep-dive
+          </a>
+        </div>
       </div>
     </section>
   );

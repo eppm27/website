@@ -3,9 +3,10 @@ import { Link } from "react-scroll";
 import { useTheme } from "../context/ThemeContext.jsx";
 
 const navLinks = [
-  { href: "projects", label: "Work" },
   { href: "about", label: "About" },
+  { href: "projects", label: "Projects" },
   { href: "skills", label: "Skills" },
+  { href: "experience", label: "Experience" },
   { href: "contact", label: "Contact" },
 ];
 
@@ -92,6 +93,10 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", closeOnResize);
   }, [isMenuOpen]);
 
+  const shellStyles = isDark
+    ? "bg-slate-900/70 border border-slate-800/60"
+    : "bg-white/75 border border-slate-200/70";
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -104,20 +109,20 @@ const Navbar = () => {
           smooth
           duration={500}
           offset={-80}
-          className="focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-3 py-2 shell-surface"
+          className={`focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-3 py-2 ${shellStyles}`}
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] font-semibold text-white">
             EM
           </div>
           <div className="hidden flex-col text-left sm:flex">
-            <span className="text-[11px] uppercase tracking-[0.32em] text-theme-secondary">Ei Phyu Phyu Mon</span>
-            <span className="text-sm font-semibold text-theme">
-              Software Engineer
+            <span className="text-[11px] uppercase tracking-[0.32em] text-slate-400">Ei Phyu Phyu Mon</span>
+            <span className={`text-sm font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+              Full-Stack Engineer in Training
             </span>
           </div>
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-full px-2 py-1 md:flex shell-surface">
+        <div className={`hidden items-center gap-1 rounded-full px-2 py-1 md:flex ${shellStyles}`}>
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
@@ -127,7 +132,7 @@ const Navbar = () => {
               offset={-80}
               spy
               activeClass="active-link"
-              className="nav-link focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium"
+              className="focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 hover:text-[#2563eb]"
             >
               {label}
             </Link>
@@ -169,7 +174,7 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="mx-4 mb-4 rounded-2xl p-4 shell-surface">
+          <div className={`mx-4 mb-4 rounded-2xl p-4 ${shellStyles}`}>
             <div className="flex flex-col gap-2">
               {navLinks.map(({ href, label }) => (
                 <Link
@@ -181,7 +186,7 @@ const Navbar = () => {
                   spy
                   activeClass="active-link"
                   onClick={() => setIsMenuOpen(false)}
-                  className="nav-link mobile-nav focus-ring rounded-xl px-3 py-2 text-sm font-medium"
+                  className="focus-ring rounded-xl px-3 py-2 text-sm font-medium transition hover:bg-[#2563eb]/10"
                 >
                   {label}
                 </Link>
