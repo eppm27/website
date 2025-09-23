@@ -214,7 +214,7 @@ const Contact = () => {
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a
               href="mailto:eppmon27@gmail.com"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
+              className="rounded-full bg-white px-6 py-3 text-sm font-semibold !text-blue-600 transition hover:bg-blue-50"
             >
               Email me a brief
             </a>

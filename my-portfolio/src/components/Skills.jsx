@@ -252,7 +252,7 @@ const Skills = () => {
                 Collaboration highlights
               </h3>
               <div className="mt-4 flex flex-wrap gap-2">
-                {["Design systems", "API architecture", "Inclusive teamwork", "Continuous learning"].map((item) => (
+                {["Design systems", "API architecture", "Inclusive teamwork", "Continuous learning", "Agile methodologies"].map((item) => (
                   <TechBadge key={item} label={item} />
                 ))}
               </div>
