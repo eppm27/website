@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 w-full z-[1000]">
       {/* Fun Floating Navbar */}
       <div className="flex justify-center pt-4">
-        <div className="bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 shadow-2xl border border-white/20">
+        <div className="navbar bg-base-100/10 backdrop-blur-lg rounded-full px-6 py-3 shadow-2xl border border-base-content/20 max-w-fit">
           <ul className="flex items-center gap-1">
             {sections.map((section) => (
               <li key={section.name}>
@@ -40,8 +40,8 @@ const Navbar = () => {
                   onSetActive={() => setActiveSection(section.name)}
                   className={`cursor-pointer px-4 py-2 rounded-full transition-all duration-300 hover:scale-110 group ${
                     activeSection === section.name
-                      ? "bg-white/30 text-white shadow-lg"
-                      : "text-white/80 hover:text-white hover:bg-white/20"
+                      ? "bg-primary text-primary-content shadow-lg"
+                      : "text-base-content/80 hover:text-base-content hover:bg-base-content/10"
                   }`}
                 >
                   <div className="flex flex-col items-center gap-1">
@@ -63,7 +63,7 @@ const Navbar = () => {
       <div className="fixed top-4 right-4">
         <button
           onClick={toggleTheme}
-          className="btn btn-circle bg-white/10 backdrop-blur-lg border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-2xl"
+          className="btn btn-circle bg-base-100/10 backdrop-blur-lg border-base-content/20 hover:bg-base-content/10 hover:scale-110 transition-all duration-300 shadow-2xl"
         >
           <span className="text-xl">{theme === "light" ? "🌙" : "☀️"}</span>
         </button>
@@ -71,8 +71,8 @@ const Navbar = () => {
 
       {/* Fun Logo */}
       <div className="fixed top-4 left-4">
-        <div className="bg-white/10 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
-          <span className="text-white font-bold text-sm">EP</span>
+        <div className="bg-base-100/10 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-base-content/20">
+          <span className="font-bold text-sm text-base-content">EP</span>
         </div>
       </div>
     </div>

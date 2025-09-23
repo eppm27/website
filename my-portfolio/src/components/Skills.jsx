@@ -8,7 +8,6 @@ const Skills = () => {
     languages: {
       title: "Programming Languages 🚀",
       icon: "💻",
-      color: "from-blue-400 to-purple-600",
       skills: [
         {
           name: "JavaScript",
@@ -46,19 +45,13 @@ const Skills = () => {
           icon: "☕",
           fun: "More addictive than coffee!",
         },
-        {
-          name: "C",
-          level: 75,
-          icon: "🔧",
-          fun: "The OG programming language!",
-        },
-        { name: "SQL", level: 85, icon: "🗃️", fun: "Database whisperer!" },
+        { name: "C", level: 75, icon: "��", fun: "Low-level legend!" },
+        { name: "SQL", level: 85, icon: "📊", fun: "Database query champion!" },
       ],
     },
     tools: {
-      title: "Tools & Platforms 🛠️",
+      title: "Tools & Technologies 🔨",
       icon: "🔨",
-      color: "from-green-400 to-blue-500",
       skills: [
         {
           name: "Docker",
@@ -98,191 +91,150 @@ const Skills = () => {
           fun: "API testing champion!",
         },
         {
-          name: "Google Cloud",
-          level: 78,
-          icon: "☁️",
-          fun: "Cloud computing wizard!",
+          name: "VS Code",
+          level: 95,
+          icon: "📝",
+          fun: "Code editor extraordinaire!",
         },
       ],
     },
     frameworks: {
       title: "Frameworks & Libraries 📚",
-      icon: "🏗️",
-      color: "from-pink-400 to-red-500",
+      icon: "📚",
       skills: [
         {
           name: "React Native",
-          level: 85,
+          level: 88,
           icon: "📱",
-          fun: "Mobile app magician!",
+          fun: "Mobile app wizard!",
         },
         {
           name: "Express.js",
-          level: 88,
-          icon: "🚂",
-          fun: "Fast backend express!",
-        },
-        {
-          name: "Flask",
-          level: 82,
-          icon: "🌶️",
-          fun: "Lightweight Python power!",
-        },
-        {
-          name: "Django",
-          level: 75,
-          icon: "🎵",
-          fun: "Python web framework rockstar!",
+          level: 85,
+          icon: "🚀",
+          fun: "Backend framework champion!",
         },
         {
           name: "Tailwind CSS",
           level: 90,
-          icon: "🌊",
-          fun: "Utility-first styling pro!",
+          icon: "🎨",
+          fun: "Styling made simple!",
         },
-        { name: "Jest", level: 80, icon: "🃏", fun: "Testing is no joke!" },
+        { name: "Jest", level: 80, icon: "🧪", fun: "Testing framework hero!" },
+        { name: "Cypress", level: 85, icon: "🔍", fun: "E2E testing expert!" },
         {
-          name: "Cypress",
-          level: 78,
-          icon: "🌲",
-          fun: "E2E testing forest ranger!",
-        },
-        {
-          name: "Vitest",
-          level: 85,
-          icon: "⚡",
-          fun: "Lightning fast testing!",
-        },
-      ],
-    },
-    practices: {
-      title: "Development Practices 🎯",
-      icon: "📈",
-      color: "from-yellow-400 to-orange-500",
-      skills: [
-        { name: "Agile/Scrum", level: 88, icon: "🏃‍♂️", fun: "Sprint master!" },
-        {
-          name: "CI/CD",
-          level: 85,
-          icon: "🔄",
-          fun: "Deployment pipeline architect!",
-        },
-        {
-          name: "TDD",
-          level: 80,
-          icon: "🧪",
-          fun: "Test-driven development guru!",
-        },
-        {
-          name: "REST APIs",
-          level: 90,
-          icon: "🔗",
-          fun: "API design specialist!",
-        },
-        {
-          name: "Microservices",
+          name: "Socket.io",
           level: 75,
-          icon: "🧩",
-          fun: "Breaking down monoliths!",
-        },
-        { name: "DevOps", level: 78, icon: "⚙️", fun: "Bridging dev and ops!" },
-        {
-          name: "Code Review",
-          level: 85,
-          icon: "👀",
-          fun: "Bug hunting detective!",
+          icon: "🔌",
+          fun: "Real-time communication master!",
         },
         {
-          name: "Documentation",
+          name: "Redux",
+          level: 78,
+          icon: "🗂️",
+          fun: "State management ninja!",
+        },
+        {
+          name: "Material-UI",
           level: 82,
-          icon: "📝",
-          fun: "Making code readable!",
+          icon: "🎪",
+          fun: "Component library legend!",
         },
       ],
     },
-  };
-
-  const getSkillColor = (level) => {
-    if (level >= 90) return "text-green-400";
-    if (level >= 80) return "text-blue-400";
-    if (level >= 70) return "text-yellow-400";
-    return "text-red-400";
   };
 
   const getProgressColor = (level) => {
     if (level >= 90) return "progress-success";
-    if (level >= 80) return "progress-info";
+    if (level >= 80) return "progress-primary";
     if (level >= 70) return "progress-warning";
     return "progress-error";
   };
 
-  return (
-    <section
-      id="skills"
-      className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-20 px-4"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Fun Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-4 animate-pulse">
-            My Skill Arsenal 🎮
-          </h2>
-          <p className="text-xl text-white/80 mb-8">
-            Level up your projects with these power-ups!
-          </p>
+  const getSkillBadge = (level) => {
+    if (level >= 90) return { text: "Expert", style: "badge-success" };
+    if (level >= 80) return { text: "Advanced", style: "badge-primary" };
+    if (level >= 70) return { text: "Intermediate", style: "badge-warning" };
+    return { text: "Learning", style: "badge-error" };
+  };
 
-          {/* Category Selector */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+  return (
+    <section id="skills" className="min-h-screen bg-base-100 py-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="mb-6">
+            <span className="text-6xl">⚡</span>
+          </div>
+          <h2 className="text-5xl font-bold text-base-content mb-6">
+            Skills & Technologies
+          </h2>
+          <p className="text-xl text-base-content/70 mb-8 max-w-3xl mx-auto">
+            My technical arsenal built through years of coding, learning, and
+            creating amazing projects! 💪
+          </p>
+          <div className="flex justify-center gap-4">
+            <div className="badge badge-primary badge-lg">
+              Full-Stack Developer
+            </div>
+            <div className="badge badge-secondary badge-lg">
+              Always Learning
+            </div>
+          </div>
+        </div>
+
+        {/* Category Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="tabs tabs-boxed bg-base-300">
             {Object.entries(skillCategories).map(([key, category]) => (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`btn btn-lg transition-all duration-300 hover:scale-110 ${
-                  selectedCategory === key
-                    ? "btn-primary shadow-2xl"
-                    : "btn-outline btn-primary hover:btn-primary"
+                className={`tab tab-lg ${
+                  selectedCategory === key ? "tab-active" : ""
                 }`}
               >
-                <span className="text-2xl mr-2">{category.icon}</span>
-                <span className="hidden md:inline">
-                  {category.title.split(" ")[0]}
-                </span>
+                <span className="mr-2">{category.icon}</span>
+                {category.title.split(" ")[0]} {category.title.split(" ")[1]}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Selected Category Display */}
-        <div className="mb-8">
-          <div
-            className={`bg-gradient-to-r ${skillCategories[selectedCategory].color} rounded-2xl p-8 shadow-2xl`}
-          >
-            <h3 className="text-3xl font-bold text-white text-center mb-8">
+        {/* Skills Grid */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-base-content mb-4">
               {skillCategories[selectedCategory].title}
             </h3>
+            <p className="text-base-content/70">
+              Hover over any skill to see my fun take on it! 😄
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {skillCategories[selectedCategory].skills.map((skill, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillCategories[selectedCategory].skills.map((skill, index) => {
+              const badge = getSkillBadge(skill.level);
+              return (
                 <div
-                  key={skill.name}
-                  className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
-                  onMouseEnter={() => setHoveredSkill(skill)}
+                  key={index}
+                  className="card bg-base-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                  onMouseEnter={() => setHoveredSkill(index)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="text-center">
-                    <div className="text-4xl mb-3 group-hover:animate-bounce">
-                      {skill.icon}
-                    </div>
-                    <h4 className="text-white font-bold text-lg mb-3">
+                  <div className="card-body text-center p-6">
+                    <div className="text-4xl mb-3">{skill.icon}</div>
+                    <h4 className="font-bold text-lg text-base-content mb-3">
                       {skill.name}
                     </h4>
 
-                    {/* Skill Level Progress */}
+                    {/* Progress Bar */}
                     <div className="mb-3">
-                      <div className="flex justify-between text-sm text-white/80 mb-1">
-                        <span>Level</span>
-                        <span className={getSkillColor(skill.level)}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-sm text-base-content/70">
+                          Proficiency
+                        </span>
+                        <span className="text-sm font-bold text-base-content">
                           {skill.level}%
                         </span>
                       </div>
@@ -295,72 +247,112 @@ const Skills = () => {
                       ></progress>
                     </div>
 
-                    {/* Fun Fact */}
-                    <div className="text-xs text-white/70 italic">
-                      {skill.fun}
+                    {/* Skill Badge */}
+                    <div className={`badge ${badge.style} mb-3`}>
+                      {badge.text}
+                    </div>
+
+                    {/* Fun Description */}
+                    <div
+                      className={`transition-all duration-300 ${
+                        hoveredSkill === index
+                          ? "opacity-100 max-h-20"
+                          : "opacity-0 max-h-0"
+                      } overflow-hidden`}
+                    >
+                      <p className="text-sm text-base-content/80 italic">
+                        {skill.fun}
+                      </p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Hovered Skill Detail */}
-        {hoveredSkill && (
-          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-lg rounded-xl p-4 text-white shadow-2xl animate-fadeIn z-50">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">{hoveredSkill.icon}</span>
-              <div>
-                <div className="font-bold">{hoveredSkill.name}</div>
-                <div className="text-sm text-white/70">{hoveredSkill.fun}</div>
+        {/* Skills Summary */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-base-content mb-4">
+              Quick Stats
+            </h3>
+            <p className="text-base-content/70">
+              A snapshot of my technical journey
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                emoji: "🎯",
+                value: "8+",
+                label: "Languages",
+                desc: "Mastered programming languages",
+              },
+              {
+                emoji: "⚡",
+                value: "15+",
+                label: "Technologies",
+                desc: "Tools & frameworks used",
+              },
+              {
+                emoji: "🚀",
+                value: "5+",
+                label: "Major Projects",
+                desc: "Complex applications built",
+              },
+              {
+                emoji: "📈",
+                value: "2+",
+                label: "Years Experience",
+                desc: "Continuous learning & building",
+              },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="card bg-gradient-to-br from-primary/20 to-secondary/20 shadow-xl"
+              >
+                <div className="card-body text-center p-6">
+                  <div className="text-4xl mb-3">{stat.emoji}</div>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="font-semibold text-base-content mb-1">
+                    {stat.label}
+                  </div>
+                  <div className="text-sm text-base-content/60">
+                    {stat.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Learning Journey */}
+        <div className="mt-20 text-center">
+          <div className="card bg-gradient-to-r from-primary to-secondary text-primary-content shadow-xl">
+            <div className="card-body py-12">
+              <h3 className="card-title justify-center text-3xl mb-6">
+                Always Learning, Always Growing 🌱
+              </h3>
+              <p className="text-primary-content/90 mb-8 max-w-2xl mx-auto text-lg">
+                Technology evolves fast, and so do I! Currently exploring AI/ML,
+                cloud architecture, and the latest web technologies. The
+                learning never stops! 🚀
+              </p>
+              <div className="card-actions justify-center">
+                <div className="flex gap-4">
+                  <div className="badge badge-neutral badge-lg">Next.js 14</div>
+                  <div className="badge badge-neutral badge-lg">AWS Cloud</div>
+                  <div className="badge badge-neutral badge-lg">GraphQL</div>
+                  <div className="badge badge-neutral badge-lg">AI/ML</div>
+                </div>
               </div>
             </div>
           </div>
-        )}
-
-        {/* Fun Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
-            <div className="text-4xl mb-2">🏆</div>
-            <div className="text-2xl font-bold text-white">30+</div>
-            <div className="text-white/70">Technologies Mastered</div>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
-            <div className="text-4xl mb-2">⚡</div>
-            <div className="text-2xl font-bold text-white">2+</div>
-            <div className="text-white/70">Years Experience</div>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
-            <div className="text-4xl mb-2">🚀</div>
-            <div className="text-2xl font-bold text-white">5+</div>
-            <div className="text-white/70">Projects Launched</div>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
-            <div className="text-4xl mb-2">🎯</div>
-            <div className="text-2xl font-bold text-white">85%+</div>
-            <div className="text-white/70">Code Coverage</div>
-          </div>
         </div>
-
-        <style jsx>{`
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out;
-          }
-        `}</style>
       </div>
     </section>
   );

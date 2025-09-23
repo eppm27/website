@@ -100,17 +100,24 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen bg-gradient-to-br from-cyan-900 via-blue-900 to-purple-900 py-20 px-4"
+      className="min-h-screen bg-base-200 py-20 px-4"
     >
       <div className="max-w-7xl mx-auto">
         {/* Fun Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-4">
-            My Digital Playground 🎮
+          <div className="mb-6">
+            <span className="text-6xl">🎮</span>
+          </div>
+          <h2 className="text-5xl font-bold text-base-content mb-4">
+            My Digital Playground
           </h2>
-          <p className="text-xl text-white/80 mb-8">
+          <p className="text-xl text-base-content/70 mb-8">
             Welcome to my collection of awesome projects! Click to explore 🚀
           </p>
+          <div className="flex justify-center gap-4">
+            <div className="badge badge-primary badge-lg">Creative Developer</div>
+            <div className="badge badge-secondary badge-lg">Problem Solver</div>
+          </div>
 
           {/* View Mode Toggle */}
           <div className="flex justify-center gap-4 mb-8">
@@ -141,37 +148,31 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className={`relative overflow-hidden rounded-2xl shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer group`}
+                className={`card bg-gradient-to-br from-primary/20 to-secondary/20 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer group border border-primary/20`}
                 onClick={() => setSelectedProject(project)}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                {/* Gradient Background */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-90`}
-                ></div>
-
-                {/* Content */}
-                <div className="relative p-8 text-white">
+                <div className="card-body">
                   <div className="flex items-start justify-between mb-6">
                     <div>
                       <div className="text-6xl mb-4 group-hover:animate-bounce">
                         {project.emoji}
                       </div>
-                      <h3 className="text-3xl font-bold mb-2">
+                      <h3 className="card-title text-3xl text-base-content mb-2">
                         {project.title}
                       </h3>
-                      <p className="text-white/80 text-lg">
+                      <p className="text-base-content/70 text-lg">
                         {project.subtitle}
                       </p>
                     </div>
                     <div className="text-right">
-                      <div className="badge badge-neutral badge-lg">
+                      <div className="badge badge-primary badge-lg">
                         {project.period}
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-lg mb-6 leading-relaxed">
+                  <p className="text-lg mb-6 leading-relaxed text-base-content/80">
                     {project.description}
                   </p>
 
@@ -180,35 +181,37 @@ const Projects = () => {
                     {Object.entries(project.stats).map(([key, value]) => (
                       <div
                         key={key}
-                        className="text-center bg-white/10 rounded-lg p-3"
+                        className="card bg-base-100 shadow-md"
                       >
-                        <div className="text-xl font-bold">{value}</div>
-                        <div className="text-xs capitalize opacity-80">
-                          {key}
+                        <div className="card-body text-center p-3">
+                          <div className="text-xl font-bold text-primary">{value}</div>
+                          <div className="text-xs capitalize text-base-content/60">
+                            {key}
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.slice(0, 4).map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="badge badge-ghost text-white/90"
+                        className="badge badge-outline"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.tech.length > 4 && (
-                      <span className="badge badge-ghost text-white/90">
+                      <span className="badge badge-outline">
                         +{project.tech.length - 4} more
                       </span>
                     )}
                   </div>
 
                   {/* Hover Indicator */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="card-actions justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-2xl animate-pulse">👆 Click me!</span>
                   </div>
                 </div>
@@ -220,18 +223,20 @@ const Projects = () => {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-primary/20"
                 onClick={() => setSelectedProject(project)}
               >
-                <div className="flex items-center gap-6">
-                  <div className="text-4xl">{project.emoji}</div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white">
-                      {project.title}
-                    </h3>
-                    <p className="text-white/70">{project.description}</p>
+                <div className="card-body">
+                  <div className="flex items-center gap-6">
+                    <div className="text-4xl">{project.emoji}</div>
+                    <div className="flex-1">
+                      <h3 className="card-title text-2xl text-base-content">
+                        {project.title}
+                      </h3>
+                      <p className="text-base-content/70">{project.description}</p>
+                    </div>
+                    <div className="badge badge-primary">{project.period}</div>
                   </div>
-                  <div className="text-white/60">{project.period}</div>
                 </div>
               </div>
             ))}
@@ -241,14 +246,14 @@ const Projects = () => {
         {/* Project Detail Modal */}
         {selectedProject && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-2xl max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl animate-fadeIn">
+            <div className="card bg-base-100 max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl animate-fadeIn">
               <div
-                className={`bg-gradient-to-r ${selectedProject.color} p-8 text-white`}
+                className={`card-body bg-gradient-to-r from-primary to-secondary text-primary-content`}
               >
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="text-6xl mb-4">{selectedProject.emoji}</div>
-                    <h3 className="text-4xl font-bold mb-2">
+                    <h3 className="card-title text-4xl mb-2">
                       {selectedProject.title}
                     </h3>
                     <p className="text-xl opacity-90">
@@ -257,26 +262,26 @@ const Projects = () => {
                   </div>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="btn btn-circle btn-ghost text-white hover:bg-white/20"
+                    className="btn btn-circle btn-ghost text-primary-content hover:bg-primary-content/20"
                   >
                     ✕
                   </button>
                 </div>
               </div>
 
-              <div className="p-8">
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              <div className="card-body">
+                <p className="text-lg text-base-content/80 mb-6 leading-relaxed">
                   {selectedProject.longDescription}
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <h4 className="text-xl font-bold mb-4 text-gray-800">
+                    <h4 className="text-xl font-bold mb-4 text-base-content">
                       🎯 Key Features
                     </h4>
                     <ul className="space-y-2">
                       {selectedProject.features.map((feature, index) => (
-                        <li key={index} className="text-gray-600">
+                        <li key={index} className="text-base-content/70">
                           {feature}
                         </li>
                       ))}
@@ -284,7 +289,7 @@ const Projects = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-xl font-bold mb-4 text-gray-800">
+                    <h4 className="text-xl font-bold mb-4 text-base-content">
                       🛠️ Tech Stack
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -297,11 +302,9 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400">
-                  <p className="text-gray-700">
-                    <span className="font-bold">💡 Fun Fact:</span>{" "}
-                    {selectedProject.funFact}
-                  </p>
+                <div className="alert alert-warning">
+                  <span className="font-bold">💡 Fun Fact:</span>
+                  <span>{selectedProject.funFact}</span>
                 </div>
               </div>
             </div>
