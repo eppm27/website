@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Space Grotesk", "Inter", "sans-serif"],
+      },
       zIndex: {
         1000: "1000",
       },

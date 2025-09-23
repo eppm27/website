@@ -1,354 +1,151 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const Skills = () => {
-  const [selectedCategory, setSelectedCategory] = useState("languages");
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const skillCategories = useMemo(
+    () => ({
+      foundations: {
+        title: "Core Stack",
+        description:
+          "Languages and frameworks I rely on day-to-day to architect reliable experiences.",
+        skills: [
+          { name: "JavaScript / TypeScript", level: 95 },
+          { name: "React & React Native", level: 92 },
+          { name: "Node.js & Express", level: 88 },
+          { name: "Python", level: 90 },
+          { name: "Java", level: 80 },
+          { name: "SQL", level: 85 },
+        ],
+      },
+      tooling: {
+        title: "Tooling & Platforms",
+        description:
+          "Environments that help me ship, measure, and iterate with confidence.",
+        skills: [
+          { name: "Docker & CI/CD", level: 85 },
+          { name: "AWS & Firebase", level: 82 },
+          { name: "MongoDB", level: 80 },
+          { name: "Git & GitHub Actions", level: 90 },
+          { name: "Jira & Agile delivery", level: 84 },
+          { name: "Figma & Design Systems", level: 78 },
+        ],
+      },
+      experience: {
+        title: "Product Craft",
+        description:
+          "Ways I partner with teams to uncover insights and deliver polished outcomes.",
+        skills: [
+          { name: "UX research synthesis", level: 82 },
+          { name: "Design facilitation", level: 80 },
+          { name: "Experimentation & analytics", level: 76 },
+          { name: "System architecture", level: 88 },
+          { name: "Mentoring & leadership", level: 84 },
+          { name: "Stakeholder communication", level: 90 },
+        ],
+      },
+    }),
+    []
+  );
 
-  const skillCategories = {
-    languages: {
-      title: "Programming Languages 🚀",
-      icon: "💻",
-      skills: [
-        {
-          name: "JavaScript",
-          level: 95,
-          icon: "🟨",
-          fun: "The language that runs the web!",
-        },
-        {
-          name: "Python",
-          level: 90,
-          icon: "🐍",
-          fun: "Snake charmer level expert!",
-        },
-        {
-          name: "React",
-          level: 92,
-          icon: "⚛️",
-          fun: "Making UIs reactive since forever!",
-        },
-        {
-          name: "Node.js",
-          level: 88,
-          icon: "🟢",
-          fun: "Server-side JavaScript wizard!",
-        },
-        {
-          name: "TypeScript",
-          level: 85,
-          icon: "🔷",
-          fun: "JavaScript's smarter sibling!",
-        },
-        {
-          name: "Java",
-          level: 80,
-          icon: "☕",
-          fun: "More addictive than coffee!",
-        },
-        { name: "C", level: 75, icon: "��", fun: "Low-level legend!" },
-        { name: "SQL", level: 85, icon: "📊", fun: "Database query champion!" },
-      ],
-    },
-    tools: {
-      title: "Tools & Technologies 🔨",
-      icon: "🔨",
-      skills: [
-        {
-          name: "Docker",
-          level: 85,
-          icon: "🐳",
-          fun: "Containerizing like a pro!",
-        },
-        { name: "Git", level: 90, icon: "🔀", fun: "Version control master!" },
-        {
-          name: "Firebase",
-          level: 88,
-          icon: "🔥",
-          fun: "Backend as a Service hero!",
-        },
-        {
-          name: "MongoDB",
-          level: 82,
-          icon: "🍃",
-          fun: "NoSQL database ninja!",
-        },
-        {
-          name: "Figma",
-          level: 75,
-          icon: "🎨",
-          fun: "Design tool extraordinaire!",
-        },
-        {
-          name: "Jira",
-          level: 80,
-          icon: "📋",
-          fun: "Project management guru!",
-        },
-        {
-          name: "Postman",
-          level: 85,
-          icon: "📮",
-          fun: "API testing champion!",
-        },
-        {
-          name: "VS Code",
-          level: 95,
-          icon: "📝",
-          fun: "Code editor extraordinaire!",
-        },
-      ],
-    },
-    frameworks: {
-      title: "Frameworks & Libraries 📚",
-      icon: "📚",
-      skills: [
-        {
-          name: "React Native",
-          level: 88,
-          icon: "📱",
-          fun: "Mobile app wizard!",
-        },
-        {
-          name: "Express.js",
-          level: 85,
-          icon: "🚀",
-          fun: "Backend framework champion!",
-        },
-        {
-          name: "Tailwind CSS",
-          level: 90,
-          icon: "🎨",
-          fun: "Styling made simple!",
-        },
-        { name: "Jest", level: 80, icon: "🧪", fun: "Testing framework hero!" },
-        { name: "Cypress", level: 85, icon: "🔍", fun: "E2E testing expert!" },
-        {
-          name: "Socket.io",
-          level: 75,
-          icon: "🔌",
-          fun: "Real-time communication master!",
-        },
-        {
-          name: "Redux",
-          level: 78,
-          icon: "🗂️",
-          fun: "State management ninja!",
-        },
-        {
-          name: "Material-UI",
-          level: 82,
-          icon: "🎪",
-          fun: "Component library legend!",
-        },
-      ],
-    },
-  };
+  const [selectedCategory, setSelectedCategory] = useState("foundations");
 
-  const getProgressColor = (level) => {
-    if (level >= 90) return "progress-success";
-    if (level >= 80) return "progress-primary";
-    if (level >= 70) return "progress-warning";
-    return "progress-error";
-  };
+  const badges = [
+    "Full-stack delivery",
+    "Design systems",
+    "Inclusive teamwork",
+    "Continuous learning",
+  ];
 
-  const getSkillBadge = (level) => {
-    if (level >= 90) return { text: "Expert", style: "badge-success" };
-    if (level >= 80) return { text: "Advanced", style: "badge-primary" };
-    if (level >= 70) return { text: "Intermediate", style: "badge-warning" };
-    return { text: "Learning", style: "badge-error" };
+  const getLevelGradient = (level) => {
+    if (level >= 90) return "from-emerald-400 via-emerald-500 to-emerald-600";
+    if (level >= 80) return "from-blue-400 via-blue-500 to-indigo-500";
+    return "from-amber-400 via-amber-500 to-orange-500";
   };
 
   return (
-    <section id="skills" className="min-h-screen bg-base-100 py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="mb-6">
-            <span className="text-6xl">⚡</span>
-          </div>
-          <h2 className="text-5xl font-bold text-base-content mb-6">
-            Skills & Technologies
+    <section id="skills" className="bg-slate-50 py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center">
+          <span className="eyebrow">Expertise</span>
+          <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
+            A toolkit shaped by building end-to-end digital products.
           </h2>
-          <p className="text-xl text-base-content/70 mb-8 max-w-3xl mx-auto">
-            My technical arsenal built through years of coding, learning, and
-            creating amazing projects! 💪
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+            From foundational engineering to thoughtful product discovery, I bring a cross-disciplinary
+            skill set that keeps teams aligned and shipping with clarity.
           </p>
-          <div className="flex justify-center gap-4">
-            <div className="badge badge-primary badge-lg">
-              Full-Stack Developer
-            </div>
-            <div className="badge badge-secondary badge-lg">
-              Always Learning
-            </div>
-          </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="tabs tabs-boxed bg-base-300">
-            {Object.entries(skillCategories).map(([key, category]) => (
-              <button
-                key={key}
-                onClick={() => setSelectedCategory(key)}
-                className={`tab tab-lg ${
-                  selectedCategory === key ? "tab-active" : ""
-                }`}
-              >
-                <span className="mr-2">{category.icon}</span>
-                {category.title.split(" ")[0]} {category.title.split(" ")[1]}
-              </button>
-            ))}
-          </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-3">
+          {Object.entries(skillCategories).map(([key, category]) => (
+            <button
+              key={key}
+              onClick={() => setSelectedCategory(key)}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                selectedCategory === key
+                  ? "border-blue-200 bg-blue-600 text-white shadow-sm"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-600"
+              }`}
+            >
+              {category.title}
+            </button>
+          ))}
         </div>
 
-        {/* Skills Grid */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-base-content mb-4">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr]">
+          <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-100">
+            <h3 className="text-xl font-semibold text-slate-900">
               {skillCategories[selectedCategory].title}
             </h3>
-            <p className="text-base-content/70">
-              Hover over any skill to see my fun take on it! 😄
+            <p className="mt-3 text-sm text-slate-600">
+              {skillCategories[selectedCategory].description}
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillCategories[selectedCategory].skills.map((skill, index) => {
-              const badge = getSkillBadge(skill.level);
-              return (
-                <div
-                  key={index}
-                  className="card bg-base-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                  onMouseEnter={() => setHoveredSkill(index)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                >
-                  <div className="card-body text-center p-6">
-                    <div className="text-4xl mb-3">{skill.icon}</div>
-                    <h4 className="font-bold text-lg text-base-content mb-3">
-                      {skill.name}
-                    </h4>
-
-                    {/* Progress Bar */}
-                    <div className="mb-3">
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-sm text-base-content/70">
-                          Proficiency
-                        </span>
-                        <span className="text-sm font-bold text-base-content">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <progress
-                        className={`progress ${getProgressColor(
-                          skill.level
-                        )} w-full`}
-                        value={skill.level}
-                        max="100"
-                      ></progress>
-                    </div>
-
-                    {/* Skill Badge */}
-                    <div className={`badge ${badge.style} mb-3`}>
-                      {badge.text}
-                    </div>
-
-                    {/* Fun Description */}
+            <div className="mt-8 space-y-5">
+              {skillCategories[selectedCategory].skills.map((skill) => (
+                <div key={skill.name}>
+                  <div className="flex items-center justify-between text-sm text-slate-500">
+                    <span className="font-medium text-slate-700">{skill.name}</span>
+                    <span>{skill.level}%</span>
+                  </div>
+                  <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100">
                     <div
-                      className={`transition-all duration-300 ${
-                        hoveredSkill === index
-                          ? "opacity-100 max-h-20"
-                          : "opacity-0 max-h-0"
-                      } overflow-hidden`}
-                    >
-                      <p className="text-sm text-base-content/80 italic">
-                        {skill.fun}
-                      </p>
-                    </div>
+                      className={`h-full bg-gradient-to-r ${getLevelGradient(skill.level)}`}
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Skills Summary */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-base-content mb-4">
-              Quick Stats
-            </h3>
-            <p className="text-base-content/70">
-              A snapshot of my technical journey
-            </p>
+              ))}
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              {
-                emoji: "🎯",
-                value: "8+",
-                label: "Languages",
-                desc: "Mastered programming languages",
-              },
-              {
-                emoji: "⚡",
-                value: "15+",
-                label: "Technologies",
-                desc: "Tools & frameworks used",
-              },
-              {
-                emoji: "🚀",
-                value: "5+",
-                label: "Major Projects",
-                desc: "Complex applications built",
-              },
-              {
-                emoji: "📈",
-                value: "2+",
-                label: "Years Experience",
-                desc: "Continuous learning & building",
-              },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="card bg-gradient-to-br from-primary/20 to-secondary/20 shadow-xl"
-              >
-                <div className="card-body text-center p-6">
-                  <div className="text-4xl mb-3">{stat.emoji}</div>
-                  <div className="text-3xl font-bold text-primary mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="font-semibold text-base-content mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-sm text-base-content/60">
-                    {stat.desc}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Learning Journey */}
-        <div className="mt-20 text-center">
-          <div className="card bg-gradient-to-r from-primary to-secondary text-primary-content shadow-xl">
-            <div className="card-body py-12">
-              <h3 className="card-title justify-center text-3xl mb-6">
-                Always Learning, Always Growing 🌱
-              </h3>
-              <p className="text-primary-content/90 mb-8 max-w-2xl mx-auto text-lg">
-                Technology evolves fast, and so do I! Currently exploring AI/ML,
-                cloud architecture, and the latest web technologies. The
-                learning never stops! 🚀
+          <div className="flex flex-col gap-10">
+            <div className="rounded-3xl bg-slate-900 px-8 py-10 text-slate-100 shadow-xl">
+              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">How I work</p>
+              <p className="mt-4 text-lg text-slate-200">
+                I lead with clarity, zooming between roadmaps, whiteboards, and code reviews to keep momentum
+                high and feedback loops short. Every sprint balances discovery learnings with delivery work.
               </p>
-              <div className="card-actions justify-center">
-                <div className="flex gap-4">
-                  <div className="badge badge-neutral badge-lg">Next.js 14</div>
-                  <div className="badge badge-neutral badge-lg">AWS Cloud</div>
-                  <div className="badge badge-neutral badge-lg">GraphQL</div>
-                  <div className="badge badge-neutral badge-lg">AI/ML</div>
-                </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="rounded-full border border-blue-200/40 bg-white/5 px-4 py-2 text-xs font-semibold text-blue-100"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-100">
+              <h3 className="text-xl font-semibold text-slate-900">Recent focus areas</h3>
+              <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                <li>• Designing type-safe APIs with GraphQL and tRPC.</li>
+                <li>• Improving CI pipelines to cut regression time by 35%.</li>
+                <li>• Prototyping AI-assisted product flows with OpenAI tools.</li>
+              </ul>
+              <div className="mt-6 text-xs uppercase tracking-[0.2em] text-slate-400">
+                Always learning: Next.js 14 · AWS Solutions Architect · Data storytelling
               </div>
             </div>
           </div>

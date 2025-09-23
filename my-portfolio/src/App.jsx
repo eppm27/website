@@ -9,27 +9,15 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-transparent text-slate-900">
       <Navbar />
-      <main className="pt-20">
-        <section id="home" className="min-h-screen flex items-center justify-center">
-          <Home />
-        </section>
-        <section id="about" className="min-h-screen flex items-center justify-center">
-          <About />
-        </section>
-        <section id="skills" className="min-h-screen flex items-center justify-center">
-          <Skills />
-        </section>
-        <section id="experience" className="min-h-screen flex items-center justify-center">
-          <Experience />
-        </section>
-        <section id="projects" className="min-h-screen flex items-center justify-center">
-          <Projects />
-        </section>
-        <section id="contact" className="min-h-screen flex items-center justify-center">
-          <Contact />
-        </section>
+      <main className="pt-24">
+        <Home />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
       </main>
       <Footer />
     </div>

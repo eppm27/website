@@ -1,85 +1,189 @@
 import { Link } from "react-scroll";
 import { useState, useEffect } from "react";
 
-const Navbar = () => {
-  const sections = [
-    { name: "home", icon: "🏠", label: "Home" },
-    { name: "about", icon: "🧑‍💻", label: "About" },
-    { name: "skills", icon: "🛠️", label: "Skills" },
-    { name: "experience", icon: "💼", label: "Experience" },
-    { name: "projects", icon: "🎨", label: "Projects" },
-    { name: "contact", icon: "📱", label: "Contact" },
-  ];
+const sections = [
+  { name: "home", label: "Home" },
+  { name: "about", label: "About" },
+  { name: "skills", label: "Skills" },
+  { name: "experience", label: "Experience" },
+  { name: "projects", label: "Projects" },
+  { name: "contact", label: "Contact" },
+];
 
-  const [theme, setTheme] = useState("light");
+const lightTheme = "winter";
+const darkTheme = "business";
+
+const Navbar = () => {
+  const prefersDark =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "light";
+    return localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
+  });
   const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    const nextTheme = theme === "dark" ? darkTheme : lightTheme;
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const closeOnResize = () => setIsMenuOpen(false);
+    window.addEventListener("resize", closeOnResize);
+    return () => window.removeEventListener("resize", closeOnResize);
+  }, [isMenuOpen]);
+
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+
+  const navLinkClasses = (name) =>
+    `relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 ${
+      activeSection === name ? "text-blue-600" : "text-slate-600"
+    }`;
 
   return (
-    <div className="fixed top-0 left-0 w-full z-[1000]">
-      {/* Full Circle Navbar - Clean Design */}
-      <div className="flex justify-center items-center pt-2 sm:pt-3 px-2 sm:px-4 w-full">
-        <div className="bg-base-100/10 backdrop-blur-lg rounded-full px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 shadow-2xl border border-base-content/20 mx-auto">
-          <div className="flex items-center gap-1 sm:gap-2">
-            {/* Logo integrated into circle */}
-            <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8">
-              <span className="font-bold text-xs sm:text-sm md:text-base text-base-content">EPPM</span>
-            </div>
+    <div
+      className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${
+        isScrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        <Link
+          to="home"
+          smooth
+          duration={600}
+          offset={-80}
+          className="flex items-center gap-2 cursor-pointer select-none"
+        >
+          <div className="h-9 w-9 rounded-full bg-blue-600/10 text-blue-600 flex items-center justify-center font-display font-semibold">
+            EM
+          </div>
+          <div className="hidden sm:flex flex-col">
+            <span className="text-sm uppercase tracking-[0.3em] text-slate-500">
+              Software Engineer
+            </span>
+            <span className="font-display text-lg text-slate-800">
+              Ei Phyu Phyu Mon
+            </span>
+          </div>
+        </Link>
 
-            {/* Separator */}
-            <div className="w-px h-4 sm:h-5 md:h-6 bg-base-content/20"></div>
+        <div className="hidden items-center gap-2 md:flex">
+          {sections.map((section) => (
+            <Link
+              key={section.name}
+              to={section.name}
+              smooth
+              duration={600}
+              offset={-80}
+              spy
+              activeClass="active-link"
+              onSetActive={() => setActiveSection(section.name)}
+              className={navLinkClasses(section.name)}
+            >
+              {section.label}
+              {activeSection === section.name && (
+                <span className="absolute left-3 right-3 -bottom-1 h-0.5 rounded-full bg-blue-500"></span>
+              )}
+            </Link>
+          ))}
+        </div>
 
-            {/* Navigation Links */}
-            <div className="flex items-center gap-0.5 sm:gap-1">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:text-blue-600"
+          >
+            {theme === "light" ? (
+              <span className="text-lg">☾</span>
+            ) : (
+              <span className="text-lg">☀︎</span>
+            )}
+          </button>
+          <Link
+            to="contact"
+            smooth
+            duration={600}
+            offset={-80}
+            className="hidden rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500 md:inline-flex"
+          >
+            Let's talk
+          </Link>
+          <button
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:text-blue-600 md:hidden"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="mx-4 mb-4 rounded-2xl bg-white/95 p-4 shadow-lg ring-1 ring-slate-200">
+            <div className="flex flex-col gap-2">
               {sections.map((section) => (
                 <Link
                   key={section.name}
                   to={section.name}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  spy={true}
-                  activeClass="active"
+                  smooth
+                  duration={600}
+                  offset={-80}
+                  spy
+                  activeClass="active-link"
                   onSetActive={() => setActiveSection(section.name)}
-                  className={`cursor-pointer px-1.5 py-1 sm:px-2 sm:py-1.5 md:px-3 md:py-2 rounded-full transition-all duration-300 hover:scale-110 group ${
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                     activeSection === section.name
-                      ? "bg-primary text-primary-content shadow-lg"
-                      : "text-base-content/80 hover:text-base-content hover:bg-base-content/10"
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-slate-600 hover:bg-slate-100"
                   }`}
                 >
-                  <div className="flex flex-col items-center">
-                    <span className="text-xs sm:text-sm md:text-base group-hover:animate-bounce">
-                      {section.icon}
-                    </span>
-                    {/* Labels - Show on larger screens */}
-                    <span className="text-xs font-medium hidden lg:block">
-                      {section.label}
-                    </span>
-                  </div>
+                  {section.label}
                 </Link>
               ))}
+              <Link
+                to="contact"
+                smooth
+                duration={600}
+                offset={-80}
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white"
+              >
+                Let's talk
+              </Link>
             </div>
-
-            {/* Separator */}
-            <div className="w-px h-4 sm:h-5 md:h-6 bg-base-content/20"></div>
-
-            {/* Theme Toggle integrated into circle */}
-            <button
-              onClick={toggleTheme}
-              className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full hover:bg-base-content/10 hover:scale-110 transition-all duration-300"
-            >
-              <span className="text-xs sm:text-sm md:text-base">{theme === "light" ? "🌙" : "☀️"}</span>
-            </button>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
