@@ -67,7 +67,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="bg-slate-50 py-24">
+    <section id="projects" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="eyebrow">Projects</span>
@@ -80,12 +80,12 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 sm:gap-8 md:grid-cols-2">
           {projects.map((project) => (
             <button
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group flex h-full flex-col rounded-3xl bg-white p-8 text-left shadow-xl ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-2xl"
+              className="group flex h-full flex-col rounded-3xl bg-white p-6 text-left shadow-xl ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-2xl sm:p-8"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -93,7 +93,7 @@ const Projects = () => {
                   <h3 className="mt-3 text-2xl font-semibold text-slate-900">{project.title}</h3>
                   <p className="text-sm text-slate-500">{project.subtitle}</p>
                 </div>
-                <span className="rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600 opacity-0 transition group-hover:opacity-100">
+                <span className="hidden rounded-full bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-600 opacity-0 transition group-hover:opacity-100 sm:inline-flex">
                   View details
                 </span>
               </div>
@@ -125,11 +125,11 @@ const Projects = () => {
 
         {selectedProject && (
           <div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 px-4 py-12"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 px-4 py-10 sm:py-12"
             onClick={() => setSelectedProject(null)}
           >
             <div
-              className="relative max-w-3xl rounded-3xl bg-white shadow-2xl"
+              className="relative w-full max-w-3xl rounded-3xl bg-white shadow-2xl"
               onClick={(event) => event.stopPropagation()}
             >
               <button
@@ -148,15 +148,15 @@ const Projects = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <div className="rounded-t-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 text-white">
+              <div className="rounded-t-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 text-white sm:p-8">
                 <span className="text-xs uppercase tracking-[0.3em] text-blue-100">
                   {selectedProject.period}
                 </span>
                 <h3 className="mt-3 text-3xl font-semibold">{selectedProject.title}</h3>
                 <p className="text-sm text-blue-100/80">{selectedProject.subtitle}</p>
               </div>
-              <div className="space-y-8 p-8 text-sm text-slate-600">
-                <p className="text-base">{selectedProject.summary}</p>
+              <div className="space-y-8 p-6 text-sm text-slate-600 sm:p-8">
+                <p className="text-base text-slate-700">{selectedProject.summary}</p>
                 <div>
                   <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
                     Impact

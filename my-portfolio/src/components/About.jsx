@@ -42,15 +42,15 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="bg-white py-24">
+    <section id="about" className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="text-center lg:text-left">
             <span className="eyebrow">About</span>
             <h2 className="section-title mt-4 text-4xl text-slate-900 sm:text-5xl">
               Product-minded engineer dedicated to building experiences people trust.
             </h2>
-            <p className="mt-6 text-lg text-slate-600">
+            <p className="mt-6 mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0">
               I blend strategy, design, and engineering to help teams move from ideas to polished solutions.
               Over the past few years I've built chat platforms, learning experiences, and productivity tools
               that stay resilient under real-world pressure.
@@ -58,18 +58,18 @@ const About = () => {
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {values.map((value) => (
-                <div key={value.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-6 shadow-sm">
+                <div key={value.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-6 text-left shadow-sm">
                   <h3 className="text-lg font-semibold text-slate-800">{value.title}</h3>
                   <p className="mt-2 text-sm text-slate-600">{value.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-12 rounded-3xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 p-8 ring-1 ring-blue-100">
+            <div className="mt-12 rounded-3xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 p-6 ring-1 ring-blue-100 sm:p-8">
               <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                 In a nutshell
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600">
+              <ul className="mt-4 space-y-3 text-sm text-slate-600 text-left">
                 {traits.map((trait) => (
                   <li key={trait.label}>
                     <span className="font-semibold text-slate-800">{trait.label}</span>
@@ -82,7 +82,7 @@ const About = () => {
           </div>
 
           <div className="space-y-10">
-            <div className="rounded-3xl bg-slate-900 px-8 py-10 text-slate-100 shadow-xl">
+            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
               <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Snapshot</p>
               <p className="mt-4 text-2xl font-semibold text-white">
                 Full-stack specialist with a habit of turning messy requirements into refined product flows.

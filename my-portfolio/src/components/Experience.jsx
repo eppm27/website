@@ -45,7 +45,7 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="bg-white py-24">
+    <section id="experience" className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="eyebrow">Experience</span>
@@ -58,9 +58,12 @@ const Experience = () => {
           </p>
         </div>
 
-        <div className="mt-16 space-y-12">
+        <div className="mt-14 space-y-10 sm:space-y-12">
           {experiences.map((experience, index) => (
-            <div key={experience.role} className="relative rounded-3xl bg-slate-50/60 p-8 shadow-sm ring-1 ring-slate-100 lg:p-10">
+            <div
+              key={experience.role}
+              className="relative rounded-3xl bg-slate-50/60 p-6 shadow-sm ring-1 ring-slate-100 sm:p-8 lg:p-10"
+            >
               <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
                 <div>
                   <p className="text-sm uppercase tracking-[0.3em] text-blue-600">{experience.period}</p>
@@ -82,7 +85,7 @@ const Experience = () => {
                 </div>
               </div>
 
-              <p className="mt-6 text-base text-slate-600">{experience.summary}</p>
+              <p className="mt-4 text-base text-slate-600 lg:mt-6">{experience.summary}</p>
 
               <ul className="mt-6 space-y-3 text-sm text-slate-600">
                 {experience.achievements.map((achievement) => (

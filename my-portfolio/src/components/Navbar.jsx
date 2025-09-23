@@ -60,7 +60,7 @@ const Navbar = () => {
         isScrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
         <Link
           to="home"
           smooth
@@ -81,7 +81,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-1 md:flex">
           {sections.map((section) => (
             <Link
               key={section.name}

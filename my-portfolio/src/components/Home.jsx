@@ -44,21 +44,21 @@ const Home = () => {
   }, [statements.length]);
 
   return (
-    <section id="home" className="relative overflow-hidden py-32">
+    <section id="home" className="relative overflow-hidden py-24 sm:py-32">
       <div className="absolute inset-0 floating-dots" aria-hidden="true"></div>
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-20 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-16">
-        <div className="flex-1">
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-16 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-16">
+        <div className="flex-1 text-center lg:text-left">
           <span className="eyebrow">Software engineer & Product partner</span>
           <h1 className="section-title mt-6 text-4xl text-slate-900 sm:text-5xl lg:text-6xl">
             Building digital experiences that feel considered, intentional, and fast.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-slate-600">
+          <p className="mt-6 mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0">
             I'm Ei Phyu Phyu Mon — a full-stack engineer who blends product thinking with clean engineering.
             I collaborate with teams to craft intuitive journeys, reduce friction, and ship features that
             people love to use.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <a
               href="#projects"
               className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500"
@@ -73,7 +73,7 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:gap-6">
             {metrics.map((metric) => (
               <div key={metric.label} className="glass-panel rounded-2xl p-6 shadow-sm">
                 <span className="text-3xl font-semibold text-blue-600">{metric.value}</span>
@@ -84,15 +84,15 @@ const Home = () => {
         </div>
 
         <div className="flex-1">
-          <div className="relative">
+          <div className="relative mx-auto max-w-lg lg:mx-0">
             <div className="absolute -left-10 -top-6 h-32 w-32 rounded-full bg-blue-100 blur-3xl" aria-hidden="true"></div>
             <div className="absolute -right-14 bottom-0 h-40 w-40 rounded-full bg-purple-100 blur-3xl" aria-hidden="true"></div>
-            <div className="relative rounded-3xl bg-white/80 p-8 shadow-xl ring-1 ring-slate-200/70">
+            <div className="relative rounded-3xl bg-white/80 p-6 shadow-xl ring-1 ring-slate-200/70 sm:p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-blue-600">Currently focused on</p>
               <p className="mt-4 text-xl font-semibold text-slate-800">{statements[headlineIndex]}</p>
               <div className="mt-8 space-y-6">
                 {focusAreas.map((item) => (
-                  <div key={item.title} className="rounded-xl border border-slate-100/70 p-5">
+                  <div key={item.title} className="rounded-xl border border-slate-100/70 p-5 text-left">
                     <h3 className="font-semibold text-slate-800">{item.title}</h3>
                     <p className="mt-2 text-sm text-slate-500">{item.description}</p>
                   </div>

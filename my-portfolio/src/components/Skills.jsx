@@ -62,7 +62,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="bg-slate-50 py-24">
+    <section id="skills" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="eyebrow">Expertise</span>
@@ -75,7 +75,7 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
           {Object.entries(skillCategories).map(([key, category]) => (
             <button
               key={key}
@@ -92,7 +92,7 @@ const Skills = () => {
         </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-100">
+          <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-100 sm:p-8">
             <h3 className="text-xl font-semibold text-slate-900">
               {skillCategories[selectedCategory].title}
             </h3>
@@ -119,7 +119,7 @@ const Skills = () => {
           </div>
 
           <div className="flex flex-col gap-10">
-            <div className="rounded-3xl bg-slate-900 px-8 py-10 text-slate-100 shadow-xl">
+            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
               <p className="text-sm uppercase tracking-[0.3em] text-blue-200">How I work</p>
               <p className="mt-4 text-lg text-slate-200">
                 I lead with clarity, zooming between roadmaps, whiteboards, and code reviews to keep momentum
@@ -137,7 +137,7 @@ const Skills = () => {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-100">
+            <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-100 sm:p-8">
               <h3 className="text-xl font-semibold text-slate-900">Recent focus areas</h3>
               <ul className="mt-4 space-y-3 text-sm text-slate-600">
                 <li>• Designing type-safe APIs with GraphQL and tRPC.</li>

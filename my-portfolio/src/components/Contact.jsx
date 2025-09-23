@@ -15,15 +15,15 @@ const contactMethods = [
   },
   {
     title: "LinkedIn",
-    value: "linkedin.com/in/your-profile",
+    value: "https://www.linkedin.com/in/ei-phyu-phyu-mon-8517181ba/",
     description: "Let's stay in touch and explore ideas together.",
-    href: "https://linkedin.com/in/your-profile",
+    href: "https://www.linkedin.com/in/ei-phyu-phyu-mon-8517181ba/",
   },
   {
     title: "GitHub",
-    value: "github.com/your-username",
+    value: "github.com/eppm27",
     description: "Browse recent experiments and open-source work.",
-    href: "https://github.com/your-username",
+    href: "https://github.com/eppm27",
   },
 ];
 
@@ -62,7 +62,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-white py-24">
+    <section id="contact" className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <span className="eyebrow">Contact</span>
@@ -75,9 +75,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1fr]">
-          <div className="space-y-10">
-            <div className="rounded-3xl bg-slate-900 px-8 py-10 text-slate-100 shadow-xl">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr]">
+          <div className="space-y-8">
+            <div className="rounded-3xl bg-slate-900 px-6 py-8 text-slate-100 shadow-xl sm:px-8 sm:py-10">
               <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Ways to connect</p>
               <p className="mt-4 text-lg text-slate-200">
                 Drop me a note outlining what you're working on and the kind of support you're looking for.
@@ -92,7 +92,7 @@ const Contact = () => {
                   href={method.href}
                   target={method.href.startsWith("http") ? "_blank" : undefined}
                   rel={method.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="block rounded-2xl border border-slate-100 bg-slate-50/60 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  className="block rounded-2xl border border-slate-100 bg-slate-50/60 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-6"
                 >
                   <div className="flex flex-col gap-2">
                     <span className="text-sm uppercase tracking-[0.2em] text-blue-600">
@@ -120,7 +120,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-slate-50/60 p-10 shadow-xl ring-1 ring-slate-100">
+          <div className="rounded-3xl bg-slate-50/60 p-8 shadow-xl ring-1 ring-slate-100 sm:p-10">
             <h3 className="text-xl font-semibold text-slate-900">Start a conversation</h3>
             <p className="mt-3 text-sm text-slate-600">
               Tell me a little about your project and the outcome you're aiming for. I'll respond with tailored
@@ -128,7 +128,7 @@ const Contact = () => {
             </p>
 
             {messageSent ? (
-              <div className="mt-10 rounded-2xl bg-white p-6 text-center shadow-md">
+              <div className="mt-8 rounded-2xl bg-white p-6 text-center shadow-md">
                 <p className="text-lg font-semibold text-emerald-500">Message sent</p>
                 <p className="mt-2 text-sm text-slate-600">
                   Thank you for reaching out. I'll respond within the next business day.
@@ -205,7 +205,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-12 text-center text-white shadow-xl">
+        <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-10 text-center text-white shadow-xl sm:px-8 sm:py-12">
           <h3 className="text-2xl font-semibold">Ready to bring clarity to your product roadmap?</h3>
           <p className="mt-3 text-sm text-blue-100">
             I can help with discovery, prototyping, and production-ready delivery. Let's turn your brief into a

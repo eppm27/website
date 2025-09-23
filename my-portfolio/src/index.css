@@ -20,6 +20,7 @@ body {
     radial-gradient(circle at 80% 0%, #f5e6ff 0, rgba(245, 230, 255, 0) 45%),
     linear-gradient(145deg, #ffffff 0%, #f6f8fb 100%);
   color: inherit;
+  overflow-x: hidden;
 }
 
 a {
