@@ -212,8 +212,7 @@ const Projects = () => {
               isDark ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            More projects coming soon! These are placeholder cards ready for
-            your content.
+            More projects coming soon!
           </p>
           <a href="#contact" className="btn-secondary focus-ring">
             Let's discuss a project
