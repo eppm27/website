@@ -1,25 +1,88 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
-import { useState, useEffect } from "react";
+import { useTheme } from "../context/ThemeContext.jsx";
 
-const sections = [
-  { name: "home", label: "Home" },
-  { name: "about", label: "About" },
-  { name: "skills", label: "Skills" },
-  { name: "experience", label: "Experience" },
-  { name: "projects", label: "Projects" },
-  { name: "contact", label: "Contact" },
+const navLinks = [
+  { href: "projects", label: "Work" },
+  { href: "about", label: "About" },
+  { href: "skills", label: "Skills" },
+  { href: "contact", label: "Contact" },
 ];
 
+const contactShortcuts = [
+  {
+    href: "mailto:eppmon27@gmail.com",
+    label: "Email",
+    icon: (
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+        <path d="m4 7 8 6 8-6" />
+      </svg>
+    ),
+  },
+  {
+    href: "https://www.linkedin.com/in/ei-phyu-phyu-mon-8517181ba/",
+    label: "LinkedIn",
+    icon: (
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.98 3.5a2.5 2.5 0 1 1 .02 5 2.5 2.5 0 0 1-.02-5Zm.02 6.5H3V21h2V10Zm4 0H7v11h2v-5.6c0-1.94 2.5-2.1 2.5 0V21h2v-6.32c0-3.47-3.73-3.34-4.5-1.64V10Z" />
+      </svg>
+    ),
+  },
+  {
+    href: "https://github.com/eppm27",
+    label: "GitHub",
+    icon: (
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.93c.58.11.79-.25.79-.56v-2.1c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.26 3.4.96.1-.75.41-1.26.75-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.19a10.9 10.9 0 0 1 5.8 0c2.2-1.5 3.18-1.19 3.18-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.41-2.7 5.39-5.27 5.67.42.36.8 1.07.8 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+      </svg>
+    ),
+  },
+];
+
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
+
+  return (
+    <button
+      type="button"
+      className="icon-button focus-ring"
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      onClick={toggleTheme}
+    >
+      {isDark ? (
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="4.5" />
+          <line x1="12" y1="2" x2="12" y2="4" />
+          <line x1="12" y1="20" x2="12" y2="22" />
+          <line x1="4" y1="12" x2="2" y2="12" />
+          <line x1="22" y1="12" x2="20" y2="12" />
+          <line x1="5" y1="5" x2="3.6" y2="3.6" />
+          <line x1="20.4" y1="20.4" x2="19" y2="19" />
+          <line x1="19" y1="5" x2="20.4" y2="3.6" />
+          <line x1="3.6" y1="20.4" x2="5" y2="19" />
+        </svg>
+      ) : (
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" />
+        </svg>
+      )}
+    </button>
+  );
+};
+
 const Navbar = () => {
-  const [activeSection, setActiveSection] = useState("home");
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 16);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -29,87 +92,76 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", closeOnResize);
   }, [isMenuOpen]);
 
-  const navLinkClasses = (name) =>
-    `relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 ${
-      activeSection === name ? "text-blue-600" : "text-slate-600"
-    }`;
-
   return (
-    <div
-      className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent"
-      }`}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "backdrop-blur-xl" : "backdrop-blur-none"
+      } ${isDark ? "bg-[#0b1020]/70" : "bg-white/65"}`}
     >
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link
           to="home"
           smooth
-          duration={600}
+          duration={500}
           offset={-80}
-          className="flex items-center gap-2 cursor-pointer select-none"
+          className="focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-3 py-2 shell-surface"
         >
-          <div className="h-9 w-9 rounded-full bg-blue-600/10 text-blue-600 flex items-center justify-center font-display font-semibold">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] font-semibold text-white">
             EM
           </div>
-          <div className="hidden sm:flex flex-col">
-            <span className="text-sm uppercase tracking-[0.3em] text-slate-500">
+          <div className="hidden flex-col text-left sm:flex">
+            <span className="text-[11px] uppercase tracking-[0.32em] text-theme-secondary">Ei Phyu Phyu Mon</span>
+            <span className="text-sm font-semibold text-theme">
               Software Engineer
-            </span>
-            <span className="font-display text-lg text-slate-800">
-              Ei Phyu Phyu Mon
             </span>
           </div>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
-          {sections.map((section) => (
+        <div className="hidden items-center gap-1 rounded-full px-2 py-1 md:flex shell-surface">
+          {navLinks.map(({ href, label }) => (
             <Link
-              key={section.name}
-              to={section.name}
+              key={href}
+              to={href}
               smooth
-              duration={600}
+              duration={500}
               offset={-80}
               spy
               activeClass="active-link"
-              onSetActive={() => setActiveSection(section.name)}
-              className={navLinkClasses(section.name)}
+              className="nav-link focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium"
             >
-              {section.label}
-              {activeSection === section.name && (
-                <span className="absolute left-3 right-3 -bottom-1 h-0.5 rounded-full bg-blue-500"></span>
-              )}
+              {label}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <Link
-            to="contact"
-            smooth
-            duration={600}
-            offset={-80}
-            className="hidden rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500 md:inline-flex"
-          >
-            Let's talk
-          </Link>
-          <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:text-blue-600 md:hidden"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
+        <div className="hidden items-center gap-2 lg:flex">
+          {contactShortcuts.map(({ href, label, icon }) => (
+            <a
+              key={label}
+              href={href}
+              className="icon-link focus-ring"
+              aria-label={label}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
             >
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
+              {icon}
+              <span className="text-sm font-medium">{label}</span>
+            </a>
+          ))}
+          <ThemeToggle />
+        </div>
+
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="icon-button focus-ring"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+          >
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" fill="none">
+              {isMenuOpen ? <path d="M6 18 18 6M6 6l12 12" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
         </div>
@@ -117,43 +169,44 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="mx-4 mb-4 rounded-2xl bg-white/95 p-4 shadow-lg ring-1 ring-slate-200">
+          <div className="mx-4 mb-4 rounded-2xl p-4 shell-surface">
             <div className="flex flex-col gap-2">
-              {sections.map((section) => (
+              {navLinks.map(({ href, label }) => (
                 <Link
-                  key={section.name}
-                  to={section.name}
+                  key={href}
+                  to={href}
                   smooth
-                  duration={600}
+                  duration={500}
                   offset={-80}
                   spy
                   activeClass="active-link"
-                  onSetActive={() => setActiveSection(section.name)}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                    activeSection === section.name
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-100"
-                  }`}
+                  className="nav-link mobile-nav focus-ring rounded-xl px-3 py-2 text-sm font-medium"
                 >
-                  {section.label}
+                  {label}
                 </Link>
               ))}
-              <Link
-                to="contact"
-                smooth
-                duration={600}
-                offset={-80}
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white"
-              >
-                Let's talk
-              </Link>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {contactShortcuts.map(({ href, label, icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="icon-button focus-ring flex-1 justify-center"
+                  aria-label={label}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {icon}
+                  <span className="text-sm font-medium">{label}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 
