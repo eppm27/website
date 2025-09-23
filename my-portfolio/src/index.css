@@ -37,6 +37,20 @@ body {
   transition: background 0.6s ease, color 0.6s ease;
 }
 
+/* Reset inherited styles for components */
+body * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper inheritance for dark theme */
+body[data-theme="dark"] {
+  color: var(--text-dark);
+}
+
+body[data-theme="dark"] * {
+  border-color: inherit;
+}
+
 a {
   font-weight: 500;
   color: inherit;
@@ -46,6 +60,9 @@ a {
 /* Focus ring styles with higher specificity */
 a:focus-visible,
 button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
 .icon-button:focus-visible,
 .icon-link:focus-visible,
 .nav-link:focus-visible,
@@ -57,11 +74,22 @@ button:focus-visible,
 
 body[data-theme="dark"] a:focus-visible,
 body[data-theme="dark"] button:focus-visible,
+body[data-theme="dark"] input:focus-visible,
+body[data-theme="dark"] textarea:focus-visible,
+body[data-theme="dark"] select:focus-visible,
 body[data-theme="dark"] .icon-button:focus-visible,
 body[data-theme="dark"] .icon-link:focus-visible,
 body[data-theme="dark"] .nav-link:focus-visible,
 body[data-theme="dark"] .focus-ring:focus-visible {
   box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.45) !important;
+}
+
+/* Prevent focus ring inheritance conflicts */
+body[data-theme="dark"] input:focus,
+body[data-theme="dark"] textarea:focus,
+body[data-theme="dark"] select:focus {
+  border-color: #3b82f6;
+  outline: none;
 }
 
 .section-title {
@@ -349,4 +377,46 @@ body[data-theme="dark"] .text-theme-secondary {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Form element resets for better cross-browser consistency */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Ensure proper dark theme form styling */
+body[data-theme="dark"] input,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+body[data-theme="dark"] input::placeholder,
+body[data-theme="dark"] textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Prevent global CSS from overriding component-specific styling */
+.component-override {
+  all: unset;
+}
+
+/* Fix any potential z-index stacking issues */
+.modal-overlay {
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  z-index: 1001;
+}
+
+.tooltip {
+  z-index: 1002;
 }

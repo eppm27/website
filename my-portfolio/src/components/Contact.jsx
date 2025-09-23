@@ -140,7 +140,7 @@ const Contact = () => {
                   <div>
                     <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Name</label>
                     <input
-                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
                       type="text"
                       name="name"
                       value={formData.name}
@@ -152,7 +152,7 @@ const Contact = () => {
                   <div>
                     <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Email</label>
                     <input
-                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -166,7 +166,7 @@ const Contact = () => {
                 <div>
                   <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Subject</label>
                   <select
-                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100"
+                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 focus:ring-blue-500/20 focus:border-blue-400"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
@@ -184,7 +184,7 @@ const Contact = () => {
                 <div>
                   <label className="text-xs uppercase tracking-[0.2em] text-slate-400">Message</label>
                   <textarea
-                    className="mt-2 h-32 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400"
+                    className="mt-2 h-32 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}

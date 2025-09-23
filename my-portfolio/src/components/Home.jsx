@@ -1,12 +1,5 @@
-import { useMemo } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useTheme } from "../context/ThemeContext.jsx";
-
-const highlights = [
-  { label: "Tech stack", value: "React · Next.js · Node · FastAPI" },
-  { label: "Databases", value: "PostgreSQL · MongoDB" },
-  { label: "Focus", value: "Performance · UX · Clean architecture" },
-];
 
 const quickLinks = [
   {
@@ -31,7 +24,6 @@ const codeSample = [`const roadmap = [`, `  "Discovery",`, `  "Prototype",`, `  
 const Home = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  const highlightCards = useMemo(() => highlights, []);
 
   return (
     <section id="home" className="relative overflow-hidden pt-28 pb-24 sm:pt-32 md:pt-36 md:pb-28">
@@ -66,15 +58,6 @@ const Home = () => {
           </div>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {highlightCards.map((item) => (
-              <div
-                key={item.label}
-                className={`card-base card-layer-${isDark ? "dark" : "light"} p-5 text-sm ${isDark ? "text-slate-200" : "text-slate-600"}`}
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-[#2563eb]">{item.label}</p>
-                <p className={`mt-3 text-base font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>{item.value}</p>
-              </div>
-            ))}
         </div>
       </div>
 
