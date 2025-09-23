@@ -1,143 +1,366 @@
+import { useState } from "react";
+
 const Skills = () => {
-  const languagesAndFrameworks = [
-    {
-      name: "JavaScript",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    },
-    {
-      name: "React",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-    },
-    {
-      name: "Bootstrap",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
-    },
-    {
-      name: "Material UI",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg",
-    },
-    {
-      name: "TypeScript",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    },
-    {
-      name: "Node.js",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    },
-    {
-      name: "Jest",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
-    },
-    {
-      name: "React Native",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "Java",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    },
-    {
-      name: "Python",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    },
-    {
-      name: "C",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
-    },
-    {
-        name: "HTML/CSS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-      },
-    {
-      name: "Bash",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
-    },
-    {
-      name: "SQL",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-    },
-  ];
+  const [selectedCategory, setSelectedCategory] = useState("languages");
+  const [hoveredSkill, setHoveredSkill] = useState(null);
 
-  const toolsAndPlatforms = [
-    {
-      name: "Firebase",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  const skillCategories = {
+    languages: {
+      title: "Programming Languages 🚀",
+      icon: "💻",
+      color: "from-blue-400 to-purple-600",
+      skills: [
+        {
+          name: "JavaScript",
+          level: 95,
+          icon: "🟨",
+          fun: "The language that runs the web!",
+        },
+        {
+          name: "Python",
+          level: 90,
+          icon: "🐍",
+          fun: "Snake charmer level expert!",
+        },
+        {
+          name: "React",
+          level: 92,
+          icon: "⚛️",
+          fun: "Making UIs reactive since forever!",
+        },
+        {
+          name: "Node.js",
+          level: 88,
+          icon: "🟢",
+          fun: "Server-side JavaScript wizard!",
+        },
+        {
+          name: "TypeScript",
+          level: 85,
+          icon: "🔷",
+          fun: "JavaScript's smarter sibling!",
+        },
+        {
+          name: "Java",
+          level: 80,
+          icon: "☕",
+          fun: "More addictive than coffee!",
+        },
+        {
+          name: "C",
+          level: 75,
+          icon: "🔧",
+          fun: "The OG programming language!",
+        },
+        { name: "SQL", level: 85, icon: "🗃️", fun: "Database whisperer!" },
+      ],
     },
-    {
-      name: "MongoDB",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    tools: {
+      title: "Tools & Platforms 🛠️",
+      icon: "🔨",
+      color: "from-green-400 to-blue-500",
+      skills: [
+        {
+          name: "Docker",
+          level: 85,
+          icon: "🐳",
+          fun: "Containerizing like a pro!",
+        },
+        { name: "Git", level: 90, icon: "🔀", fun: "Version control master!" },
+        {
+          name: "Firebase",
+          level: 88,
+          icon: "🔥",
+          fun: "Backend as a Service hero!",
+        },
+        {
+          name: "MongoDB",
+          level: 82,
+          icon: "🍃",
+          fun: "NoSQL database ninja!",
+        },
+        {
+          name: "Figma",
+          level: 75,
+          icon: "🎨",
+          fun: "Design tool extraordinaire!",
+        },
+        {
+          name: "Jira",
+          level: 80,
+          icon: "📋",
+          fun: "Project management guru!",
+        },
+        {
+          name: "Postman",
+          level: 85,
+          icon: "📮",
+          fun: "API testing champion!",
+        },
+        {
+          name: "Google Cloud",
+          level: 78,
+          icon: "☁️",
+          fun: "Cloud computing wizard!",
+        },
+      ],
     },
-    {
-      name: "GCP",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+    frameworks: {
+      title: "Frameworks & Libraries 📚",
+      icon: "🏗️",
+      color: "from-pink-400 to-red-500",
+      skills: [
+        {
+          name: "React Native",
+          level: 85,
+          icon: "📱",
+          fun: "Mobile app magician!",
+        },
+        {
+          name: "Express.js",
+          level: 88,
+          icon: "🚂",
+          fun: "Fast backend express!",
+        },
+        {
+          name: "Flask",
+          level: 82,
+          icon: "🌶️",
+          fun: "Lightweight Python power!",
+        },
+        {
+          name: "Django",
+          level: 75,
+          icon: "🎵",
+          fun: "Python web framework rockstar!",
+        },
+        {
+          name: "Tailwind CSS",
+          level: 90,
+          icon: "🌊",
+          fun: "Utility-first styling pro!",
+        },
+        { name: "Jest", level: 80, icon: "🃏", fun: "Testing is no joke!" },
+        {
+          name: "Cypress",
+          level: 78,
+          icon: "🌲",
+          fun: "E2E testing forest ranger!",
+        },
+        {
+          name: "Vitest",
+          level: 85,
+          icon: "⚡",
+          fun: "Lightning fast testing!",
+        },
+      ],
     },
-    { name: "REST API", icon: "https://img.icons8.com/ios-filled/50/api.png" },
-    {
-      name: "Postman",
-      icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/postman.svg",
+    practices: {
+      title: "Development Practices 🎯",
+      icon: "📈",
+      color: "from-yellow-400 to-orange-500",
+      skills: [
+        { name: "Agile/Scrum", level: 88, icon: "🏃‍♂️", fun: "Sprint master!" },
+        {
+          name: "CI/CD",
+          level: 85,
+          icon: "🔄",
+          fun: "Deployment pipeline architect!",
+        },
+        {
+          name: "TDD",
+          level: 80,
+          icon: "🧪",
+          fun: "Test-driven development guru!",
+        },
+        {
+          name: "REST APIs",
+          level: 90,
+          icon: "🔗",
+          fun: "API design specialist!",
+        },
+        {
+          name: "Microservices",
+          level: 75,
+          icon: "🧩",
+          fun: "Breaking down monoliths!",
+        },
+        { name: "DevOps", level: 78, icon: "⚙️", fun: "Bridging dev and ops!" },
+        {
+          name: "Code Review",
+          level: 85,
+          icon: "👀",
+          fun: "Bug hunting detective!",
+        },
+        {
+          name: "Documentation",
+          level: 82,
+          icon: "📝",
+          fun: "Making code readable!",
+        },
+      ],
     },
-    {
-      name: "Docker",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    },
-    {
-      name: "Git",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    },
-    {
-      name: "Jira",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg",
-    },
-    {
-      name: "Unreal Engine",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg",
-    },
-    {
-      name: "Unity",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg",
-    },
-    {
-      name: "Blender",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg",
-    },
-    {
-      name: "Figma",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-    },
-  ];
+  };
 
-  const renderSkills = (title, list) => (
-    <div className="mb-8">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {list.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center p-4 bg-white/10 backdrop-blur rounded-xl hover:scale-105 transition-transform duration-300"
-          >
-            <img src={item.icon} alt={item.name} className="w-12 h-12 mb-2" />
-            <span className="text-sm font-medium text-center">{item.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  const getSkillColor = (level) => {
+    if (level >= 90) return "text-green-400";
+    if (level >= 80) return "text-blue-400";
+    if (level >= 70) return "text-yellow-400";
+    return "text-red-400";
+  };
+
+  const getProgressColor = (level) => {
+    if (level >= 90) return "progress-success";
+    if (level >= 80) return "progress-info";
+    if (level >= 70) return "progress-warning";
+    return "progress-error";
+  };
 
   return (
     <section
-      className="min-h-screen px-6 py-12 bg-gray-900 text-white"
       id="skills"
+      className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-20 px-4"
     >
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-center">
-          My Technical Skills
-        </h1>
-        {renderSkills("Languages & Frameworks", languagesAndFrameworks)}
-        {renderSkills("Tools & Platforms", toolsAndPlatforms)}
+      <div className="max-w-7xl mx-auto">
+        {/* Fun Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-white mb-4 animate-pulse">
+            My Skill Arsenal 🎮
+          </h2>
+          <p className="text-xl text-white/80 mb-8">
+            Level up your projects with these power-ups!
+          </p>
+
+          {/* Category Selector */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {Object.entries(skillCategories).map(([key, category]) => (
+              <button
+                key={key}
+                onClick={() => setSelectedCategory(key)}
+                className={`btn btn-lg transition-all duration-300 hover:scale-110 ${
+                  selectedCategory === key
+                    ? "btn-primary shadow-2xl"
+                    : "btn-outline btn-primary hover:btn-primary"
+                }`}
+              >
+                <span className="text-2xl mr-2">{category.icon}</span>
+                <span className="hidden md:inline">
+                  {category.title.split(" ")[0]}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Selected Category Display */}
+        <div className="mb-8">
+          <div
+            className={`bg-gradient-to-r ${skillCategories[selectedCategory].color} rounded-2xl p-8 shadow-2xl`}
+          >
+            <h3 className="text-3xl font-bold text-white text-center mb-8">
+              {skillCategories[selectedCategory].title}
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skillCategories[selectedCategory].skills.map((skill, index) => (
+                <div
+                  key={skill.name}
+                  className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-3 group-hover:animate-bounce">
+                      {skill.icon}
+                    </div>
+                    <h4 className="text-white font-bold text-lg mb-3">
+                      {skill.name}
+                    </h4>
+
+                    {/* Skill Level Progress */}
+                    <div className="mb-3">
+                      <div className="flex justify-between text-sm text-white/80 mb-1">
+                        <span>Level</span>
+                        <span className={getSkillColor(skill.level)}>
+                          {skill.level}%
+                        </span>
+                      </div>
+                      <progress
+                        className={`progress ${getProgressColor(
+                          skill.level
+                        )} w-full`}
+                        value={skill.level}
+                        max="100"
+                      ></progress>
+                    </div>
+
+                    {/* Fun Fact */}
+                    <div className="text-xs text-white/70 italic">
+                      {skill.fun}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Hovered Skill Detail */}
+        {hoveredSkill && (
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-lg rounded-xl p-4 text-white shadow-2xl animate-fadeIn z-50">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">{hoveredSkill.icon}</span>
+              <div>
+                <div className="font-bold">{hoveredSkill.name}</div>
+                <div className="text-sm text-white/70">{hoveredSkill.fun}</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Fun Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
+            <div className="text-4xl mb-2">🏆</div>
+            <div className="text-2xl font-bold text-white">30+</div>
+            <div className="text-white/70">Technologies Mastered</div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
+            <div className="text-4xl mb-2">⚡</div>
+            <div className="text-2xl font-bold text-white">2+</div>
+            <div className="text-white/70">Years Experience</div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
+            <div className="text-4xl mb-2">🚀</div>
+            <div className="text-2xl font-bold text-white">5+</div>
+            <div className="text-white/70">Projects Launched</div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:scale-105 transition-all duration-300">
+            <div className="text-4xl mb-2">🎯</div>
+            <div className="text-2xl font-bold text-white">85%+</div>
+            <div className="text-white/70">Code Coverage</div>
+          </div>
+        </div>
+
+        <style jsx>{`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+          }
+        `}</style>
       </div>
     </section>
   );

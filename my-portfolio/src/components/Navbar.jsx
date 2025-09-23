@@ -2,8 +2,17 @@ import { Link } from "react-scroll";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const sections = ["home", "about", "skills", "projects", "contact"];
+  const sections = [
+    { name: "home", icon: "🏠", label: "Home" },
+    { name: "about", icon: "🧑‍💻", label: "About" },
+    { name: "skills", icon: "🛠️", label: "Skills" },
+    { name: "experience", icon: "💼", label: "Experience" },
+    { name: "projects", icon: "🎨", label: "Projects" },
+    { name: "contact", icon: "📱", label: "Contact" },
+  ];
+
   const [theme, setTheme] = useState("light");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -14,37 +23,57 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100/90 backdrop-blur-md shadow-md fixed top-0 left-0 w-full z-[1000]">
-      <div className="navbar-start">
-        <button 
+    <div className="fixed top-0 left-0 w-full z-[1000]">
+      {/* Fun Floating Navbar */}
+      <div className="flex justify-center pt-4">
+        <div className="bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 shadow-2xl border border-white/20">
+          <ul className="flex items-center gap-1">
+            {sections.map((section) => (
+              <li key={section.name}>
+                <Link
+                  to={section.name}
+                  smooth={true}
+                  duration={500}
+                  offset={-70}
+                  spy={true}
+                  activeClass="active"
+                  onSetActive={() => setActiveSection(section.name)}
+                  className={`cursor-pointer px-4 py-2 rounded-full transition-all duration-300 hover:scale-110 group ${
+                    activeSection === section.name
+                      ? "bg-white/30 text-white shadow-lg"
+                      : "text-white/80 hover:text-white hover:bg-white/20"
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-lg group-hover:animate-bounce">
+                      {section.icon}
+                    </span>
+                    <span className="text-xs font-medium hidden md:block">
+                      {section.label}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Floating Theme Toggle */}
+      <div className="fixed top-4 right-4">
+        <button
           onClick={toggleTheme}
-          className="btn btn-ghost btn-circle"
+          className="btn btn-circle bg-white/10 backdrop-blur-lg border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-2xl"
         >
-          {theme === "light" ? "🌙" : "☀️"}
+          <span className="text-xl">{theme === "light" ? "🌙" : "☀️"}</span>
         </button>
       </div>
-      
-      <div className="navbar-center flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
-          {sections.map((section) => (
-            <li key={section}>
-              <Link
-                to={section}
-                smooth={true}
-                duration={500}
-                offset={-70}
-                className="cursor-pointer font-medium capitalize text-base hover:text-primary transition-colors duration-300"
-                activeClass="text-primary font-bold"
-              >
-                {section}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <div className="navbar-end">
-        {/* Add more actions here if needed */}
+
+      {/* Fun Logo */}
+      <div className="fixed top-4 left-4">
+        <div className="bg-white/10 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
+          <span className="text-white font-bold text-sm">EP</span>
+        </div>
       </div>
     </div>
   );
