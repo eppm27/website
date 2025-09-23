@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold text-primary mb-4">
-              Elphyil Phylmon
+              Ei Phyu Phyu Mon
             </h3>
             <p className="text-base-content/80 mb-4 leading-relaxed">
               Full-Stack Developer & Software Engineer passionate about creating
@@ -128,7 +128,7 @@ const Footer = () => {
         <div className="divider my-8"></div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-base-content/60">
-            <p>&copy; {currentYear} Elphyil Phylmon. All rights reserved.</p>
+            <p>&copy; {currentYear} Ei Phyu Phyu Mon. All rights reserved.</p>
           </div>
           <div className="flex gap-6 text-sm text-base-content/60">
             <span>Built with React + Vite + daisyUI</span>
