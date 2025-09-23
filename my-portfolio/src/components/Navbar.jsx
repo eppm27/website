@@ -25,12 +25,12 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-[1000]">
       {/* Full Circle Navbar - Clean Design */}
-      <div className="flex justify-center pt-2 sm:pt-3 px-2 sm:px-4">
-        <div className="bg-base-100/10 backdrop-blur-lg rounded-full px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 shadow-2xl border border-base-content/20">
+      <div className="flex justify-center items-center pt-2 sm:pt-3 px-2 sm:px-4 w-full">
+        <div className="bg-base-100/10 backdrop-blur-lg rounded-full px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 shadow-2xl border border-base-content/20 mx-auto">
           <div className="flex items-center gap-1 sm:gap-2">
             {/* Logo integrated into circle */}
             <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8">
-              <span className="font-bold text-xs sm:text-sm md:text-base text-base-content">EP</span>
+              <span className="font-bold text-xs sm:text-sm md:text-base text-base-content">EPPM</span>
             </div>
 
             {/* Separator */}

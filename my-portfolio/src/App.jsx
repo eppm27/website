@@ -9,30 +9,30 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen">
       <Navbar />
-      <div style={{ paddingTop: "80px" }}>
-        <section id="home">
+      <main className="pt-20">
+        <section id="home" className="min-h-screen flex items-center justify-center">
           <Home />
         </section>
-        <section id="about">
+        <section id="about" className="min-h-screen flex items-center justify-center">
           <About />
         </section>
-        <section id="skills">
+        <section id="skills" className="min-h-screen flex items-center justify-center">
           <Skills />
         </section>
-        <section id="experience">
+        <section id="experience" className="min-h-screen flex items-center justify-center">
           <Experience />
         </section>
-        <section id="projects">
+        <section id="projects" className="min-h-screen flex items-center justify-center">
           <Projects />
         </section>
-        <section id="contact">
+        <section id="contact" className="min-h-screen flex items-center justify-center">
           <Contact />
         </section>
-      </div>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
