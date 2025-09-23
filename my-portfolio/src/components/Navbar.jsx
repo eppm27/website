@@ -1,24 +1,52 @@
 import { Link } from "react-scroll";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const sections = ["home", "about", "skills", "projects", "contact"];
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full px-8 py-4 bg-white/90 backdrop-blur-md shadow-md z-[1000] flex justify-center gap-8">
-      {sections.map((section) => (
-        <Link
-          key={section}
-          to={section}
-          smooth={true}
-          duration={500}
-          offset={-70}
-          className="cursor-pointer text-gray-800 font-medium capitalize text-base hover:text-cornflower transition-colors duration-300"
-          activeClass="text-skyblue font-bold"
+    <div className="navbar bg-base-100/90 backdrop-blur-md shadow-md fixed top-0 left-0 w-full z-[1000]">
+      <div className="navbar-start">
+        <button 
+          onClick={toggleTheme}
+          className="btn btn-ghost btn-circle"
         >
-          {section}
-        </Link>
-      ))}
-    </nav>
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
+      </div>
+      
+      <div className="navbar-center flex">
+        <ul className="menu menu-horizontal px-1 gap-2">
+          {sections.map((section) => (
+            <li key={section}>
+              <Link
+                to={section}
+                smooth={true}
+                duration={500}
+                offset={-70}
+                className="cursor-pointer font-medium capitalize text-base hover:text-primary transition-colors duration-300"
+                activeClass="text-primary font-bold"
+              >
+                {section}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div className="navbar-end">
+        {/* Add more actions here if needed */}
+      </div>
+    </div>
   );
 };
 
