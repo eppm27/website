@@ -38,14 +38,14 @@ const placeholderProjects = [
   },
   {
     id: 4,
-    title: "E-Commerce Platform",
-    subtitle: "Full-Stack Shopping App",
+    title: "Who Unfollowed",
+    subtitle: "Instagram Followers Analytics Tool",
     description:
-      "Complete e-commerce solution with user authentication, payment processing, inventory management, and admin dashboard.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
-    live: "https://example.com/ecommerce-demo",
-    github: "https://github.com/eppm27/ecommerce-platform",
-    isPlaceholder: true,
+      "A cute and user-friendly web application to analyze Instagram followers with drag-and-drop file upload, visual statistics, CSV downloads, and privacy-first processing.",
+    stack: ["Python", "Flask", "JavaScript", "Vercel"],
+    image: "/projects/WhoUnfollowed.png",
+    live: "https://who-unfollowed.vercel.app/",
+    github: "https://github.com/eppm27/WhoUnfollowed",
   },
   {
     id: 5,
