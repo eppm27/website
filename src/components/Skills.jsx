@@ -241,10 +241,16 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 md:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="text-center">
-          <span className="section-eyebrow">Skills</span>
+        <div>
+          <span
+            className={`inline-block text-xs font-bold tracking-widest uppercase ${
+              isDark ? "text-sage-400" : "text-sage-600"
+            }`}
+          >
+            Skills
+          </span>
           <h2
-            className={`section-title mt-4 text-3xl sm:text-4xl ${
+            className={`mt-4 text-4xl sm:text-5xl font-bold leading-tight ${
               isDark ? "text-white" : "text-slate-900"
             }`}
           >
@@ -267,12 +273,12 @@ const Skills = () => {
               key={key}
               type="button"
               onClick={() => setSelectedCategory(key)}
-              className={`focus-ring rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`focus-ring rounded-lg px-4 py-2 text-sm font-semibold transition ${
                 selectedCategory === key
-                  ? "bg-[#2563eb] text-white shadow-lg shadow-[#2563eb]/30"
+                  ? "bg-sage-600 text-white"
                   : isDark
-                  ? "bg-slate-900/60 text-slate-300 border border-slate-700/60"
-                  : "bg-white text-slate-600 border border-slate-200"
+                  ? "bg-slate-700/40 text-slate-300 border border-sage-600/20"
+                  : "bg-white text-slate-600 border border-sage-200/30"
               }`}
             >
               {category.title}

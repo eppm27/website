@@ -82,32 +82,38 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const shellStyles = isDark
-    ? "bg-slate-900/70 border border-slate-800/60"
-    : "bg-white/75 border border-slate-200/70";
+    ? "bg-slate-950/80 border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
+    : "bg-white/85 border border-slate-200/80 shadow-[0_8px_24px_rgba(15,23,42,0.06)]";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "backdrop-blur-xl" : "backdrop-blur-none"
-      } ${isDark ? "bg-[#0b1020]/70" : "bg-white/65"}`}
+        isScrolled ? "pt-3" : "pt-4"
+      }`}
     >
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <nav
+        className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-3 backdrop-blur-md sm:px-6 ${shellStyles}`}
+      >
         <Link
           to="home"
           smooth
           duration={500}
           offset={-80}
-          className={`focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-3 py-2 ${shellStyles}`}
+          className="focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-2 py-1.5 transition-transform duration-200 hover:-translate-y-[1px]"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] font-semibold text-white">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-600 font-semibold text-white transition-transform duration-200 hover:scale-105">
             EM
           </div>
           <div className="hidden flex-col text-left sm:flex">
-            <span className="text-[11px] uppercase tracking-[0.32em] text-slate-400">
+            <span
+              className={`text-[10px] uppercase tracking-[0.35em] ${
+                isDark ? "text-slate-400" : "text-slate-500"
+              }`}
+            >
               Ei Phyu Phyu Mon
             </span>
             <span
-              className={`text-sm font-semibold ${
+              className={`text-sm font-semibold tracking-tight ${
                 isDark ? "text-white" : "text-slate-900"
               }`}
             >
@@ -128,7 +134,7 @@ const Navbar = () => {
               offset={-80}
               spy
               activeClass="active-link"
-              className="focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 hover:text-[#2563eb]"
+              className="focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors duration-200 hover:text-sage-600"
             >
               {label}
             </Link>
@@ -192,7 +198,7 @@ const Navbar = () => {
                   spy
                   activeClass="active-link"
                   onClick={() => setIsMenuOpen(false)}
-                  className="focus-ring rounded-xl px-3 py-2 text-sm font-medium transition hover:bg-[#2563eb]/10"
+                  className="focus-ring rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-sage-600/8 hover:text-sage-700"
                 >
                   {label}
                 </Link>

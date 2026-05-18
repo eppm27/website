@@ -1,183 +1,186 @@
 import { Link as ScrollLink } from "react-scroll";
 import { useTheme } from "../context/ThemeContext.jsx";
-
-const quickLinks = [
-  {
-    label: "Featured work",
-    target: "projects",
-    description: "AI dashboard, finance tracker, biomedical annotation.",
-  },
-  {
-    label: "Background",
-    target: "about",
-    description:
-      "Master’s student blending product strategy and full-stack craft.",
-  },
-  {
-    label: "Partner up",
-    target: "contact",
-    description: "Let’s schedule an intro call to scope your roadmap.",
-  },
-];
-
-const codeSample = [
-  `const roadmap = [`,
-  `  "Discovery",`,
-  `  "Prototype",`,
-  `  "Ship",`,
-  `];`,
-  `deploy(roadmap);`,
-];
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-28 pb-24 sm:pt-32 md:pt-36 md:pb-28"
+      className="relative overflow-hidden pt-20 pb-24 sm:pt-32 md:pt-40 md:pb-32"
     >
-      <div className="hero-blob hero-blob--blue" aria-hidden="true"></div>
-      <div className="hero-blob hero-blob--violet" aria-hidden="true"></div>
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -right-32 w-96 h-96 rounded-full bg-gradient-to-r from-electric-500/20 to-neon-purple/20 blur-3xl opacity-30 animate-float"></div>
+        <div
+          className="absolute -bottom-20 -left-40 w-80 h-80 rounded-full bg-gradient-to-r from-electric-600/15 to-neon-cyan/15 blur-3xl opacity-25 animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div>
-          <span className="section-eyebrow">
-            Full-stack engineer in training
-          </span>
-          <h1
-            className={`section-title mt-6 text-4xl sm:text-5xl lg:text-6xl ${
-              isDark ? "text-white" : "text-slate-900"
-            }`}
-          >
-            Ei Phyu Phyu Mon — Full-Stack Engineer in Training
-          </h1>
-          <p
-            className={`mt-6 max-w-2xl text-lg md:text-xl ${
-              isDark ? "text-slate-300" : "text-slate-600"
-            }`}
-          >
-            I build scalable, user-friendly web apps with React, Next.js,
-            Node/FastAPI, and PostgreSQL. I enjoy pairing clean architecture
-            with delightful UX to ship features that earn trust.
-          </p>
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 relative z-10">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-16">
+          {/* Left column: Main hero content */}
+          <div>
+            <div
+              className={`inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border ${isVisible ? "animate-slide-up" : "opacity-0"} ${isDark ? "bg-electric-600/10 border-electric-500/30" : "bg-electric-400/10 border-electric-400/30"}`}
+            >
+              <span className="w-2 h-2 rounded-full bg-electric-500 animate-pulse"></span>
+              <span className="text-xs font-semibold text-electric-400 tracking-wide">
+                Available for internships & grad roles
+              </span>
+            </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <ScrollLink
-              to="projects"
-              smooth
-              duration={500}
-              offset={-80}
-              className="btn-primary focus-ring"
+            <h1
+              className={`mt-8 text-6xl sm:text-7xl lg:text-8xl font-bold leading-tight tracking-tight ${isVisible ? "animate-slide-up delay-100" : "opacity-0"}`}
+              style={{
+                background: isDark
+                  ? "linear-gradient(135deg, #00d9ff 0%, #00bfff 50%, #b837f0 100%)"
+                  : "linear-gradient(135deg, #0099ff 0%, #00bfff 50%, #9d4edd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              View Projects
-              <span aria-hidden="true">↗</span>
-            </ScrollLink>
-            <a
-              href="/Ei-Phyu-Phyu-Mon-CV.pdf"
-              className="btn-secondary focus-ring"
-              target="_blank"
-              rel="noopener noreferrer"
+              Building creative code, shipping products.
+            </h1>
+
+            <p
+              className={`mt-8 max-w-2xl text-lg leading-relaxed ${isVisible ? "animate-slide-up delay-200" : "opacity-0"} ${isDark ? "text-slate-300" : "text-slate-700"}`}
             >
-              Download CV
-            </a>
+              I'm a Sydney-based Master's student and full-stack engineer
+              obsessed with elegant design, clean code, and creating experiences
+              that feel intuitive and alive. I love blending AI, real-time
+              collaboration, and thoughtful UX.
+            </p>
+
+            <div
+              className={`mt-10 flex flex-wrap items-center gap-4 ${isVisible ? "animate-slide-up delay-300" : "opacity-0"}`}
+            >
+              <ScrollLink
+                to="projects"
+                smooth
+                duration={500}
+                offset={-80}
+                className="btn-primary focus-ring cursor-pointer"
+              >
+                View My Work
+                <span aria-hidden="true">→</span>
+              </ScrollLink>
+              <a href="#contact" className="btn-secondary focus-ring">
+                Let's Chat
+              </a>
+            </div>
+
+            {/* Scroll indicator */}
+            <div
+              className={`mt-16 flex items-center gap-2 text-xs font-medium text-slate-400 ${isVisible ? "animate-slide-up delay-400" : "opacity-0"}`}
+            >
+              <span>Scroll to explore</span>
+              <svg
+                className="w-4 h-4 animate-bounce"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-3"></div>
-        </div>
-
-        <div>
+          {/* Right column: Interactive tech stack */}
           <div
-            className={`gradient-border ${
-              isDark ? "bg-transparent" : "bg-white/20"
-            }`}
+            className={`mt-8 lg:mt-0 ${isVisible ? "animate-slide-up delay-200" : "opacity-0"}`}
           >
             <div
-              className={`card-base ${
-                isDark ? "card-layer-dark" : "card-layer-light"
-              } p-6 sm:p-7`}
+              className={`rounded-2xl p-8 backdrop-blur-md border transition-all duration-300 hover:shadow-lg ${
+                isDark
+                  ? "bg-gradient-to-br from-slate-800/60 to-slate-900/40 border-electric-500/20"
+                  : "bg-gradient-to-br from-white/80 to-slate-50/40 border-electric-400/20"
+              }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 rounded-full bg-electric-500 animate-pulse"></div>
                 <span
-                  className={`text-sm font-medium ${
-                    isDark ? "text-slate-200" : "text-slate-600"
+                  className={`text-xs font-bold uppercase tracking-widest ${
+                    isDark ? "text-electric-400" : "text-electric-600"
                   }`}
                 >
-                  Project snapshot
-                </span>
-                <span className="rounded-full bg-[#2563eb]/10 px-3 py-1 text-xs font-semibold text-[#2563eb]">
-                  Sprint-ready
+                  Tech Stack
                 </span>
               </div>
-              <div
-                className={`mt-6 rounded-2xl border ${
-                  isDark
-                    ? "border-slate-700/60 bg-slate-900/60"
-                    : "border-slate-200 bg-slate-50"
-                } p-5 font-mono text-[13px] leading-relaxed text-[#60a5ff]`}
-                aria-hidden="true"
-              >
-                {codeSample.map((line) => (
-                  <div key={line}>{line}</div>
-                ))}
-              </div>
-              <p
-                className={`mt-6 text-sm ${
-                  isDark ? "text-slate-300" : "text-slate-600"
-                }`}
-              >
-                Currently exploring AI-assisted product workflows,
-                production-grade CI/CD, and accessible design systems that scale
-                with teams.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+
+              <div className="grid grid-cols-2 gap-6">
                 {[
-                  "TypeScript",
-                  "Next.js",
-                  "Node.js",
-                  "PostgreSQL",
-                  "Docker",
-                ].map((skill) => (
-                  <span key={skill} className="badge-pill focus-ring">
-                    {skill}
-                  </span>
+                  {
+                    label: "Frontend",
+                    items: ["React", "Next.js", "Tailwind", "Figma"],
+                    icon: "⚡",
+                  },
+                  {
+                    label: "Backend",
+                    items: ["Node.js", "FastAPI", "PostgreSQL", "MongoDB"],
+                    icon: "🔧",
+                  },
+                  {
+                    label: "AI & Data",
+                    items: ["OpenAI API", "LLMs", "Data Analysis"],
+                    icon: "🤖",
+                  },
+                  {
+                    label: "DevOps",
+                    items: ["Docker", "CI/CD", "AWS", "Vercel"],
+                    icon: "🚀",
+                  },
+                ].map((group, idx) => (
+                  <div
+                    key={group.label}
+                    className={`p-4 rounded-lg border transition-all duration-300 hover:border-electric-500/50 hover:bg-electric-500/5 cursor-pointer ${
+                      isDark
+                        ? "bg-slate-800/30 border-electric-500/10"
+                        : "bg-white/40 border-electric-400/10"
+                    }`}
+                    style={{ animationDelay: `${idx * 0.1}s` }}
+                  >
+                    <p className="text-xs font-bold uppercase tracking-wide mb-3 flex items-center gap-2">
+                      <span className="text-lg">{group.icon}</span>
+                      <span
+                        className={
+                          isDark ? "text-electric-400" : "text-electric-600"
+                        }
+                      >
+                        {group.label}
+                      </span>
+                    </p>
+                    <ul
+                      className={`space-y-1 text-xs font-medium ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    >
+                      {group.items.map((item) => (
+                        <li key={item} className="flex items-center gap-2">
+                          <span
+                            className={`w-1 h-1 rounded-full ${isDark ? "bg-electric-500/50" : "bg-electric-500/40"}`}
+                          ></span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="relative mx-auto mt-16 w-full max-w-5xl px-4 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-3">
-          {quickLinks.map((item) => (
-            <ScrollLink
-              key={item.label}
-              to={item.target}
-              smooth
-              duration={500}
-              offset={-80}
-              className={`card-base ${
-                isDark ? "card-layer-dark" : "card-layer-light"
-              } focus-ring cursor-pointer p-5 text-left transition`}
-            >
-              <p className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
-                {item.label}
-              </p>
-              <p
-                className={`mt-3 text-sm leading-relaxed ${
-                  isDark ? "text-slate-300" : "text-slate-600"
-                }`}
-              >
-                {item.description}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#2563eb]">
-                Explore
-                <span aria-hidden="true">→</span>
-              </span>
-            </ScrollLink>
-          ))}
         </div>
       </div>
     </section>

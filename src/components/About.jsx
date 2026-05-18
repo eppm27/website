@@ -15,18 +15,24 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 md:py-28">
-      <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
+      <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:gap-16">
         <div>
-          <span className="section-eyebrow">About</span>
+          <span
+            className={`inline-block text-xs font-bold tracking-widest uppercase ${
+              isDark ? "text-sage-400" : "text-sage-600"
+            }`}
+          >
+            About
+          </span>
           <h2
-            className={`section-title mt-4 text-3xl sm:text-4xl ${
+            className={`mt-4 text-4xl sm:text-5xl font-bold leading-tight ${
               isDark ? "text-white" : "text-slate-900"
             }`}
           >
             From Sydney to scalable web products
           </h2>
           <p
-            className={`mt-6 text-lg leading-relaxed ${
+            className={`mt-8 text-lg leading-relaxed ${
               isDark ? "text-slate-300" : "text-slate-600"
             }`}
           >
@@ -44,25 +50,29 @@ const About = () => {
 
         <div className="space-y-6">
           <div
-            className={`card-base ${
-              isDark ? "card-layer-dark" : "card-layer-light"
-            } p-6 sm:p-7`}
+            className={`rounded-lg p-6 sm:p-7 border transition ${
+              isDark
+                ? "bg-slate-800/40 border-sage-600/20 hover:bg-slate-800/60"
+                : "bg-white border-sage-200/30 hover:bg-slate-50"
+            }`}
           >
             <h3
-              className={`text-lg font-semibold ${
+              className={`text-lg font-bold mb-4 ${
                 isDark ? "text-white" : "text-slate-900"
               }`}
             >
-              What I bring
+              Key Skills
             </h3>
             <ul
-              className={`mt-4 space-y-3 text-sm ${
+              className={`space-y-3 text-sm ${
                 isDark ? "text-slate-300" : "text-slate-700"
               }`}
             >
               {keySkills.map((skill) => (
                 <li key={skill} className="flex items-start gap-3">
-                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-[#2563eb]"></span>
+                  <span className={`mt-1.5 inline-block h-1.5 w-1.5 rounded-full flex-shrink-0 ${
+                    isDark ? "bg-sage-400" : "bg-sage-600"
+                  }`}></span>
                   <span>{skill}</span>
                 </li>
               ))}
@@ -70,19 +80,21 @@ const About = () => {
           </div>
 
           <div
-            className={`card-base ${
-              isDark ? "card-layer-dark" : "card-layer-light"
-            } p-6 sm:p-7`}
+            className={`rounded-lg p-6 sm:p-7 border transition ${
+              isDark
+                ? "bg-slate-800/40 border-sage-600/20 hover:bg-slate-800/60"
+                : "bg-white border-sage-200/30 hover:bg-slate-50"
+            }`}
           >
             <h3
-              className={`text-lg font-semibold ${
+              className={`text-lg font-bold mb-4 ${
                 isDark ? "text-white" : "text-slate-900"
               }`}
             >
-              Collaboration style
+              Collaboration Style
             </h3>
             <p
-              className={`mt-4 text-sm ${
+              className={`text-sm leading-relaxed ${
                 isDark ? "text-slate-300" : "text-slate-600"
               }`}
             >

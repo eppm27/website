@@ -1,4 +1,15 @@
 import { useState } from "react";
+import { useTheme } from "../context/ThemeContext.jsx";
+import emailjs from "@emailjs/browser";
+
+// ⚠️ EmailJS Configuration
+// You need to set these environment variables in Vercel:
+// VITE_EMAILJS_SERVICE_ID - Your EmailJS Service ID
+// VITE_EMAILJS_TEMPLATE_ID - Your EmailJS Template ID
+// VITE_EMAILJS_PUBLIC_KEY - Your EmailJS Public Key (safe to expose)
+
+// Initialize EmailJS on component load
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "");
 
 const contactMethods = [
   {
@@ -35,6 +46,8 @@ const responseStats = [
 ];
 
 const Contact = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,6 +55,7 @@ const Contact = () => {
     message: "",
   });
   const [messageSent, setMessageSent] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
@@ -49,39 +63,100 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setSendError(false);
 
-    setTimeout(() => {
+    try {
+      // EmailJS template variables that will be sent:
+      // - to_email: eppmon27@gmail.com (hardcoded in template)
+      // - from_name: user's name (from form)
+      // - from_email: user's email (from form)
+      // - subject: selected subject (from form)
+      // - message: user's message (from form)
+
+      const templateParams = {
+        to_email: "eppmon27@gmail.com",
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      // Send email via EmailJS
+      // ServiceID, TemplateID, and PublicKey come from environment variables
+      const response = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      if (response.status === 200) {
+        // Email sent successfully
+        setIsSubmitting(false);
+        setMessageSent(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+
+        // Clear success message after 5 seconds
+        setTimeout(() => setMessageSent(false), 5000);
+      }
+    } catch (error) {
+      console.error("EmailJS Error:", error);
       setIsSubmitting(false);
-      setMessageSent(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setMessageSent(false), 4000);
-    }, 1500);
+      setSendError(true);
+
+      // Clear error message after 5 seconds
+      setTimeout(() => setSendError(false), 5000);
+    }
   };
 
   return (
     <section id="contact" className="py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
-          <span className="section-eyebrow">Contact</span>
-          <h2 className="section-title mt-4 text-4xl sm:text-5xl text-white">
-            Let's build your next thoughtful experience.
+          <span
+            className={`inline-block text-xs font-bold tracking-widest uppercase ${
+              isDark ? "text-sage-400" : "text-sage-600"
+            }`}
+          >
+            Contact
+          </span>
+          <h2
+            className={`mt-4 text-4xl sm:text-5xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}
+          >
+            Let's build something great.
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300">
-            Whether you have a roadmap ready to go or an idea that needs
-            framing, I'm ready to partner with you from strategy through launch.
+          <p
+            className={`mx-auto mt-6 max-w-3xl text-lg ${isDark ? "text-slate-300" : "text-slate-600"}`}
+          >
+            Whether you have a project ready or just want to chat about ideas,
+            I'd love to hear from you. Get in touch.
           </p>
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div className="space-y-8">
-            <div className="rounded-3xl px-6 py-8 shadow-xl sm:px-8 sm:py-10 bg-slate-800 text-slate-100">
-              <p className="text-sm uppercase tracking-[0.3em] text-blue-200">
+            <div
+              className={`rounded-lg px-6 py-8 sm:px-8 sm:py-10 border ${
+                isDark
+                  ? "bg-slate-800/40 border-sage-600/20"
+                  : "bg-white border-sage-200/30"
+              }`}
+            >
+              <p
+                className={`text-sm uppercase tracking-[0.3em] ${
+                  isDark ? "text-sage-400" : "text-sage-600"
+                }`}
+              >
                 Ways to connect
               </p>
-              <p className="mt-4 text-lg text-slate-200">
+              <p
+                className={`mt-4 text-lg ${
+                  isDark ? "text-slate-300" : "text-slate-700"
+                }`}
+              >
                 Drop me a note outlining what you're working on and the kind of
                 support you're looking for. I'll follow up with next steps and a
                 short introduction call.
@@ -97,16 +172,32 @@ const Contact = () => {
                   rel={
                     method.href.startsWith("http") ? "noreferrer" : undefined
                   }
-                  className="block rounded-2xl p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-6 border border-slate-700 bg-slate-800/60 text-slate-100"
+                  className={`block rounded-lg p-5 transition sm:p-6 border ${
+                    isDark
+                      ? "bg-slate-800/40 border-sage-600/20 text-slate-300 hover:bg-slate-800/60"
+                      : "bg-white border-sage-200/30 text-slate-900 hover:bg-slate-50"
+                  }`}
                 >
                   <div className="flex flex-col gap-2">
-                    <span className="text-sm uppercase tracking-[0.2em] text-blue-400">
+                    <span
+                      className={`text-sm uppercase tracking-[0.2em] ${
+                        isDark ? "text-sage-400" : "text-sage-600"
+                      }`}
+                    >
                       {method.title}
                     </span>
-                    <span className="text-base font-semibold text-slate-100">
+                    <span
+                      className={`text-base font-semibold ${
+                        isDark ? "text-slate-100" : "text-slate-900"
+                      }`}
+                    >
                       {method.value}
                     </span>
-                    <span className="text-sm text-slate-300">
+                    <span
+                      className={`text-sm ${
+                        isDark ? "text-slate-400" : "text-slate-600"
+                      }`}
+                    >
                       {method.description}
                     </span>
                   </div>
@@ -114,20 +205,42 @@ const Contact = () => {
               ))}
             </div>
 
-            <div className="rounded-2xl p-6 border border-slate-700 bg-slate-800/50">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            <div
+              className={`rounded-lg p-6 border ${
+                isDark
+                  ? "bg-slate-800/40 border-sage-600/20"
+                  : "bg-white border-sage-200/30"
+              }`}
+            >
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.2em] ${
+                  isDark ? "text-sage-400" : "text-sage-600"
+                }`}
+              >
                 What you can expect
               </p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {responseStats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl p-4 text-sm bg-slate-700/50 text-slate-300"
+                    className={`rounded-lg p-4 text-sm ${
+                      isDark
+                        ? "bg-slate-700/30 border border-sage-600/10 text-slate-300"
+                        : "bg-sage-50 border border-sage-200 text-slate-700"
+                    }`}
                   >
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                    <p
+                      className={`text-xs uppercase tracking-[0.2em] ${
+                        isDark ? "text-slate-400" : "text-slate-600"
+                      }`}
+                    >
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-lg font-semibold text-slate-100">
+                    <p
+                      className={`mt-2 text-lg font-semibold ${
+                        isDark ? "text-slate-100" : "text-slate-900"
+                      }`}
+                    >
                       {stat.value}
                     </p>
                   </div>
@@ -136,23 +249,81 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="rounded-3xl p-8 shadow-xl sm:p-10 bg-slate-800/60 ring-1 ring-slate-700">
-            <h3 className="text-xl font-semibold text-slate-100">
-              Start a conversation
+          <div
+            className={`rounded-lg p-8 sm:p-10 border ${
+              isDark
+                ? "bg-slate-800/40 border-sage-600/20"
+                : "bg-white border-sage-200/30"
+            }`}
+          >
+            <h3
+              className={`text-xl font-semibold ${
+                isDark ? "text-white" : "text-slate-900"
+              }`}
+            >
+              Send me a message
             </h3>
-            <p className="mt-3 text-sm text-slate-300">
+            <p
+              className={`mt-3 text-sm ${
+                isDark ? "text-slate-400" : "text-slate-600"
+              }`}
+            >
               Tell me a little about your project and the outcome you're aiming
               for. I'll respond with tailored next steps and availability.
             </p>
 
             {messageSent ? (
-              <div className="mt-8 rounded-2xl p-6 text-center shadow-md bg-slate-700">
-                <p className="text-lg font-semibold text-emerald-400">
-                  Message sent
+              <div
+                className={`mt-8 rounded-lg p-6 text-center border ${
+                  isDark
+                    ? "bg-slate-800/40 border-sage-600/20"
+                    : "bg-white border-sage-200/30"
+                }`}
+              >
+                <p
+                  className={`text-lg font-semibold ${
+                    isDark ? "text-sage-400" : "text-sage-600"
+                  }`}
+                >
+                  Message sent ✓
                 </p>
-                <p className="mt-2 text-sm text-slate-300">
+                <p
+                  className={`mt-2 text-sm ${
+                    isDark ? "text-slate-400" : "text-slate-600"
+                  }`}
+                >
                   Thank you for reaching out. I'll respond within the next
                   business day.
+                </p>
+              </div>
+            ) : sendError ? (
+              <div
+                className={`mt-8 rounded-lg p-6 text-center border ${
+                  isDark
+                    ? "bg-red-900/20 border-red-600/30"
+                    : "bg-red-50 border-red-300"
+                }`}
+              >
+                <p
+                  className={`text-lg font-semibold ${
+                    isDark ? "text-red-400" : "text-red-600"
+                  }`}
+                >
+                  Message failed ✗
+                </p>
+                <p
+                  className={`mt-2 text-sm ${
+                    isDark ? "text-red-300" : "text-red-700"
+                  }`}
+                >
+                  Something went wrong. Please try again or reach out directly
+                  at{" "}
+                  <a
+                    href="mailto:eppmon27@gmail.com"
+                    className="font-semibold underline hover:opacity-80"
+                  >
+                    eppmon27@gmail.com
+                  </a>
                 </p>
               </div>
             ) : (
@@ -163,7 +334,11 @@ const Contact = () => {
                       Name
                     </label>
                     <input
-                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
+                      className={`mt-2 w-full rounded-lg border px-4 py-3 text-sm ${
+                        isDark
+                          ? "bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-500 focus:border-electric-500 focus:ring-electric-500/20"
+                          : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-electric-400 focus:ring-electric-400/20"
+                      } focus:outline-none focus:ring-2`}
                       type="text"
                       name="name"
                       value={formData.name}
@@ -177,7 +352,11 @@ const Contact = () => {
                       Email
                     </label>
                     <input
-                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400"
+                      className={`mt-2 w-full rounded-lg border px-4 py-3 text-sm ${
+                        isDark
+                          ? "bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-500 focus:border-electric-500 focus:ring-electric-500/20"
+                          : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-electric-400 focus:ring-electric-400/20"
+                      } focus:outline-none focus:ring-2`}
                       type="email"
                       name="email"
                       value={formData.email}
@@ -193,18 +372,28 @@ const Contact = () => {
                     Subject
                   </label>
                   <select
-                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 focus:ring-blue-500/20 focus:border-blue-400"
+                    className={`mt-2 w-full rounded-lg border px-4 py-3 text-sm ${
+                      isDark
+                        ? "bg-slate-700 border-slate-600 text-slate-100 focus:border-electric-500 focus:ring-electric-500/20"
+                        : "bg-white border-slate-200 text-slate-900 focus:border-electric-400 focus:ring-electric-400/20"
+                    } focus:outline-none focus:ring-2`}
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     required
                   >
                     <option value="">Select a topic</option>
-                    <option value="opportunity">New opportunity</option>
-                    <option value="collaboration">Collaboration idea</option>
-                    <option value="consultation">Product consultation</option>
-                    <option value="speaking">Speaking engagement</option>
-                    <option value="other">Other</option>
+                    <option value="New opportunity">New opportunity</option>
+                    <option value="Collaboration idea">
+                      Collaboration idea
+                    </option>
+                    <option value="Product consultation">
+                      Product consultation
+                    </option>
+                    <option value="Speaking engagement">
+                      Speaking engagement
+                    </option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
@@ -213,7 +402,11 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
-                    className="mt-2 h-32 w-full rounded-xl border px-4 py-3 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 border-slate-600 bg-slate-700 text-slate-100 placeholder-slate-400 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
+                    className={`mt-2 h-32 w-full rounded-lg border px-4 py-3 text-sm resize-none ${
+                      isDark
+                        ? "bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-500 focus:border-electric-500 focus:ring-electric-500/20"
+                        : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-electric-400 focus:ring-electric-400/20"
+                    } focus:outline-none focus:ring-2`}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -225,7 +418,9 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:from-blue-500 hover:to-purple-500 disabled:cursor-not-allowed disabled:opacity-70"
+                  className={`btn-primary w-full justify-center ${
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
                 >
                   {isSubmitting ? "Sending..." : "Send message"}
                 </button>
@@ -234,26 +429,48 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-10 text-center text-white shadow-xl sm:px-8 sm:py-12">
-          <h3 className="text-2xl font-semibold">
-            Ready to bring clarity to your product roadmap?
+        <div
+          className={`mt-16 rounded-lg p-10 text-center border ${
+            isDark
+              ? "bg-slate-800/40 border-sage-600/20"
+              : "bg-white border-sage-200/30"
+          }`}
+        >
+          <h3
+            className={`text-2xl font-bold ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
+          >
+            Ready to get started?
           </h3>
-          <p className="mt-3 text-sm text-blue-100">
-            I can help with discovery, prototyping, and production-ready
-            delivery. Let's turn your brief into a confident plan.
+          <p
+            className={`mt-3 text-sm ${
+              isDark ? "text-slate-400" : "text-slate-600"
+            }`}
+          >
+            Drop me an email or give me a call. I'll get back to you within 24
+            hours.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a
               href="mailto:eppmon27@gmail.com"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold !text-blue-600 transition hover:bg-blue-50"
+              className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
+                isDark
+                  ? "bg-sage-600 text-white hover:bg-sage-700"
+                  : "bg-sage-600 text-white hover:bg-sage-700"
+              }`}
             >
-              Email me a brief
+              Email me
             </a>
             <a
               href="tel:0422095774"
-              className="rounded-full border border-white/60 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className={`rounded-lg border px-6 py-3 text-sm font-semibold transition ${
+                isDark
+                  ? "border-sage-600/30 text-sage-400 hover:bg-sage-600/10"
+                  : "border-sage-300 text-sage-700 hover:bg-sage-50"
+              }`}
             >
-              Book a quick call
+              Call me
             </a>
           </div>
         </div>

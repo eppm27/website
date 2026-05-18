@@ -2,16 +2,57 @@ import { useTheme } from "../context/ThemeContext.jsx";
 
 const experiences = [
   {
-    role: "Software Engineering Intern",
-    organisation: "Capstone · CryptoChat Platform",
-    period: "Feb 2025 – May 2025",
-    location: "Sydney (Hybrid)",
+    role: "Full Stack Engineer Intern",
+    organisation: "Myed.it",
+    period: "Nov 2025 – Feb 2026",
+    location: "Sydney",
     summary:
-      "Co-led a four-person squad building an AI-powered crypto assistant. I owned the front-end architecture, API integration strategy, and release process.",
+      "Worked across frontend and backend systems on a production web platform, resolving defects, improving reliability, and supporting Agile sprint delivery.",
     achievements: [
-      "Designed a modular React + Node.js system that served 50+ concurrent users with <500ms responses.",
-      "Integrated OpenAI and financial data sources behind secure, testable service boundaries.",
-      "Automated CI with GitHub Actions, lifting coverage beyond 85% and speeding up QA cycles.",
+      "Resolved 15+ frontend and backend defects across Next.js and REST API systems, improving system reliability and user experience.",
+      "Refactored components and backend services to improve maintainability, performance, and code clarity.",
+      "Contributed to Jira-based sprint delivery through testing, debugging, issue tracking, and CI/CD workflows.",
+    ],
+    stack: [
+      "Next.js",
+      "React",
+      "REST APIs",
+      "JavaScript",
+      "Jira",
+      "CI/CD",
+    ],
+  },
+  {
+    role: "Student Consultant (Technology)",
+    organisation: "Practera",
+    period: "Nov 2025 – Dec 2025",
+    location: "Sydney",
+    summary:
+      "Advised an industry client by analysing business requirements, evaluating digital technology solutions, and presenting practical recommendations.",
+    achievements: [
+      "Analysed client requirements and identified opportunities for digital transformation and operational improvement.",
+      "Developed prototype solutions and data-driven presentations to support stakeholder decision-making.",
+      "Communicated technical concepts clearly to non-technical stakeholders in a consulting-style environment.",
+    ],
+    stack: [
+      "Technology consulting",
+      "Business analysis",
+      "Prototyping",
+      "Data insights",
+      "Stakeholder communication",
+    ],
+  },
+  {
+    role: "Full Stack Engineer (Work Integrated Learning)",
+    organisation: "UNSW · CryptoChat Platform",
+    period: "Feb 2025 – May 2025",
+    location: "Sydney",
+    summary:
+      "Built an AI-powered financial chatbot platform that combined full-stack development, financial data integration, and conversational AI capabilities.",
+    achievements: [
+      "Developed an AI-powered chatbot platform using React, Node.js, and MongoDB.",
+      "Integrated OpenAI APIs and financial data sources to support real-time user queries with sub-500ms response latency.",
+      "Built containerised backend services using Docker and supported modular microservice-style development.",
     ],
     stack: [
       "React",
@@ -19,36 +60,28 @@ const experiences = [
       "MongoDB",
       "OpenAI API",
       "Docker",
-      "GitHub Actions",
+      "REST APIs",
     ],
   },
   {
-    role: "Technology Insights Program Participant",
-    organisation: "KPMG Australia",
-    period: "Apr 2024",
+    role: "PG Connect Advisor",
+    organisation: "University of Sydney",
+    period: "Nov 2025 – Present",
     location: "Sydney",
     summary:
-      "Completed a rapid prototyping sprint exploring sustainability solutions with consultants across AI, cloud, and cybersecurity.",
+      "Support postgraduate students with onboarding, university systems, and transition into postgraduate study through mentoring and Q&A support.",
     achievements: [
-      "Facilitated design-thinking workshops and shipped a working prototype within 48 hours.",
-      "Synthesised executive feedback into a clear product roadmap and success metrics.",
-      "Communicated complex technical trade-offs to cross-functional stakeholders with clarity.",
+      "Provided guidance to postgraduate students navigating university systems, enrolment processes, and student support resources.",
+      "Answered student questions clearly and empathetically to support a smoother onboarding experience.",
+      "Strengthened communication, mentoring, and student-facing support skills in a university environment.",
     ],
-    stack: ["Design thinking", "Cloud architecture", "Cybersecurity", "AI/ML"],
-  },
-  {
-    role: "Vice President",
-    organisation: "UTS Maths Society",
-    period: "Mar 2023 – Dec 2023",
-    location: "Sydney",
-    summary:
-      "Led a 15-person executive team, delivering high-impact community events and partnerships across campus.",
-    achievements: [
-      "Delivered 6+ events averaging 100 attendees while doubling sponsorship revenue.",
-      "Implemented mentoring frameworks that increased volunteer retention by 20%.",
-      "Built operating rituals across marketing, finance, and partnerships to maintain momentum.",
+    stack: [
+      "Mentoring",
+      "Student support",
+      "Communication",
+      "Onboarding",
+      "University systems",
     ],
-    stack: ["Leadership", "Community building", "Event strategy", "Mentorship"],
   },
 ];
 
@@ -59,10 +92,16 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 md:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="text-center">
-          <span className="section-eyebrow">Experience</span>
+        <div>
+          <span
+            className={`inline-block text-xs font-bold tracking-widest uppercase ${
+              isDark ? "text-sage-400" : "text-sage-600"
+            }`}
+          >
+            Experience
+          </span>
           <h2
-            className={`section-title mt-4 text-3xl sm:text-4xl ${
+            className={`mt-4 text-4xl sm:text-5xl font-bold leading-tight ${
               isDark ? "text-white" : "text-slate-900"
             }`}
           >
@@ -89,7 +128,9 @@ const Experience = () => {
             >
               <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
                 <div>
-                  <span className="text-xs uppercase tracking-[0.32em] text-[#2563eb]">
+                  <span className={`text-xs uppercase tracking-widest font-bold ${
+                    isDark ? "text-sage-400" : "text-sage-600"
+                  }`}>
                     {experience.period}
                   </span>
                   <h3
