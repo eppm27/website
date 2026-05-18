@@ -2,14 +2,13 @@ import { useState } from "react";
 import { useTheme } from "../context/ThemeContext.jsx";
 import emailjs from "@emailjs/browser";
 
-// ⚠️ EmailJS Configuration
-// You need to set these environment variables in Vercel:
-// VITE_EMAILJS_SERVICE_ID - Your EmailJS Service ID
-// VITE_EMAILJS_TEMPLATE_ID - Your EmailJS Template ID
-// VITE_EMAILJS_PUBLIC_KEY - Your EmailJS Public Key (safe to expose)
+const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-// Initialize EmailJS on component load
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "");
+if (emailJsPublicKey) {
+  emailjs.init(emailJsPublicKey);
+}
 
 const contactMethods = [
   {
@@ -68,14 +67,18 @@ const Contact = () => {
     setIsSubmitting(true);
     setSendError(false);
 
-    try {
-      // EmailJS template variables that will be sent:
-      // - to_email: eppmon27@gmail.com (hardcoded in template)
-      // - from_name: user's name (from form)
-      // - from_email: user's email (from form)
-      // - subject: selected subject (from form)
-      // - message: user's message (from form)
+    if (!emailJsServiceId || !emailJsTemplateId || !emailJsPublicKey) {
+      console.error("EmailJS env vars are missing.", {
+        hasServiceId: Boolean(emailJsServiceId),
+        hasTemplateId: Boolean(emailJsTemplateId),
+        hasPublicKey: Boolean(emailJsPublicKey),
+      });
+      setIsSubmitting(false);
+      setSendError(true);
+      return;
+    }
 
+    try {
       const templateParams = {
         to_email: "eppmon27@gmail.com",
         from_name: formData.name,
@@ -84,22 +87,17 @@ const Contact = () => {
         message: formData.message,
       };
 
-      // Send email via EmailJS
-      // ServiceID, TemplateID, and PublicKey come from environment variables
       const response = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        emailJsServiceId,
+        emailJsTemplateId,
         templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       );
 
       if (response.status === 200) {
-        // Email sent successfully
         setIsSubmitting(false);
         setMessageSent(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
 
-        // Clear success message after 5 seconds
         setTimeout(() => setMessageSent(false), 5000);
       }
     } catch (error) {
@@ -107,7 +105,6 @@ const Contact = () => {
       setIsSubmitting(false);
       setSendError(true);
 
-      // Clear error message after 5 seconds
       setTimeout(() => setSendError(false), 5000);
     }
   };
