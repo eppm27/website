@@ -114,12 +114,12 @@ const Projects = () => {
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full">
-                      <div
-                        className={`text-5xl ${
-                          isDark ? "text-slate-600" : "text-slate-300"
-                        }`}
-                      >
-                        📦
+                      <div className={`flex h-20 w-20 items-center justify-center rounded-2xl border ${isDark ? "border-slate-600/50 bg-slate-700/40 text-slate-500" : "border-slate-200 bg-white text-slate-400"}`}>
+                        <svg aria-hidden="true" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="m3 7 9-4 9 4-9 4-9-4Z" />
+                          <path d="M3 7v10l9 4 9-4V7" />
+                          <path d="M12 11v10" />
+                        </svg>
                       </div>
                     </div>
                   )}

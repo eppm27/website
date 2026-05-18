@@ -127,22 +127,18 @@ const Home = () => {
                   {
                     label: "Frontend",
                     items: ["React", "Next.js", "Tailwind", "Figma"],
-                    icon: "⚡",
                   },
                   {
                     label: "Backend",
                     items: ["Node.js", "FastAPI", "PostgreSQL", "MongoDB"],
-                    icon: "🔧",
                   },
                   {
                     label: "AI & Data",
                     items: ["OpenAI API", "LLMs", "Data Analysis"],
-                    icon: "🤖",
                   },
                   {
                     label: "DevOps",
                     items: ["Docker", "CI/CD", "AWS", "Vercel"],
-                    icon: "🚀",
                   },
                 ].map((group, idx) => (
                   <div
@@ -155,7 +151,6 @@ const Home = () => {
                     style={{ animationDelay: `${idx * 0.1}s` }}
                   >
                     <p className="text-xs font-bold uppercase tracking-wide mb-3 flex items-center gap-2">
-                      <span className="text-lg">{group.icon}</span>
                       <span
                         className={
                           isDark ? "text-electric-400" : "text-electric-600"
