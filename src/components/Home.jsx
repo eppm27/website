@@ -30,7 +30,7 @@ const Home = () => {
             >
               <span className="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
               <span className="text-xs font-semibold text-ink/70 tracking-wide">
-                Sydney · Open to internships and graduate roles
+                Sydney · Open to internships and early-career roles
               </span>
             </div>
 
@@ -44,9 +44,8 @@ const Home = () => {
               className={`mt-5 max-w-2xl text-base leading-7 text-ink/70 sm:text-lg sm:leading-8 ${isVisible ? "animate-slide-up delay-200" : "opacity-0"}`}
             >
               I am completing a Master of Professional Engineering (Software)
-              at the University of Sydney while building full-stack
-              applications, REST APIs, AI-enabled systems and containerised
-              services.
+              at the University of Sydney. I build full-stack applications,
+              REST APIs, AI-enabled systems and containerised services.
             </p>
 
             <div
@@ -67,7 +66,7 @@ const Home = () => {
                 className="btn-secondary focus-ring"
                 download
               >
-                Download resume
+                Download résumé
               </a>
               <a href="mailto:eppmon27@gmail.com" className="btn-quiet focus-ring">
                 Email me

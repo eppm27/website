@@ -5,53 +5,40 @@ const experiences = [
     period: "Nov 2025 – Feb 2026",
     location: "Sydney",
     summary:
-      "Worked across frontend and backend systems on a production web platform.",
+      "Worked across frontend and backend systems on a web platform.",
     achievements: [
-      "Resolved 15+ frontend and backend defects across Next.js and REST API systems, improving system reliability and user experience.",
-      "Refactored components and backend services for maintainability, performance and code clarity.",
-      "Contributed to Jira-based sprint delivery through testing, debugging, issue tracking and CI/CD workflows.",
+      "Worked with Next.js, React and REST API features across the stack.",
+      "Debugged frontend and backend issues and refactored code for maintainability.",
+      "Contributed to sprint work through testing, issue tracking and CI/CD workflows.",
     ],
     stack: ["Next.js", "React", "REST APIs", "JavaScript", "Jira", "CI/CD"],
   },
   {
-    role: "Software Engineering Intern (Capstone)",
-    organisation: "UNSW · CryptoChat Web App",
+    role: "Full Stack Engineer (Work Integrated Learning)",
+    organisation: "UNSW · AI Financial Assistant",
     period: "Feb 2025 – May 2025",
     location: "Sydney",
     summary:
-      "Built an AI-powered crypto chatbot within a 4-member agile team.",
+      "Built an AI financial assistant within a 4-member agile team.",
     achievements: [
       "Implemented React, Node.js and MongoDB features for chatbot and financial-data workflows.",
-      "Integrated OpenAI and financial APIs, contributed Dockerised backend services and helped lead agile delivery.",
-      "Contributed automated workflows with GitHub Actions and documented tested code coverage above 85%.",
+      "Integrated OpenAI and financial APIs and contributed Dockerised backend services.",
+      "Contributed automated workflows with GitHub Actions and tested delivery practices.",
     ],
     stack: ["React", "Node.js", "MongoDB", "OpenAI API", "Docker", "GitHub Actions"],
   },
   {
-    role: "Technology Insights Program",
-    organisation: "KPMG Australia",
-    period: "Apr 2024",
+    role: "Student Consultant (Technology)",
+    organisation: "Practera",
+    period: "Nov 2025 – Dec 2025",
     location: "Sydney",
     summary:
-      "Delivered a prototype sustainability solution during a design-thinking challenge.",
+      "Worked on a technology consulting project with a team.",
     achievements: [
-      "Applied cloud, AI and cybersecurity concepts to simulate enterprise consulting solutions.",
-      "Presented technical ideas to consultants and mentors through workshops and feedback sessions.",
+      "Researched a technical problem, shaped recommendations and communicated findings.",
+      "Worked through feedback and shared progress with project stakeholders.",
     ],
-    stack: ["Cloud", "AI", "Cybersecurity", "Prototyping"],
-  },
-  {
-    role: "PG Connect Advisor",
-    organisation: "University of Sydney",
-    period: "Nov 2025 – Present",
-    location: "Sydney",
-    summary:
-      "Support postgraduate students with onboarding, university systems, and transition into postgraduate study through mentoring and Q&A support.",
-    achievements: [
-      "Provided guidance to postgraduate students navigating university systems, enrolment processes, and student support resources.",
-      "Strengthened communication, mentoring and student-facing support skills in a university environment.",
-    ],
-    stack: ["Mentoring", "Student support", "Communication"],
+    stack: ["Research", "Consulting", "Communication"],
   },
 ];
 
@@ -62,11 +49,11 @@ const Experience = () => {
         <div>
           <span className="section-kicker">Experience</span>
           <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight text-ink">
-            Debugging, building and delivering with technical teams.
+            Building, debugging and working with technical teams.
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-ink/70">
-            My experience combines production web work, capstone engineering,
-            technical prototyping and student-facing communication.
+            My experience combines full-stack internship work, Work Integrated
+            Learning and technology consulting.
           </p>
         </div>
 

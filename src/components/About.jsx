@@ -8,15 +8,15 @@ const keySkills = [
 const strengths = [
   {
     title: "Full-stack implementation",
-    body: "I connect UI, API and data layers so features work end to end, not just as isolated screens.",
+    body: "I build across UI, API and data layers so features work end to end.",
   },
   {
     title: "Debugging and delivery",
-    body: "I am comfortable tracing defects across frontend and backend code, writing tests, and tightening implementation details.",
+    body: "I trace defects across frontend and backend code, write tests and keep changes maintainable.",
   },
   {
     title: "AI and data integration",
-    body: "My project work includes OpenAI and financial-data API integration, MongoDB/PostgreSQL data flows, and practical analytics features.",
+    body: "My project work includes OpenAI and financial-data APIs, MongoDB/PostgreSQL data flows and analytics features.",
   },
 ];
 
@@ -27,14 +27,15 @@ const About = () => {
         <div>
           <span className="section-kicker">What I bring</span>
           <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight text-ink">
-            Practical engineering range, grounded in shipped student and team work.
+            Full-stack range, grounded in student and team projects.
           </h2>
           <p className="mt-6 text-base leading-8 text-ink/70">
-            I completed a Bachelor of Science (Computer Science) at UNSW and am
-            completing a Master of Professional Engineering (Software) at the
-            University of Sydney. I am looking for entry-level software
-            engineering roles where I can contribute across product features,
-            APIs, databases, testing and delivery.
+            I completed a Bachelor of Science (Computer Science) at UNSW in
+            June 2025 and am completing a Master of Professional Engineering
+            (Software) at the University of Sydney, August 2025-present. I am
+            looking for software engineering internships and early-career roles
+            where I can contribute across product features, APIs, databases,
+            testing and delivery.
           </p>
         </div>
 

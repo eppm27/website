@@ -12,7 +12,7 @@ const featuredProjects = [
     challenge:
       "The core challenge was keeping image annotation interactions usable while preserving accurate mask data and a clean backend workflow.",
     result:
-      "A complete technical case study that shows product thinking, API design, image-processing work and containerised delivery.",
+      "A complete technical case study covering product workflow, API design, image processing and containerised delivery.",
     stack: ["FastAPI", "React", "OpenCV", "PostgreSQL", "Docker"],
     image: "/projects/cell-annotation.png",
     primary: true,
@@ -28,16 +28,16 @@ const featuredProjects = [
     contribution:
       "Developed full-stack features across the interface, backend services and PostgreSQL-backed data flows.",
     challenge:
-      "The main product decision was turning raw transaction data into simple views that help users understand categories, budgets and trends.",
+      "The main product decision was turning raw transaction data into simple category, budget and trend views.",
     result:
-      "A polished finance project that demonstrates API, database and product workflow implementation.",
+      "A finance project that demonstrates API, database and product workflow implementation.",
     stack: ["FastAPI", "React", "PostgreSQL", "Tailwind"],
     image: "/projects/spendwise.png",
   },
   {
     id: 3,
-    title: "CryptoChat",
-    subtitle: "AI Financial Assistant",
+    title: "AI Financial Assistant",
+    subtitle: "UNSW Work Integrated Learning",
     problem:
       "Crypto research is fragmented across market dashboards, search and chat tools.",
     built:
@@ -47,7 +47,7 @@ const featuredProjects = [
     challenge:
       "The team had to coordinate live financial data with AI responses while keeping the service testable and deployable.",
     result:
-      "A capstone project with documented OpenAI integration, Dockerised backend work, GitHub Actions and tested delivery practices.",
+      "A Work Integrated Learning project with OpenAI integration, Dockerised backend work, GitHub Actions and tested delivery practices.",
     stack: ["Next.js", "Node", "MongoDB", "OpenAI", "Yahoo Finance API"],
     image: "/projects/cryptochat.png",
     github: "https://github.com/eppm27/cryptochat",
@@ -61,10 +61,10 @@ const Projects = () => {
         <div className="mb-10 md:mb-14">
           <span className="section-kicker">Projects</span>
           <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight text-ink">
-            Case studies that show how I build and debug.
+            Selected projects
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink/70">
-            Focused examples of full-stack engineering, API and database
+            Three examples of full-stack engineering, API and database
             integration, AI-enabled systems, testing and delivery.
           </p>
         </div>

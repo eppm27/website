@@ -9,7 +9,7 @@ const navLinks = [
 const contactShortcuts = [
   {
     href: "/Ei-Phyu-Phyu-Mon-CV.pdf",
-    label: "Resume",
+    label: "Résumé",
     icon: (
       <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
         <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z" />
@@ -78,7 +78,7 @@ const Footer = () => {
             </div>
             <p className="mt-5 max-w-lg text-sm leading-6 text-ink/60">
               Sydney-based and focused on full-stack applications, REST APIs,
-              AI-enabled systems, testing and reliable delivery.
+              AI-enabled systems, testing and delivery.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {contactShortcuts.map(({ href, label, icon, download }) => (
@@ -113,13 +113,13 @@ const Footer = () => {
             <div>
               <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-ink/45">Location</h3>
               <p className="mt-4 text-sm text-ink/60">Sydney, Australia</p>
-              <p className="mt-2 text-sm text-ink/50">Available for internships and graduate roles</p>
+              <p className="mt-2 text-sm text-ink/50">Available for internships and early-career roles</p>
             </div>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-ink/10 pt-5 text-xs text-ink/50 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {year} Ei Phyu Phyu Mon. Built with care and curiosity.</span>
+          <span>© {year} Ei Phyu Phyu Mon.</span>
           <span>Built with React · Vite · Tailwind</span>
         </div>
       </div>

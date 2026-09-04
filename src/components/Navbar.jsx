@@ -11,7 +11,7 @@ const navLinks = [
 const contactShortcuts = [
   {
     href: "/Ei-Phyu-Phyu-Mon-CV.pdf",
-    label: "Resume",
+    label: "Résumé",
     icon: (
       <svg
         aria-hidden="true"
@@ -165,7 +165,7 @@ const Navbar = () => {
               aria-label={label}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              download={label === "Resume"}
+              download={label === "Résumé"}
             >
               {icon}
               <span className="text-sm font-medium">{label}</span>
@@ -231,7 +231,7 @@ const Navbar = () => {
                   rel={
                     href.startsWith("http") ? "noopener noreferrer" : undefined
                   }
-                  download={label === "Resume"}
+                  download={label === "Résumé"}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {icon}

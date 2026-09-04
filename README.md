@@ -4,14 +4,14 @@ Personal portfolio for entry-level software engineering roles. The site focuses 
 
 ## Current Structure
 
-- Hero with recruiter-focused positioning and resume/contact actions
+- Hero with recruiter-focused positioning and résumé/contact actions
 - Combined "What I bring" section for education, engineering strengths and core technologies
 - Three selected project case studies:
   - Interactive Cell Annotation Platform
   - Spend Wise
-  - CryptoChat
+  - AI Financial Assistant
 - Experience timeline
-- Direct contact, LinkedIn, GitHub and resume links
+- Direct contact, LinkedIn, GitHub and résumé links
 
 ## Tech Stack
 
