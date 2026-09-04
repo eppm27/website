@@ -12,6 +12,7 @@ const featuredProjects = [
     ],
     stack: ["React", "TypeScript", "FastAPI", "OpenSeadragon", "JWT/RBAC", "Docker"],
     image: "/projects/cell-annotation.png",
+    github: "https://github.com/eppm27/CellAnnotation",
     primary: true,
   },
   {
