@@ -1,16 +1,35 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
-import { useTheme } from "../context/ThemeContext.jsx";
 
 const navLinks = [
-  { href: "about", label: "About" },
+  { href: "about", label: "What I bring" },
   { href: "projects", label: "Projects" },
-  { href: "skills", label: "Skills" },
   { href: "experience", label: "Experience" },
   { href: "contact", label: "Contact" },
 ];
 
 const contactShortcuts = [
+  {
+    href: "/Ei-Phyu-Phyu-Mon-CV.pdf",
+    label: "Résumé",
+    icon: (
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
+        <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v5h5" />
+        <path d="M9 15h6" />
+        <path d="M9 18h4" />
+        <path d="M9 11h2" />
+      </svg>
+    ),
+  },
   {
     href: "mailto:eppmon27@gmail.com",
     label: "Email",
@@ -67,8 +86,6 @@ const contactShortcuts = [
 ];
 
 const Navbar = () => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -86,9 +103,8 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", closeOnResize);
   }, [isMenuOpen]);
 
-  const shellStyles = isDark
-    ? "bg-slate-950/80 border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
-    : "bg-white/85 border border-slate-200/80 shadow-[0_8px_24px_rgba(15,23,42,0.06)]";
+  const shellStyles =
+    "bg-white/90 border border-ink/10 shadow-[0_12px_40px_rgba(16,24,40,0.08)]";
 
   return (
     <header
@@ -111,18 +127,12 @@ const Navbar = () => {
           </div>
           <div className="hidden flex-col text-left sm:flex">
             <span
-              className={`text-[10px] uppercase tracking-[0.35em] ${
-                isDark ? "text-slate-400" : "text-slate-500"
-              }`}
+              className="text-[10px] uppercase tracking-[0.35em] text-ink/45"
             >
               Ei Phyu Phyu Mon
             </span>
-            <span
-              className={`text-sm font-semibold tracking-tight ${
-                isDark ? "text-white" : "text-slate-900"
-              }`}
-            >
-              Full-Stack Engineer in Training
+            <span className="text-sm font-semibold tracking-tight text-ink">
+              Entry-Level Software Engineer
             </span>
           </div>
         </Link>
@@ -139,7 +149,7 @@ const Navbar = () => {
               offset={-80}
               spy
               activeClass="active-link"
-              className="focus-ring relative rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors duration-200 hover:text-sage-600"
+              className="focus-ring nav-underline relative rounded-full px-3 py-1.5 text-sm font-medium text-ink/60 transition-colors duration-200 hover:text-ink"
             >
               {label}
             </Link>
@@ -155,6 +165,7 @@ const Navbar = () => {
               aria-label={label}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              download={label === "Résumé"}
             >
               {icon}
               <span className="text-sm font-medium">{label}</span>
@@ -203,7 +214,7 @@ const Navbar = () => {
                   spy
                   activeClass="active-link"
                   onClick={() => setIsMenuOpen(false)}
-                  className="focus-ring rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-sage-600/8 hover:text-sage-700"
+                  className="focus-ring rounded-xl px-3 py-2 text-sm font-medium text-ink/70 transition hover:bg-mint/20 hover:text-ink"
                 >
                   {label}
                 </Link>
@@ -220,6 +231,7 @@ const Navbar = () => {
                   rel={
                     href.startsWith("http") ? "noopener noreferrer" : undefined
                   }
+                  download={label === "Résumé"}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {icon}

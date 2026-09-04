@@ -11,6 +11,12 @@ export default {
         1000: "1000",
       },
       colors: {
+        paper: "#fffaf3",
+        ink: "#101828",
+        mint: "#8ee3c8",
+        sky: "#6ea8fe",
+        peach: "#ffb7a1",
+        honey: "#ffd166",
         sage: {
           50: "#f6faf8",
           100: "#ecf5f1",
