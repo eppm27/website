@@ -1,15 +1,25 @@
-import { useTheme } from "../context/ThemeContext.jsx";
-
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "What I bring", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
 const contactShortcuts = [
+  {
+    href: "/Ei-Phyu-Phyu-Mon-CV.pdf",
+    label: "Resume",
+    icon: (
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v5h5" />
+        <path d="M9 15h6" />
+        <path d="M9 18h4" />
+      </svg>
+    ),
+    download: true,
+  },
   {
     href: "mailto:eppmon27@gmail.com",
     label: "Email",
@@ -52,34 +62,34 @@ const contactShortcuts = [
 ];
 
 const Footer = () => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const year = new Date().getFullYear();
 
   return (
-    <footer className={`${isDark ? "bg-[#0b1020] text-slate-300" : "bg-slate-50 text-slate-700"} border-t ${isDark ? "border-white/8" : "border-slate-200"}`}>
+    <footer className="border-t border-ink/10 bg-white/60 text-ink">
       <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
         <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:gap-10">
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sage-600 font-semibold text-white">EM</div>
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-mint font-semibold text-ink">EM</div>
               <div>
-                <p className={`text-xs uppercase tracking-[0.35em] ${isDark ? "text-sage-400" : "text-sage-600"}`}>Ei Phyu Phyu Mon</p>
-                <p className={`mt-1 text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}>Full-stack engineer in training</p>
+                <p className="text-xs uppercase tracking-[0.35em] text-ink/45">Ei Phyu Phyu Mon</p>
+                <p className="mt-1 text-sm text-ink/60">Entry-level software engineer</p>
               </div>
             </div>
-            <p className={`mt-5 max-w-lg text-sm leading-6 ${isDark ? "text-slate-400" : "text-slate-600"}`}>
-              Sydney-based and focused on building thoughtful full-stack products with React, FastAPI, Node.js, and PostgreSQL. Open to internships and collaborative projects.
+            <p className="mt-5 max-w-lg text-sm leading-6 text-ink/60">
+              Sydney-based and focused on full-stack applications, REST APIs,
+              AI-enabled systems, testing and reliable delivery.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {contactShortcuts.map(({ href, label, icon }) => (
+              {contactShortcuts.map(({ href, label, icon, download }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
-                  className={`focus-ring inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${isDark ? "border-white/8 bg-white/5 text-slate-300 hover:border-sage-500/30 hover:bg-sage-500/10" : "border-slate-200 bg-white text-slate-600 hover:border-sage-300 hover:bg-sage-50"}`}
+                  className="focus-ring inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-4 py-2 text-sm font-medium text-ink/70 transition hover:-translate-y-0.5 hover:border-sky/40 hover:text-ink"
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  download={download}
                 >
                   {icon}
                   <span>{label}</span>
@@ -90,10 +100,10 @@ const Footer = () => {
 
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
-              <h3 className={`text-xs font-bold uppercase tracking-[0.35em] ${isDark ? "text-sage-400" : "text-sage-600"}`}>Navigate</h3>
-              <nav className={`mt-4 grid gap-2 text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>
+              <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-ink/45">Navigate</h3>
+              <nav className="mt-4 grid gap-2 text-sm text-ink/60">
                 {navLinks.map((link) => (
-                  <a key={link.href} href={link.href} className="transition hover:text-sage-600">
+                  <a key={link.href} href={link.href} className="transition hover:text-ink">
                     {link.label}
                   </a>
                 ))}
@@ -101,15 +111,15 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className={`text-xs font-bold uppercase tracking-[0.35em] ${isDark ? "text-sage-400" : "text-sage-600"}`}>Location</h3>
-              <p className={`mt-4 text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>Sydney, Australia</p>
-              <p className="mt-2 text-sm text-slate-500">Available for internships and graduate roles</p>
+              <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-ink/45">Location</h3>
+              <p className="mt-4 text-sm text-ink/60">Sydney, Australia</p>
+              <p className="mt-2 text-sm text-ink/50">Available for internships and graduate roles</p>
             </div>
           </div>
         </div>
 
-        <div className={`mt-10 flex flex-col gap-3 border-t pt-5 text-xs sm:flex-row sm:items-center sm:justify-between ${isDark ? "border-white/8 text-slate-500" : "border-slate-200 text-slate-500"}`}>
-          <span>© {year} Ei Phyu Phyu Mon. Crafted with care and curiosity.</span>
+        <div className="mt-10 flex flex-col gap-3 border-t border-ink/10 pt-5 text-xs text-ink/50 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {year} Ei Phyu Phyu Mon. Built with care and curiosity.</span>
           <span>Built with React · Vite · Tailwind</span>
         </div>
       </div>
