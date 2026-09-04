@@ -1,6 +1,4 @@
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "What I bring", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
@@ -19,16 +17,6 @@ const contactShortcuts = [
       </svg>
     ),
     download: true,
-  },
-  {
-    href: "mailto:eppmon27@gmail.com",
-    label: "Email",
-    icon: (
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
-        <path d="m4 7 8 6 8-6" />
-      </svg>
-    ),
   },
   {
     href: "https://www.linkedin.com/in/ei-phyu-phyu-mon-8517181ba/",
@@ -66,8 +54,8 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-ink/10 bg-white/60 text-ink">
-      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
-        <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:gap-10">
+      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-mint font-semibold text-ink">EM</div>
@@ -76,11 +64,7 @@ const Footer = () => {
                 <p className="mt-1 text-sm text-ink/60">Entry-level software engineer</p>
               </div>
             </div>
-            <p className="mt-5 max-w-lg text-sm leading-6 text-ink/60">
-              Sydney-based and focused on full-stack applications, REST APIs,
-              AI-enabled systems, testing and delivery.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               {contactShortcuts.map(({ href, label, icon, download }) => (
                 <a
                   key={label}
@@ -98,27 +82,16 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2">
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-ink/45">Navigate</h3>
-              <nav className="mt-4 grid gap-2 text-sm text-ink/60">
-                {navLinks.map((link) => (
-                  <a key={link.href} href={link.href} className="transition hover:text-ink">
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-ink/45">Location</h3>
-              <p className="mt-4 text-sm text-ink/60">Sydney, Australia</p>
-              <p className="mt-2 text-sm text-ink/50">Available for internships and early-career roles</p>
-            </div>
-          </div>
+          <nav className="flex flex-wrap gap-4 text-sm font-medium text-ink/60">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="transition hover:text-ink">
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-ink/10 pt-5 text-xs text-ink/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-ink/10 pt-5 text-xs text-ink/50 sm:flex-row sm:items-center sm:justify-between">
           <span>© {year} Ei Phyu Phyu Mon.</span>
           <span>Built with React · Vite · Tailwind</span>
         </div>

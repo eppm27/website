@@ -5,10 +5,9 @@ const navLinks = [
   { href: "about", label: "What I bring" },
   { href: "projects", label: "Projects" },
   { href: "experience", label: "Experience" },
-  { href: "contact", label: "Contact" },
 ];
 
-const contactShortcuts = [
+const headerActions = [
   {
     href: "/Ei-Phyu-Phyu-Mon-CV.pdf",
     label: "Résumé",
@@ -31,24 +30,6 @@ const contactShortcuts = [
     ),
   },
   {
-    href: "mailto:eppmon27@gmail.com",
-    label: "Email",
-    icon: (
-      <svg
-        aria-hidden="true"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      >
-        <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
-        <path d="m4 7 8 6 8-6" />
-      </svg>
-    ),
-  },
-  {
     href: "https://www.linkedin.com/in/ei-phyu-phyu-mon-8517181ba/",
     label: "LinkedIn",
     icon: (
@@ -63,8 +44,30 @@ const contactShortcuts = [
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
         <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
-          <path style={{ fill: "#ffffff" }} d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z" />
+          <path style={{ fill: "currentColor" }} d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z" />
         </g>
+      </svg>
+    ),
+  },
+];
+
+const mobileActions = [
+  ...headerActions,
+  {
+    href: "mailto:eppmon27@gmail.com",
+    label: "Email",
+    icon: (
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
+        <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+        <path d="m4 7 8 6 8-6" />
       </svg>
     ),
   },
@@ -113,33 +116,31 @@ const Navbar = () => {
       }`}
     >
       <nav
-        className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-3 backdrop-blur-md sm:px-6 ${shellStyles}`}
+        className={`mx-auto grid w-[calc(100%-1.5rem)] max-w-6xl grid-cols-[auto_auto] items-center gap-4 rounded-full px-4 py-3 backdrop-blur-md sm:w-[calc(100%-2rem)] sm:px-5 xl:grid-cols-[1fr_auto_1fr] xl:gap-8 ${shellStyles}`}
       >
         <Link
           to="home"
           smooth
           duration={500}
           offset={-80}
-          className="focus-ring flex cursor-pointer select-none items-center gap-3 rounded-full px-2 py-1.5 transition-transform duration-200 hover:-translate-y-[1px]"
+          className="focus-ring flex min-w-0 cursor-pointer select-none items-center gap-3 rounded-full px-2 py-1.5 transition-transform duration-200 hover:-translate-y-[1px]"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-600 font-semibold text-white transition-transform duration-200 hover:scale-105">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-mint font-semibold text-ink shadow-sm transition-transform duration-200 hover:scale-105">
             EM
           </div>
-          <div className="hidden flex-col text-left sm:flex">
+          <div className="hidden min-w-0 flex-col text-left sm:flex">
             <span
-              className="text-[10px] uppercase tracking-[0.35em] text-ink/45"
+              className="whitespace-nowrap text-[10px] uppercase tracking-[0.28em] text-ink/45"
             >
               Ei Phyu Phyu Mon
             </span>
-            <span className="text-sm font-semibold tracking-tight text-ink">
-              Entry-Level Software Engineer
+            <span className="whitespace-nowrap text-sm font-semibold tracking-tight text-ink">
+              Software Engineer
             </span>
           </div>
         </Link>
 
-        <div
-          className={`hidden items-center gap-1 rounded-full px-2 py-1 md:flex ${shellStyles}`}
-        >
+        <div className="hidden items-center justify-center gap-8 xl:flex">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
@@ -149,19 +150,23 @@ const Navbar = () => {
               offset={-80}
               spy
               activeClass="active-link"
-              className="focus-ring nav-underline relative rounded-full px-3 py-1.5 text-sm font-medium text-ink/60 transition-colors duration-200 hover:text-ink"
+              className="focus-ring nav-underline relative whitespace-nowrap rounded-full px-1 py-2 text-sm font-semibold text-ink/60 transition-colors duration-200 hover:text-ink"
             >
               {label}
             </Link>
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          {contactShortcuts.map(({ href, label, icon }) => (
+        <div className="hidden items-center justify-end gap-3 xl:flex">
+          {headerActions.map(({ href, label, icon }) => (
             <a
               key={label}
               href={href}
-              className="icon-link focus-ring"
+              className={`focus-ring inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-bold transition duration-200 hover:-translate-y-0.5 ${
+                label === "Résumé"
+                  ? "bg-ink px-4 text-white shadow-[0_10px_22px_rgba(16,24,40,0.16)]"
+                  : "border border-ink/10 bg-white/65 px-3 text-ink/65 hover:border-sky/40 hover:text-ink"
+              }`}
               aria-label={label}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -173,7 +178,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center justify-end gap-2 xl:hidden">
           <button
             type="button"
             className="icon-button focus-ring"
@@ -201,10 +206,10 @@ const Navbar = () => {
       </nav>
 
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="xl:hidden">
           <div className={`mx-4 mb-4 rounded-2xl p-4 ${shellStyles}`}>
             <div className="flex flex-col gap-2">
-              {navLinks.map(({ href, label }) => (
+              {[...navLinks, { href: "contact", label: "Contact" }].map(({ href, label }) => (
                 <Link
                   key={href}
                   to={href}
@@ -221,7 +226,7 @@ const Navbar = () => {
               ))}
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              {contactShortcuts.map(({ href, label, icon }) => (
+              {mobileActions.map(({ href, label, icon }) => (
                 <a
                   key={label}
                   href={href}
