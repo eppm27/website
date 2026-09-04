@@ -7,39 +7,35 @@ const keySkills = [
 
 const strengths = [
   {
-    title: "Full-stack implementation",
-    body: "I build across UI, API and data layers so features work end to end.",
+    title: "Full-stack development",
+    body: "Build frontend, API and database features that work together.",
   },
   {
-    title: "Debugging and delivery",
-    body: "I trace defects across frontend and backend code, write tests and keep changes maintainable.",
+    title: "Debugging",
+    body: "Trace issues across the stack and deliver maintainable fixes.",
   },
   {
-    title: "AI and data integration",
-    body: "My project work includes OpenAI and financial-data APIs, MongoDB/PostgreSQL data flows and analytics features.",
+    title: "AI integration",
+    body: "Connect applications with AI and external data services.",
   },
 ];
 
 const About = () => {
   return (
-    <section id="about" className="section-reveal py-16 md:py-24">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+    <section id="about" className="section-reveal py-14 md:py-20">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div>
           <span className="section-kicker">What I bring</span>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight text-ink">
-            Full-stack range, grounded in student and team projects.
+          <h2 className="mt-4 text-4xl font-bold leading-tight text-ink sm:text-5xl">
+            Practical full-stack range.
           </h2>
-          <p className="mt-6 text-base leading-8 text-ink/70">
-            I completed a Bachelor of Science (Computer Science) at UNSW in
-            June 2025 and am completing a Master of Professional Engineering
-            (Software) at the University of Sydney, August 2025-present. I am
-            looking for software engineering internships and early-career roles
-            where I can contribute across product features, APIs, databases,
-            testing and delivery.
+          <p className="mt-5 max-w-3xl text-base leading-7 text-ink/70">
+            I work across product features, APIs, databases, testing and
+            delivery.
           </p>
         </div>
 
-        <div className="grid gap-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {strengths.map((item, index) => (
             <article
               key={item.title}
@@ -50,18 +46,18 @@ const About = () => {
               <p className="mt-2 text-sm leading-7 text-ink/70">{item.body}</p>
             </article>
           ))}
+        </div>
 
-          <div className="notebook-card p-5">
-            <h3 className="text-lg font-bold text-ink">Core technologies</h3>
-            <ul className="mt-4 grid gap-2 text-sm text-ink/70 sm:grid-cols-2">
-              {keySkills.map((skill) => (
-                <li key={skill} className="flex items-start gap-3">
-                  <span className="mt-2 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-sky"></span>
-                  <span>{skill}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="notebook-card mt-4 p-5">
+          <h3 className="text-lg font-bold text-ink">Core technologies</h3>
+          <ul className="mt-4 grid gap-2 text-sm text-ink/70 sm:grid-cols-2">
+            {keySkills.map((skill) => (
+              <li key={skill} className="flex items-start gap-3">
+                <span className="mt-2 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-sky"></span>
+                <span>{skill}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-8 pb-14 sm:pt-20 md:pt-24 md:pb-20"
+      className="relative overflow-hidden pt-8 pb-14 sm:pt-20 md:pt-24 md:pb-16"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="notebook-grid"></div>
@@ -23,7 +23,7 @@ const Home = () => {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 relative z-10">
-        <div className="grid min-h-[calc(100vh-6rem)] gap-10 lg:min-h-[620px] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+        <div className="flex min-h-[calc(100vh-8rem)] max-w-4xl flex-col justify-center">
           <div>
             <div
               className={`inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-4 py-2 shadow-sm ${isVisible ? "animate-slide-up" : "opacity-0"}`}
@@ -41,11 +41,11 @@ const Home = () => {
             </h1>
 
             <p
-              className={`mt-5 max-w-2xl text-base leading-7 text-ink/70 sm:text-lg sm:leading-8 ${isVisible ? "animate-slide-up delay-200" : "opacity-0"}`}
+              className={`mt-5 max-w-3xl text-base leading-7 text-ink/70 sm:text-lg sm:leading-8 ${isVisible ? "animate-slide-up delay-200" : "opacity-0"}`}
             >
-              I am completing a Master of Professional Engineering (Software)
-              at the University of Sydney. I build full-stack applications,
-              REST APIs, AI-enabled systems and containerised services.
+              USYD software engineering master&apos;s student and UNSW computer
+              science graduate with experience building and debugging
+              full-stack applications, APIs and AI-enabled systems.
             </p>
 
             <div
@@ -58,7 +58,7 @@ const Home = () => {
                 offset={-80}
                 className="btn-primary focus-ring cursor-pointer"
               >
-                View case studies
+                View projects
                 <span aria-hidden="true">→</span>
               </ScrollLink>
               <a
@@ -68,68 +68,9 @@ const Home = () => {
               >
                 Download résumé
               </a>
-              <a href="mailto:eppmon27@gmail.com" className="btn-quiet focus-ring">
+              <a href="mailto:eppmon27@gmail.com" className="focus-ring ml-1 text-sm font-bold text-ink/60 transition hover:text-ink">
                 Email me
               </a>
-            </div>
-
-            <div
-              className={`mt-10 flex flex-wrap gap-3 text-sm text-ink/60 ${isVisible ? "animate-slide-up delay-400" : "opacity-0"}`}
-            >
-              <span className="mini-chip">React</span>
-              <span className="mini-chip">FastAPI</span>
-              <span className="mini-chip">Spring Boot</span>
-              <span className="mini-chip">Docker</span>
-              <span className="mini-chip">CI/CD</span>
-            </div>
-          </div>
-
-          <div
-            className={`mt-8 lg:mt-0 ${isVisible ? "animate-slide-up delay-200" : "opacity-0"}`}
-          >
-            <div className="notebook-card rotate-card p-6 sm:p-8">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="h-3 w-3 rounded-full bg-peach"></div>
-                <div className="h-3 w-3 rounded-full bg-honey"></div>
-                <div className="h-3 w-3 rounded-full bg-mint"></div>
-                <span className="ml-2 text-xs font-bold uppercase tracking-widest text-ink/50">
-                  Recruiter snapshot
-                </span>
-              </div>
-
-              <div className="grid gap-4">
-                {[
-                  {
-                    label: "Builds",
-                    items: ["Full-stack apps", "REST APIs", "AI features"],
-                  },
-                  {
-                    label: "Solves",
-                    items: ["Debugging", "Data integration", "Testing"],
-                  },
-                  {
-                    label: "Ships with",
-                    items: ["React", "Next.js", "Python", "Java", "Docker"],
-                  },
-                ].map((group, idx) => (
-                  <div
-                    key={group.label}
-                    className="rounded-2xl border border-ink/10 bg-white/70 p-4 transition duration-300 hover:-translate-y-1 hover:border-sky/50 hover:shadow-[0_12px_30px_rgba(110,168,254,0.18)]"
-                    style={{ animationDelay: `${idx * 0.1}s` }}
-                  >
-                    <p className="text-xs font-bold uppercase tracking-wide mb-3 flex items-center gap-2">
-                      <span className="text-ink">{group.label}</span>
-                    </p>
-                    <ul className="flex flex-wrap gap-2 text-xs font-medium text-ink/60">
-                      {group.items.map((item) => (
-                        <li key={item} className="rounded-full bg-mint/20 px-3 py-1">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>

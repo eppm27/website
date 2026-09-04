@@ -4,26 +4,21 @@ const experiences = [
     organisation: "Myed.it",
     period: "Nov 2025 – Feb 2026",
     location: "Sydney",
-    summary:
-      "Worked across frontend and backend systems on a web platform.",
     achievements: [
-      "Worked with Next.js, React and REST API features across the stack.",
-      "Debugged frontend and backend issues and refactored code for maintainability.",
-      "Contributed to sprint work through testing, issue tracking and CI/CD workflows.",
+      "Debugged production frontend and backend issues across Next.js, React and REST APIs.",
+      "Refactored code for maintainability and clearer API behaviour.",
+      "Contributed to Jira sprint work, testing and CI/CD workflows.",
     ],
-    stack: ["Next.js", "React", "REST APIs", "JavaScript", "Jira", "CI/CD"],
+    stack: ["Next.js", "React", "REST APIs", "Jira", "CI/CD"],
   },
   {
     role: "Full Stack Engineer (Work Integrated Learning)",
     organisation: "UNSW · AI Financial Assistant",
     period: "Feb 2025 – May 2025",
     location: "Sydney",
-    summary:
-      "Built an AI financial assistant within a 4-member agile team.",
     achievements: [
-      "Implemented React, Node.js and MongoDB features for chatbot and financial-data workflows.",
-      "Integrated OpenAI and financial APIs and contributed Dockerised backend services.",
-      "Contributed automated workflows with GitHub Actions and tested delivery practices.",
+      "Built React, Node.js and MongoDB features in a four-person agile team.",
+      "Integrated OpenAI and financial APIs with Docker and GitHub Actions workflows.",
     ],
     stack: ["React", "Node.js", "MongoDB", "OpenAI API", "Docker", "GitHub Actions"],
   },
@@ -32,29 +27,22 @@ const experiences = [
     organisation: "Practera",
     period: "Nov 2025 – Dec 2025",
     location: "Sydney",
-    summary:
-      "Worked on a technology consulting project with a team.",
     achievements: [
-      "Researched a technical problem, shaped recommendations and communicated findings.",
-      "Worked through feedback and shared progress with project stakeholders.",
+      "Translated client requirements into technical recommendations with a student consulting team.",
     ],
-    stack: ["Research", "Consulting", "Communication"],
+    stack: ["Research", "Consulting"],
   },
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-reveal py-16 md:py-24">
+    <section id="experience" className="section-reveal py-14 md:py-20">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div>
           <span className="section-kicker">Experience</span>
           <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight text-ink">
-            Building, debugging and working with technical teams.
+            Experience
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-ink/70">
-            My experience combines full-stack internship work, Work Integrated
-            Learning and technology consulting.
-          </p>
         </div>
 
         <div className="mt-14 timeline">
@@ -86,10 +74,6 @@ const Experience = () => {
                   ))}
                 </div>
               </div>
-
-              <p className="mt-5 text-sm leading-relaxed text-ink/70">
-                {experience.summary}
-              </p>
 
               <ul className="mt-6 space-y-3 text-sm text-ink/70">
                 {experience.achievements.map((achievement) => (
