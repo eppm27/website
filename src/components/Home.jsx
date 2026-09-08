@@ -20,7 +20,7 @@ const Home = () => {
         >
           <Sticker tone="mint" rotate="-2deg">open to SWE roles ↗</Sticker>
           <Doodle className="left-[78%] top-4 hidden sm:block">✦</Doodle>
-          <Doodle className="left-[4%] top-[62%] hidden lg:block">⋆</Doodle>
+          <Doodle className="left-[88%] top-[36%] hidden lg:block">⋆</Doodle>
 
           <p className="hero-name">Ei Phyu Phyu Mon</p>
           <h1>Software Engineer</h1>
