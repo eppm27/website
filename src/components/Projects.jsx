@@ -8,7 +8,7 @@ const projects = [
     title: "Interactive Cell Annotation Platform",
     caption: "annotation tools for whole-slide imagery",
     image: "/projects/cell-annotation.png",
-    link: "https://github.com/eppm27/CellAnnotation",
+    actions: [{ label: "GitHub", href: "https://github.com/eppm27/CellAnnotation" }],
     tags: ["React", "Vite", "FastAPI", "SQLite", "OpenSlide", "Docker"],
     notes: [
       ["viewer", "SVS tiles"],
@@ -40,7 +40,7 @@ const projects = [
     title: "CryptoChat",
     caption: "crypto chat, market data and portfolio features",
     image: "/projects/cryptochat.png",
-    link: "https://github.com/eppm27/cryptochat",
+    actions: [{ label: "GitHub", href: "https://github.com/eppm27/cryptochat" }],
     tags: ["React", "Node.js", "MongoDB", "JWT", "OpenAI", "REST APIs"],
     notes: [
       ["chat", "OpenAI"],
@@ -50,6 +50,46 @@ const projects = [
     ],
     sticker: "AI TOOL ☆",
     layout: "chat",
+  },
+  {
+    number: "04",
+    short: "connection analyzer",
+    title: "Instagram Connection Analyzer",
+    caption: "local analysis for Instagram export files",
+    image: "/projects/instagram-connection-analyzer.png",
+    actions: [
+      { label: "Live", href: "https://connection-analyzer.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/eppm27/WhoUnfollowed" },
+    ],
+    tags: ["JavaScript", "Web Workers", "File API", "CSV", "Testing"],
+    notes: [
+      ["privacy", "local processing"],
+      ["parser", "Instagram JSON"],
+      ["results", "filters + CSV"],
+      ["ui", "accessible tabs"],
+    ],
+    sticker: "LOCAL FIRST ✦",
+    layout: "analyzer",
+  },
+  {
+    number: "05",
+    short: "ats game",
+    title: "Can You Pass the ATS?",
+    caption: "resume scoring game for early-career candidates",
+    image: "/projects/ats-game.png",
+    actions: [
+      { label: "Live", href: "https://ats-game-xi.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/eppm27/ats-game" },
+    ],
+    tags: ["React", "Vite", "Tailwind CSS", "Framer Motion", "JavaScript"],
+    notes: [
+      ["scoring", "rule-based"],
+      ["roles", "SWE + data"],
+      ["feedback", "7 concise items"],
+      ["storage", "local state"],
+    ],
+    sticker: "PLAYABLE ☆",
+    layout: "ats",
   },
 ];
 
@@ -93,15 +133,20 @@ const ProjectPage = ({ project, index }) => (
       ))}
     </div>
 
-    {project.link && (
-      <a
-        href={project.link}
-        className="project-link focus-ring"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub ↗
-      </a>
+    {project.actions?.length > 0 && (
+      <div className="project-actions">
+        {project.actions.map((action) => (
+          <a
+            key={action.href}
+            href={action.href}
+            className="project-link focus-ring"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {action.label} ↗
+          </a>
+        ))}
+      </div>
     )}
   </article>
 );
@@ -112,10 +157,11 @@ const Projects = () => {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SectionLabel number="02">selected work ↓</SectionLabel>
         <h2 className="sr-only">Selected projects</h2>
+        <p className="project-scroll-hint">scroll sideways to see more →</p>
 
-        <Stagger className="mt-7 grid gap-8">
+        <Stagger className="project-rail mt-7">
           {projects.map((project, index) => (
-            <MotionItem key={project.title}>
+            <MotionItem key={project.title} className="project-slide">
               <ProjectPage project={project} index={index} />
             </MotionItem>
           ))}

@@ -474,6 +474,7 @@ select:focus-visible,
 .scrap-section {
   position: relative;
   padding: clamp(3.6rem, 8vw, 6.5rem) 0;
+  scroll-margin-top: 6rem;
 }
 
 .skills-scrap {
@@ -575,6 +576,52 @@ select:focus-visible,
   box-shadow: var(--shadow);
 }
 
+.project-scroll-hint {
+  margin-top: 0.65rem;
+  color: rgba(16, 24, 40, 0.48);
+  font-family: "SFMono-Regular", "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: lowercase;
+}
+
+.project-rail {
+  display: flex;
+  gap: 1.25rem;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 1rem calc((100vw - min(72rem, calc(100vw - 2rem))) / 2) 1.4rem;
+  scroll-padding-inline: calc((100vw - min(72rem, calc(100vw - 2rem))) / 2);
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(16, 24, 40, 0.28) transparent;
+}
+
+.project-rail::-webkit-scrollbar {
+  height: 0.7rem;
+}
+
+.project-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-rail::-webkit-scrollbar-thumb {
+  border: 0.18rem solid transparent;
+  border-radius: 999px;
+  background: rgba(16, 24, 40, 0.24);
+  background-clip: padding-box;
+}
+
+.project-slide {
+  flex: 0 0 min(76rem, calc(100vw - 2rem));
+  scroll-snap-align: center;
+}
+
+.project-slide .project-page {
+  height: 100%;
+}
+
 .project-feature {
   background-color: #f7fffb;
 }
@@ -585,6 +632,14 @@ select:focus-visible,
 
 .project-chat {
   background-color: #f7f9ff;
+}
+
+.project-analyzer {
+  background-color: #f8fffb;
+}
+
+.project-ats {
+  background-color: #fff7f5;
 }
 
 .project-sticker {
@@ -712,8 +767,16 @@ select:focus-visible,
   align-content: start;
 }
 
-.project-link {
+.project-actions {
   grid-area: link;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-self: start;
+  justify-self: start;
+}
+
+.project-link {
   width: fit-content;
   align-self: start;
   justify-self: start;
