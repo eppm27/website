@@ -474,6 +474,7 @@ select:focus-visible,
 .scrap-section {
   position: relative;
   padding: clamp(3.6rem, 8vw, 6.5rem) 0;
+  scroll-margin-top: 6rem;
 }
 
 .skills-scrap {
@@ -575,6 +576,52 @@ select:focus-visible,
   box-shadow: var(--shadow);
 }
 
+.project-scroll-hint {
+  margin-top: 0.65rem;
+  color: rgba(16, 24, 40, 0.48);
+  font-family: "SFMono-Regular", "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: lowercase;
+}
+
+.project-rail {
+  display: flex;
+  gap: 1.25rem;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 1rem calc((100vw - min(72rem, calc(100vw - 2rem))) / 2) 1.4rem;
+  scroll-padding-inline: calc((100vw - min(72rem, calc(100vw - 2rem))) / 2);
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(16, 24, 40, 0.28) transparent;
+}
+
+.project-rail::-webkit-scrollbar {
+  height: 0.7rem;
+}
+
+.project-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-rail::-webkit-scrollbar-thumb {
+  border: 0.18rem solid transparent;
+  border-radius: 999px;
+  background: rgba(16, 24, 40, 0.24);
+  background-clip: padding-box;
+}
+
+.project-slide {
+  flex: 0 0 min(76rem, calc(100vw - 2rem));
+  scroll-snap-align: center;
+}
+
+.project-slide .project-page {
+  height: 100%;
+}
+
 .project-feature {
   background-color: #f7fffb;
 }
@@ -585,6 +632,14 @@ select:focus-visible,
 
 .project-chat {
   background-color: #f7f9ff;
+}
+
+.project-analyzer {
+  background-color: #f8fffb;
+}
+
+.project-ats {
+  background-color: #fff7f5;
 }
 
 .project-sticker {
@@ -712,13 +767,92 @@ select:focus-visible,
   align-content: start;
 }
 
-.project-link {
+.project-actions {
   grid-area: link;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-self: start;
+  justify-self: start;
+}
+
+.project-link {
   width: fit-content;
   align-self: start;
   justify-self: start;
   background: rgba(255, 255, 255, 0.9);
   padding: 0.72rem 0.95rem;
+}
+
+.ats-visual {
+  position: relative;
+  display: grid;
+  min-height: clamp(16rem, 33vw, 27rem);
+  gap: 1rem;
+  align-content: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255, 209, 102, 0.24), transparent 8rem),
+    radial-gradient(circle at 76% 62%, rgba(142, 227, 200, 0.24), transparent 9rem),
+    #172033;
+}
+
+.ats-card {
+  display: grid;
+  gap: 0.25rem;
+  width: min(14rem, 62%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 1rem;
+  color: var(--ink);
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.ats-card span,
+.ats-card p,
+.ats-pill {
+  font-family: "SFMono-Regular", "Cascadia Code", Consolas, monospace;
+  font-weight: 900;
+}
+
+.ats-card span {
+  color: rgba(16, 24, 40, 0.5);
+  font-size: 0.75rem;
+}
+
+.ats-card strong {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+.ats-card p {
+  color: rgba(16, 24, 40, 0.68);
+  font-size: 0.84rem;
+}
+
+.ats-card-right {
+  justify-self: end;
+  background: #e8fff7;
+  transform: rotate(2deg);
+}
+
+.ats-card-left {
+  background: #fff8d7;
+  transform: rotate(-2deg);
+}
+
+.ats-pill {
+  width: fit-content;
+  justify-self: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: var(--peach);
+  padding: 0.65rem 0.9rem;
+  color: var(--ink);
+  font-size: 0.78rem;
+  transform: rotate(-1deg);
 }
 
 .experience-scrap {
