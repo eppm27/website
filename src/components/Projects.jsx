@@ -56,7 +56,7 @@ const projects = [
     short: "connection analyzer",
     title: "Instagram Connection Analyzer",
     caption: "local analysis for Instagram export files",
-    image: "/projects/WhoUnfollowed.png",
+    image: "/projects/instagram-connection-analyzer.png",
     actions: [
       { label: "Live", href: "https://connection-analyzer.vercel.app/" },
       { label: "GitHub", href: "https://github.com/eppm27/WhoUnfollowed" },
@@ -76,7 +76,7 @@ const projects = [
     short: "ats game",
     title: "Can You Pass the ATS?",
     caption: "resume scoring game for early-career candidates",
-    visual: "ats",
+    image: "/projects/ats-game.png",
     actions: [
       { label: "Live", href: "https://ats-game-xi.vercel.app/" },
       { label: "GitHub", href: "https://github.com/eppm27/ats-game" },
@@ -92,23 +92,6 @@ const projects = [
     layout: "ats",
   },
 ];
-
-const AtsVisual = () => (
-  <div className="ats-visual" aria-label="ATS game preview">
-    <div className="ats-card ats-card-left">
-      <span>resume.txt</span>
-      <strong>72</strong>
-      <p>score</p>
-    </div>
-    <div className="ats-card ats-card-right">
-      <span>feedback</span>
-      <p>keywords</p>
-      <p>results</p>
-      <p>sections</p>
-    </div>
-    <div className="ats-pill">try again →</div>
-  </div>
-);
 
 const ProjectPage = ({ project, index }) => (
   <article className={`project-page project-${project.layout}`}>
@@ -128,15 +111,11 @@ const ProjectPage = ({ project, index }) => (
 
     <div className="project-board">
       <div className="screenshot-tape" aria-hidden="true"></div>
-      {project.visual === "ats" ? (
-        <AtsVisual />
-      ) : (
-        <img
-          src={project.image}
-          alt={`${project.title} screenshot`}
-          loading={index === 0 ? "eager" : "lazy"}
-        />
-      )}
+      <img
+        src={project.image}
+        alt={`${project.title} screenshot`}
+        loading={index === 0 ? "eager" : "lazy"}
+      />
     </div>
 
     <div className="project-notes" aria-label={`${project.title} technical notes`}>
